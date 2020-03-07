@@ -92,6 +92,8 @@ if($loginNav == 1) {
   $nav.= "<a href='/krebshilfefast2'>krebshilfefast2</a>";
 } else {
   $nav.= "<a href='/login'>Login</a>";
+  $nav.= "<a href='https://RundesBalli.com' target='_blank' rel='noopener'>RundesBalli</a>";
+  $nav.= "<a href='https://pr0gramm.com/inbox/messages/RundesBalli' target='_blank' rel='noopener'>Kontakt per PN</a>";
 }
 
 /**
