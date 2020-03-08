@@ -13,23 +13,46 @@ require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIREC
 require_once($apiCall);
 
 /**
- * Logeintrag zum Start erzeugen und überall das Löschflag auf 1 setzen
+ * Crawlvorbereitung
  */
-mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet')") OR DIE(MYSQLI_ERROR($dbl));
-mysqli_query($dbl, "UPDATE `items` SET `delflag`=1") OR DIE(MYSQLI_ERROR($dbl));
+if(isset($argv[1]) AND $argv[1] == "full") {
+  /**
+   * Wenn der "full" Parameter übergeben wurde, dann starte einen vollen Crawl.
+   */
+  $newer = $crawler['newer'];
+  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
+  /**
+   * Überall das Löschflag auf 1 setzen
+   */
+  mysqli_query($dbl, "UPDATE `items` SET `delflag`=1") OR DIE(MYSQLI_ERROR($dbl));
+} else {
+  $result = mysqli_query($dbl, "SELECT `postId` FROM `items` ORDER BY `postId` DESC LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+  if(mysqli_num_rows($result) == 0) {
+    /**
+     * Wenn keine Posts vorhanden sind, dann starte einen vollen Crawl.
+     */
+    mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
+    $newer = $crawler['newer'];
+  } else {
+    /**
+     * Wenn Posts vorhanden sind, dann starte die Suche beim letzten Post.
+     */
+    mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet (klein)')") OR DIE(MYSQLI_ERROR($dbl));
+    $row = mysqli_fetch_array($result);
+    $newer = $row['postId'];
+  }
+}
+$atStart = FALSE;
 
 /**
  * Crawlvorgang
  */
-$newer = $crawler['newer'];
-$atStart = FALSE;
-
 do {
   $response = apiCall('https://pr0gramm.com/api/items/get?tags='.urlencode($crawler['tags']).'&newer='.$newer.'&flags=15');
   if($response['atStart'] === TRUE OR $response['error'] !== NULL) {
     $atStart = TRUE;
   }
-  if($response['error'] === NULL) {
+  if(!isset($response['error']) OR $response['error'] === NULL) {
     foreach($response['items'] AS $itemkey => $itemcontent) {
       $innerres = mysqli_query($dbl, "SELECT `postId` FROM `items` WHERE `postId`='".defuse($itemcontent['id'])."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($innerres) === 0) {
@@ -56,7 +79,7 @@ do {
 $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `delflag`='1'") OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_array($result)) {
   mysqli_query($dbl, "DELETE FROM `items` WHERE id='".$row['id']."' AND `delflag`='1' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Post gelöscht da auf pr0gramm nicht mehr vorhanden (ID: ".$row['postId']." - Wert: ".$row['confirmedValue'].")')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Post gelöscht da auf pr0gramm nicht mehr vorhanden (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
 }
 
 /**
