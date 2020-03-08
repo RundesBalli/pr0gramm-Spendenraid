@@ -110,6 +110,10 @@ a:active, a:hover, a:focus {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .left {
   float: left;
 }
@@ -258,7 +262,7 @@ a:active, a:hover, a:focus {
 }
 
 .bordered {
-  border: 1px solid #212121;
+  border-bottom: 1px solid #212121;
 }
 
  /* Extra small devices (phones, 600px and down) */
