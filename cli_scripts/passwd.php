@@ -45,7 +45,7 @@ if(isset($argv[2]) AND preg_match('/^.{20,}$/', $argv[2], $match) === 1) {
  */
  mysqli_query($dbl, "UPDATE `users` SET `password`='".$password."', `salt`='".$salt."' WHERE `username`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_affected_rows($dbl) == 1) {
-  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CLI] User-Passwort geändert: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CLI] User-Passwort geändert: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
   die("Passwort erfolgreich geändert.\n\n");
 } else {
   die("Dieser Account existiert nicht.\n\n");

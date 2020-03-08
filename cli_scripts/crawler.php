@@ -20,7 +20,7 @@ if(isset($argv[1]) AND $argv[1] == "full") {
    * Wenn der "full" Parameter übergeben wurde, dann starte einen vollen Crawl.
    */
   $newer = $crawler['newer'];
-  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
   /**
    * Überall das Löschflag auf 1 setzen
    */
@@ -31,13 +31,13 @@ if(isset($argv[1]) AND $argv[1] == "full") {
     /**
      * Wenn keine Posts vorhanden sind, dann starte einen vollen Crawl.
      */
-    mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
+    mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
     $newer = $crawler['newer'];
   } else {
     /**
      * Wenn Posts vorhanden sind, dann starte die Suche beim letzten Post.
      */
-    mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang gestartet (klein)')") OR DIE(MYSQLI_ERROR($dbl));
+    mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Crawlvorgang gestartet (klein)')") OR DIE(MYSQLI_ERROR($dbl));
     $row = mysqli_fetch_array($result);
     $newer = $row['postId'];
   }
@@ -79,11 +79,11 @@ do {
 $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `delflag`='1'") OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_array($result)) {
   mysqli_query($dbl, "DELETE FROM `items` WHERE id='".$row['id']."' AND `delflag`='1' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Post gelöscht da auf pr0gramm nicht mehr vorhanden (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Post gelöscht da auf pr0gramm nicht mehr vorhanden (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
 }
 
 /**
  * Logeintrag zum Ende erzeugen
  */
-mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CRON] Crawlvorgang beendet')") OR DIE(MYSQLI_ERROR($dbl));
+mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Crawlvorgang beendet')") OR DIE(MYSQLI_ERROR($dbl));
 ?>

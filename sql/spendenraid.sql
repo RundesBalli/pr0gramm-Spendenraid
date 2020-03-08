@@ -69,13 +69,12 @@ CREATE TABLE `items` (
   CONSTRAINT `items_ibfk_6` FOREIGN KEY (`confirmedOrgaId`) REFERENCES `orgas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-TRUNCATE `items`;
 
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `userId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - users.id',
-  `timestamp` datetime NOT NULL COMMENT 'Zeitpunkt des Eintrags',
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des Eintrags',
   `loglevel` int(10) unsigned NOT NULL COMMENT 'Querverweis - loglevel.id',
   `postId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - items.postId, oder NULL bei User-/Systemaktion',
   `text` text COLLATE utf8mb4_unicode_ci COMMENT 'Logtext (optional)',
@@ -150,4 +149,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2020-03-08 09:27:39
+-- 2020-03-08 16:12:35

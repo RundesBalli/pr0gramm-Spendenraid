@@ -44,7 +44,7 @@ if(isset($argv[2]) AND preg_match('/^.{20,}$/', $argv[2], $match) === 1) {
  * Eintragen des neuen Nutzers.
  */
 if(mysqli_query($dbl, "INSERT INTO `users` (`username`, `password`, `salt`) VALUES ('".$username."', '".$password."', '".$salt."')")) {
-  mysqli_query($dbl, "INSERT INTO `log` (`timestamp`, `loglevel`, `text`) VALUES (NOW(), 1, '[CLI] User angelegt: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CLI] User angelegt: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
   die("Account erfolgreich angelegt.\n\n");
 } elseif(mysqli_errno($dbl) == 1062) {
   die("Es existiert bereits ein Account mit diesem Namen.\n\n");
