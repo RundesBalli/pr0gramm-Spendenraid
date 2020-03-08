@@ -172,6 +172,7 @@ a:active, a:hover, a:focus {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  cursor: pointer;
 }
 
 #nav a:hover {
