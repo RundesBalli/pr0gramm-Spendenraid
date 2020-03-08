@@ -14,7 +14,7 @@ if(isset($_COOKIE['spendenraid']) AND !empty($_COOKIE['spendenraid'])) {
     /**
      * Abfrage in der Datenbank, ob eine Sitzung mit diesem Hash existiert.
      */
-    $result = mysqli_query($dbl, "SELECT `users`.`username` FROM `sessions` JOIN `users` ON `users`.`id`=`sessions`.`userId` WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+    $result = mysqli_query($dbl, "SELECT `users`.`id`, `users`.`username` FROM `sessions` JOIN `users` ON `users`.`id`=`sessions`.`userId` WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 1) {
       /**
        * Wenn eine Sitzung existiert wird der letzte Nutzungszeitpunkt aktualisiert und der Username in die Variable $username geladen.
