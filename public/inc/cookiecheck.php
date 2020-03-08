@@ -22,7 +22,9 @@ if(isset($_COOKIE['spendenraid']) AND !empty($_COOKIE['spendenraid'])) {
        */
       mysqli_query($dbl, "UPDATE `sessions` SET `lastActivity`=CURRENT_TIMESTAMP WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       setcookie('spendenraid', $match[0], time()+(6*7*86400));
-      $username = mysqli_fetch_array($result)['username'];
+      $userrow = mysqli_fetch_array($result);
+      $username = $userrow['username'];
+      $userId = $userrow['id'];
       $sessionhash = $match[0];
       $loginNav = 1;
     } else {
