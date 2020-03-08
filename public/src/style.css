@@ -191,6 +191,10 @@ a:active, a:hover, a:focus {
   #nav a:not(:nth-child(2)) {
     display: none;
   }
+
+  #nav span, #nav br {
+    display: none;
+  }
   
   #nav a.icon {
     display: inline-block;
@@ -201,6 +205,10 @@ a:active, a:hover, a:focus {
   }
   
   #nav.responsive a {
+    display: inline-block;
+  }
+
+  #nav.responsive span, #nav.responsive br {
     display: inline-block;
   }
 }
