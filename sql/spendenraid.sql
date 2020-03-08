@@ -47,7 +47,7 @@ CREATE TABLE `items` (
   `confirmedOrgaUserId` int(10) unsigned DEFAULT NULL COMMENT 'Initial NULL; sonst Querverweis UserID des Bestätigenden',
   `delflag` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0=Post ist noch vorhanden, 1=Post wurde gelöscht',
   PRIMARY KEY (`id`),
-  KEY `postId` (`postId`),
+  UNIQUE KEY `postId` (`postId`),
   KEY `created` (`created`),
   KEY `flags` (`flags`),
   KEY `username` (`username`),
@@ -77,18 +77,17 @@ CREATE TABLE `log` (
   `userId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - users.id',
   `timestamp` datetime NOT NULL COMMENT 'Zeitpunkt des Eintrags',
   `loglevel` int(10) unsigned NOT NULL COMMENT 'Querverweis - loglevel.id',
-  `itemId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - items.id, oder NULL bei User-/Systemaktion',
+  `postId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - items.postId, oder NULL bei User-/Systemaktion',
   `text` text COLLATE utf8mb4_unicode_ci COMMENT 'Logtext (optional)',
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   KEY `loglevel` (`loglevel`),
-  KEY `itemId` (`itemId`),
+  KEY `itemId` (`postId`),
   CONSTRAINT `log_ibfk_2` FOREIGN KEY (`loglevel`) REFERENCES `loglevel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `log_ibfk_4` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `log_ibfk_5` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `log_ibfk_5` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `log_ibfk_6` FOREIGN KEY (`postId`) REFERENCES `items` (`postId`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-TRUNCATE `log`;
 
 DROP TABLE IF EXISTS `loglevel`;
 CREATE TABLE `loglevel` (
@@ -139,7 +138,6 @@ CREATE TABLE `sessions` (
   CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-TRUNCATE `sessions`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -151,6 +149,5 @@ CREATE TABLE `users` (
   KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
-TRUNCATE `users`;
 
--- 2020-03-06 23:06:40
+-- 2020-03-08 09:27:39
