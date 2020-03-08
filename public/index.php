@@ -83,13 +83,6 @@ if($loginNav == 1) {
   $nav.= "<a href='/log'>Log</a>";
   $nav.= "<a href='/stats'>Statistiken</a>";
   $nav.= "<a href='/logout'>Logout</a>";
-  $nav.= "<br>".PHP_EOL;
-  $nav.= "<span class='warn'>Schnellbewertung:</span> ";
-  $nav.= "<a href='/resetfast'>Reset</a>";
-  $nav.= "<a href='/dkmsfast1'>dkmsfast1</a>";
-  $nav.= "<a href='/dkmsfast2'>dkmsfast2</a>";
-  $nav.= "<a href='/krebshilfefast1'>krebshilfefast1</a>";
-  $nav.= "<a href='/krebshilfefast2'>krebshilfefast2</a>";
 } else {
   $nav.= "<a href='/login'>Login</a>";
   $nav.= "<a href='https://RundesBalli.com' target='_blank' rel='noopener'>RundesBalli</a>";
