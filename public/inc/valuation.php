@@ -15,82 +15,87 @@ require_once('cookiecheck.php');
  */
 if(isset($_POST['submit'])) {
   $postId = (int)defuse($_POST['postId']);
-  $value = (double)str_replace(",", ".", defuse($_POST['value']));
   /**
-   * CSRF Prüfung
+   * Prüfung ob eine gültige Zahl eingegeben wurde
    */
-  if($_POST['token'] != $sessionhash) {
+  if(is_numeric($_POST['value'])) {
+    $value = (double)str_replace(",", ".", defuse($_POST['value']));
     /**
-     * Token ungültig
+     * CSRF Prüfung
      */
-    $content.= "<div class='warnbox'>Ungültiges Token</div>".PHP_EOL;
-  } else {
-    /**
-     * Token gültig. Selektion des Posts.
-     */
-    $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-    if(mysqli_num_rows($result) == 0) {
+    if($_POST['token'] != $sessionhash) {
       /**
-       * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
+       * Token ungültig
        */
-      $content.= "<div class='infobox'>Der Post existiert nicht (mehr).</div>".PHP_EOL;
+      $content.= "<div class='warnbox'>Ungültiges Token</div>".PHP_EOL;
     } else {
       /**
-       * Wenn der Post existiert prüfe zuerst ob schon eine Erstsichtung durchgeführt wurde.
+       * Token gültig. Selektion des Posts.
        */
-      $row = mysqli_fetch_array($result);
-      if($row['firstsightValue'] === NULL OR $row['firstsightUserId'] === NULL) {
+      $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      if(mysqli_num_rows($result) == 0) {
         /**
-         * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
+         * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
          */
-        mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
-      } elseif($row['confirmedValue'] === NULL OR $row['confirmedUserId'] === NULL) {
+        $content.= "<div class='infobox'>Der Post existiert nicht (mehr).</div>".PHP_EOL;
+      } else {
         /**
-         * Wenn bereits eine Erstsichtung stattgefunden hat, dann prüfe, ob man selbst der Prüfende war.
+         * Wenn der Post existiert prüfe zuerst ob schon eine Erstsichtung durchgeführt wurde.
          */
-        if($row['firstsightUserId'] == $userId) {
+        $row = mysqli_fetch_array($result);
+        if($row['firstsightValue'] === NULL OR $row['firstsightUserId'] === NULL) {
           /**
-           * Fehlermeldung, wenn man selbst der Erstsichtende war.
+           * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
            */
-          $content.= "<div class='warnbox'>Du kannst nicht die Erst- und Zweitsichtung machen.</div>".PHP_EOL;
-        } else {
+          mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+          mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+          $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
+        } elseif($row['confirmedValue'] === NULL OR $row['confirmedUserId'] === NULL) {
           /**
-           * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Summe mit der übergebenen Summe übereinstimmt.
+           * Wenn bereits eine Erstsichtung stattgefunden hat, dann prüfe, ob man selbst der Prüfende war.
            */
-          if($row['firstsightValue'] != $value) {
+          if($row['firstsightUserId'] == $userId) {
             /**
-             * Erst- und Zweitsichtung stimmen nicht überein. Post wird zurückgesetzt und die Zweitsichtung wird zur Erstsichtung.
+             * Fehlermeldung, wenn man selbst der Erstsichtende war.
              */
-            mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', '".number_format($value, 2, ",", ".")." € (Erstsichtung: ".number_format($row['firstsightValue'], 2, ",", ".").")')") OR DIE(MYSQLI_ERROR($dbl));
-            $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
+            $content.= "<div class='warnbox'>Du kannst nicht die Erst- und Zweitsichtung machen.</div>".PHP_EOL;
           } else {
             /**
-             * Erst- und Zweitsichtung stimmen überein. Jetzt wird noch geprüft, ob es sich um eine Spende handelt, oder nicht.
+             * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Summe mit der übergebenen Summe übereinstimmt.
              */
-            if($value <= 0) {
+            if($row['firstsightValue'] != $value) {
               /**
-               * Es ist kein Spendenpost.
+               * Erst- und Zweitsichtung stimmen nicht überein. Post wird zurückgesetzt und die Zweitsichtung wird zur Erstsichtung.
                */
-              mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$userId."', `isDonation`='0' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', '".number_format($value, 2, ",", ".")." € (Erstsichtung: ".number_format($row['firstsightValue'], 2, ",", ".").")')") OR DIE(MYSQLI_ERROR($dbl));
               $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
             } else {
               /**
-               * Es ist ein Spendenpost.
+               * Erst- und Zweitsichtung stimmen überein. Jetzt wird noch geprüft, ob es sich um eine Spende handelt, oder nicht.
                */
-              mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$userId."', `isDonation`='1' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
-              $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
+              if($value == 0) {
+                /**
+                 * Es ist kein Spendenpost.
+                 */
+                mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$userId."', `isDonation`='0' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+                $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
+              } else {
+                /**
+                 * Es ist ein Spendenpost.
+                 */
+                mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$userId."', `isDonation`='1' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+                $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
+              }
             }
           }
+        } else {
+          /**
+           * Wenn alle Felder ausgefüllt waren, dann war jemand anders schneller :o)
+           */
         }
-      } else {
-        /**
-         * Wenn alle Felder ausgefüllt waren, dann war jemand anders schneller :o)
-         */
       }
     }
   }
@@ -164,9 +169,7 @@ if(mysqli_num_rows($result) == 1) {
   /**
    * Alles erledigt.
    */
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Alles erledigt. Nächster Crawl alle 5 Minuten.</div>".PHP_EOL.
-  "</div>".PHP_EOL;
+  $content.= "<div class='infobox'>Alles erledigt. Nächster Crawl alle 5 Minuten.</div>".PHP_EOL;
   $content.= "<div class='spacer-m'></div>".PHP_EOL;
 }
 ?>
