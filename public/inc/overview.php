@@ -143,26 +143,4 @@ while($row = mysqli_fetch_array($result)) {
   "</div>".PHP_EOL;
 }
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
-
-/**
- * Highscore (Logeinträge)
- */
-$content.= "<h1>Highscore (Logeinträge)</h1>".PHP_EOL;
-$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
-$content.= "<div class='row highlight bold'>".PHP_EOL.
-"<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>Platz</div>".PHP_EOL.
-"<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Username</div>".PHP_EOL.
-"<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>Einträge</div>".PHP_EOL.
-"</div>".PHP_EOL;
-$platz = 0;
-while($row = mysqli_fetch_array($result)) {
-  $platz++;
-  $content.= "<div class='row hover'>".PHP_EOL.
-  "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>".($platz == 1 ? "&#x1F451;" : $platz)."</div>".PHP_EOL.
-  "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : $row['username'])."</div>".PHP_EOL.
-  "<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-}
-$content.= "<div class='spacer-m'></div>".PHP_EOL;
 ?>
