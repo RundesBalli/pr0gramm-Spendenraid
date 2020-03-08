@@ -3,15 +3,15 @@ Ein Tool zum Auswerten des Spendenraids auf pr0gramm
 
 ## Screenshots
 ### Übersicht
-![Übersicht](https://raw.githubusercontent.com/RundesBalli/pr0gramm-Spendenraid/master/screenshots/overview.png)  
+![Übersicht](/screenshots/overview.png?raw=true)  
 
 ### Ausführliches Log mit Loglevel-Markierung
-![Ausführliches Log](https://raw.githubusercontent.com/RundesBalli/pr0gramm-Spendenraid/master/screenshots/log.png)  
-![Loglevel-Markierung](https://raw.githubusercontent.com/RundesBalli/pr0gramm-Spendenraid/master/screenshots/loglevel.png)  
+![Ausführliches Log](/screenshots/log.png?raw=true)  
+![Loglevel-Markierung](/screenshots/loglevel.png?raw=true)  
 
 ### Eintragen des Spendenwertes und der Organisation
-![Spendenwert](https://raw.githubusercontent.com/RundesBalli/pr0gramm-Spendenraid/master/screenshots/valuation.png)  
-![Organisation](https://raw.githubusercontent.com/RundesBalli/pr0gramm-Spendenraid/master/screenshots/orga.png)  
+![Spendenwert](/screenshots/valuation.png?raw=true)  
+![Organisation](/screenshots/orga.png?raw=true)  
 
 ## CRON
 Der Crawler läuft alle 15 Minuten in einem Voll-Scan (ab der ID, die in der Config eingetragen ist) und alle 5 Minuten in einem kleinen Scan (ab letzter Post-ID aus der Datenbank).  
