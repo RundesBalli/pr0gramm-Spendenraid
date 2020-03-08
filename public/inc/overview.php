@@ -148,7 +148,7 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
  * Highscore (Logeinträge)
  */
 $content.= "<h1>Highscore (Logeinträge)</h1>".PHP_EOL;
-$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` JOIN `users` ON `users`.`id`=`log`.`userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
 $content.= "<div class='row highlight bold'>".PHP_EOL.
 "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>Platz</div>".PHP_EOL.
 "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Username</div>".PHP_EOL.
