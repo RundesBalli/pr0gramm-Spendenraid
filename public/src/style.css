@@ -126,6 +126,10 @@ a:active, a:hover, a:focus {
   font-size: 22px;
 }
 
+.wb {
+  word-break: break-word;
+}
+
 /*
   2. Header
 */

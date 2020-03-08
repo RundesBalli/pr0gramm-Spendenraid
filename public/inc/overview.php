@@ -44,10 +44,11 @@ $content.= "<h1>Suchparameter</h1>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Crawlen ab Post-ID</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'>".$crawler['newer']."</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Suchquery</div>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'>".$crawler['tags']."</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9 wb'>".$crawler['tags']."</div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
 
@@ -61,31 +62,37 @@ $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Gesamt</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['postcountTotal'], 0, ",", ".")."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Anzahl der Posts, die in das o.g. Suchmuster fallen</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Spendenposts</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['postcountIsDonation'], 0, ",", ".")."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Anzahl der bestätigten Spendenposts</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Nicht-Spendenposts</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['postcountIsNoDonation'], 0, ",", ".")."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Anzahl der bestätigten Nicht-Spendenposts</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>ausstehende Erstsichtung</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['pendingFirst'], 0, ",", ".")."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Anzahl der Posts, bei denen noch keine Erstsichtung stattgefunden hat.</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>ausstehende Zweitsichtung</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['pendingSecond'], 0, ",", ".")."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Anzahl der Posts, bei denen noch keine Zweitsichtung stattgefunden hat.</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>ausstehende Orga-Erstsichtung</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['pendingOrgaFirst'], 0, ",", ".")."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Anzahl der Spendenposts, bei denen noch keine Orga-Erstsichtung stattgefunden hat.</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>ausstehende Orga-Zweitsichtung</div>".PHP_EOL.
@@ -104,6 +111,7 @@ $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Gesamtsumme nach Erstsichtung</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>".number_format($row['unconfirmedTotalsum'], 2, ",", ".")." €</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-6 col-xl-6'>Gesamtsumme der Erstsichtungen</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>bestätigte Gesamtsumme nach Zweitsichtung</div>".PHP_EOL.
@@ -131,6 +139,7 @@ while($row = mysqli_fetch_array($result)) {
   "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format($innerrow['sum'], 2, ",", ".")." €</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format($innerrow['count'], 0, ",", ".")."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format(($innerrow['count'] == 0 ? 0 : ($innerrow['sum']/$innerrow['count'])), 2, ",", ".")." €</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
   "</div>".PHP_EOL;
 }
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
@@ -142,16 +151,17 @@ $content.= "<h1>Highscore (Logeinträge)</h1>".PHP_EOL;
 $result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` JOIN `users` ON `users`.`id`=`log`.`userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
 $content.= "<div class='row highlight bold'>".PHP_EOL.
 "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>Platz</div>".PHP_EOL.
-"<div class='col-x-8 col-s-8 col-m-4 col-l-4 col-xl-4'>Username</div>".PHP_EOL.
-"<div class='col-x-2 col-s-2 col-m-6 col-l-6 col-xl-6'>Anzahl Logeinträge</div>".PHP_EOL.
+"<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Username</div>".PHP_EOL.
+"<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>Einträge</div>".PHP_EOL.
 "</div>".PHP_EOL;
 $platz = 0;
 while($row = mysqli_fetch_array($result)) {
   $platz++;
   $content.= "<div class='row hover'>".PHP_EOL.
   "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>".($platz == 1 ? "&#x1F451;" : $platz)."</div>".PHP_EOL.
-  "<div class='col-x-8 col-s-8 col-m-4 col-l-4 col-xl-4'>".$row['username']."</div>".PHP_EOL.
-  "<div class='col-x-2 col-s-2 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
+  "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>".$row['username']."</div>".PHP_EOL.
+  "<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
   "</div>".PHP_EOL;
 }
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
