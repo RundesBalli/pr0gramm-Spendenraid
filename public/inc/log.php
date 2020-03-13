@@ -84,9 +84,11 @@ $content.= "<div class='row highlight bold'>".PHP_EOL.
 "</div>".PHP_EOL;
 $platz = 0;
 while($row = mysqli_fetch_array($result)) {
-  $platz++;
+  if($row['username'] !== NULL) {
+    $platz++;
+  }
   $content.= "<div class='row hover'>".PHP_EOL.
-  "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>".($platz == 1 ? "&#x1F451;" : $platz)."</div>".PHP_EOL.
+  "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "&#x1F5A5;" : ($platz == 1 ? "&#x1F451;" : $platz))."</div>".PHP_EOL.
   "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : $row['username'])."</div>".PHP_EOL.
   "<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
