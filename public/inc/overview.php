@@ -56,7 +56,7 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
  * Posts / Sichtungen
  */
 $content.= "<h1>Posts / Sichtungen</h1>".PHP_EOL;
-$result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `items`) AS `postcountTotal`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1') AS `postcountIsDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='0') AS `postcountIsNoDonation`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NULL) AS `pendingFirst`, (SELECT count(`id`) FROM `items` WHERE `confirmedValue` IS NULL) AS `pendingSecond`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1' AND `firstsightOrgaId` IS NULL) AS `pendingOrgaFirst`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1' AND `confirmedOrgaId` IS NULL) AS `pendingOrgaSecond`") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `items`) AS `postcountTotal`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1') AS `postcountIsDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='0') AS `postcountIsNoDonation`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NULL) AS `pendingFirst`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NOT NULL AND `confirmedValue` IS NULL) AS `pendingSecond`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1' AND `firstsightOrgaId` IS NULL) AS `pendingOrgaFirst`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1' AND `confirmedOrgaId` IS NULL) AS `pendingOrgaSecond`") OR DIE(MYSQLI_ERROR($dbl));
 $row = mysqli_fetch_array($result);
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Gesamt</div>".PHP_EOL.
