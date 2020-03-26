@@ -123,7 +123,8 @@ INSERT INTO `orgas` (`id`, `organame`, `sortIndex`) VALUES
 (5,	'Österreichische Spendenorganisationen',	50),
 (6,	'Schweizer Spendenorganisationen',	60),
 (7,	'diverse andere',	70),
-(8,	'nicht ersichtlich',	80);
+(8,	'nicht ersichtlich',	80),
+(9,	'gute Tat',	90);
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -150,4 +151,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2020-03-26 23:53:56
+-- 2020-03-26 23:56:29
