@@ -102,7 +102,8 @@ INSERT INTO `loglevel` (`id`, `title`, `color`) VALUES
 (2,	'Erstsichtung',	'e108e9'),
 (3,	'Zweitsichtung - zurückgesetzt',	'ff9900'),
 (4,	'Zweitsichtung - okay',	'5bb91c'),
-(5,	'Post zurückgesetzt',	'c52b2f');
+(5,	'Post zurückgesetzt',	'c52b2f'),
+(6,	'Perk',	'337fd2');
 
 DROP TABLE IF EXISTS `orgas`;
 CREATE TABLE `orgas` (
@@ -149,4 +150,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2020-03-08 16:12:35
+-- 2020-03-26 23:53:56

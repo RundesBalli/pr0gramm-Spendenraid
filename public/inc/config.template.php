@@ -29,4 +29,11 @@ $crawler['tags'] = '';
  * @var string
  */
 $apiCall = "";
+
+/**
+ * Nutzerfreischaltung für das Perk
+ * 
+ * @var string
+ */
+$perkSecret = "";
 ?>
