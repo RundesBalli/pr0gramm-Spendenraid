@@ -51,6 +51,10 @@ $pageArray = array(
   'overview'        => 'overview.php',
   'stats'           => 'stats.php',
 
+  /* Schnellbewertung */
+  'dkmsfast'        => 'dkmsfast.php',
+  'orgafast'        => 'orgafast.php',
+
   /* Fehlerseiten */
   '404'             => '404.php',
   '403'             => '403.php'
@@ -74,6 +78,7 @@ if($loginNav == 1) {
   $nav.= "<a href='/overview'>Übersicht</a>";
   $nav.= "<a href='/valuation'>Bewertung</a>";
   $nav.= "<a href='/orga'>Organisationen</a>";
+  $nav.= "<a href='/dkmsfast'>DKMS Schnellbewertung</a>";
   $nav.= "<a href='/log'>Log</a>";
   $nav.= "<a href='/stats'>Statistiken</a>";
   $nav.= "<a href='/logout'>Logout</a>";
