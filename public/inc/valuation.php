@@ -98,13 +98,13 @@ if(isset($_POST['submit'])) {
                     /**
                      * Bei Erfolg wird ein Logeintrag erzeugt.
                      */
-                    mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 6, '".$postId."', 'freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
+                    mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
                   } else {
                     /**
                      * Wenn die Freischaltung nicht geklappt hat, wird der Post zurückgesetzt.
                      */
                     mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`=NULL, `firstsightUserId`=NULL, `confirmedValue`=NULL, `confirmedUserId`=NULL, `isDonation`=NULL, `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-                    mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 5, '".$postId."', 'zurückgesetzt, da Perkfreischaltung fehlschlug')") OR DIE(MYSQLI_ERROR($dbl));
+                    mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (5, '".$postId."', 'zurückgesetzt, da Perkfreischaltung fehlschlug')") OR DIE(MYSQLI_ERROR($dbl));
                     $content.= "<div class='warnbox'>Post zurückgesetzt, da Perkfreischaltung fehlschlug.</div>".PHP_EOL;
                   }
                 }
