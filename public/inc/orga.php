@@ -73,9 +73,15 @@ if(isset($_POST['submit'])) {
               /**
                * Erst- und Zweitsichtung stimmen nicht überein. Post wird zurückgesetzt und die Zweitsichtung wird zur Erstsichtung.
                */
-              mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`='".$orga."', `firstsightOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', 'Orga: ".$orga." (Erstsichtung: ".$row['firstsightOrgaId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-              $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+              mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`='".$orga."', `firstsightOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1");
+              if(mysqli_errno($dbl) == 1452) {
+                $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
+              } elseif(mysqli_errno($dbl) == 0) {
+                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', 'Orga: ".$orga." (Erstsichtung: ".$row['firstsightOrgaId'].")')") OR DIE(MYSQLI_ERROR($dbl));
+                $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+              } else {
+                die(MYSQLI_ERROR($dbl));
+              }
             } else {
               /**
                * Erst- und Zweitsichtung stimmen überein.
