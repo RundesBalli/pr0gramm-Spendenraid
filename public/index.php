@@ -45,6 +45,7 @@ $pageArray = array(
   'logout'          => 'logout.php',
   'log'             => 'log.php',
   'resetpost'       => 'resetpost.php',
+  'orgareset'       => 'orgareset.php',
   'valuation'       => 'valuation.php',
   'orga'            => 'orga.php',
   'overview'        => 'overview.php',

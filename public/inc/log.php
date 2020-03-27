@@ -48,7 +48,7 @@ while($row = mysqli_fetch_array($result)) {
   "<div class='col-x-4 col-s-4 col-m-1 col-l-1 col-xl-1'>".$row['id']."</div>".PHP_EOL.
   "<div class='col-x-8 col-s-8 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : $row['username'])."</div>".PHP_EOL.
   "<div class='col-x-8 col-s-8 col-m-3 col-l-3 col-xl-3'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".PHP_EOL.
-  "<div class='col-x-4 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['postId'] === NULL ? "<span class='italic'>NULL</span>" : "<a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a>".($row['loglevelId'] != 5 ? "<br><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a>" : NULL))."</div>".PHP_EOL.
+  "<div class='col-x-4 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['postId'] === NULL ? "<span class='italic'>NULL</span>" : "<a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a>".($row['loglevelId'] != 5 ? "<br><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a><br><a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a>" : NULL))."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".$row['text']."</div>".PHP_EOL.
   "</div>".PHP_EOL;
   $logIds[] = $row['id'];
