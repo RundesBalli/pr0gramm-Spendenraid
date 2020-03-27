@@ -53,6 +53,7 @@ $pageArray = array(
 
   /* Schnellbewertung */
   'dkmsfast'        => 'dkmsfast.php',
+  'krebshilfefast'  => 'krebshilfefast.php',
   'orgafast'        => 'orgafast.php',
 
   /* Fehlerseiten */
@@ -78,10 +79,12 @@ if($loginNav == 1) {
   $nav.= "<a href='/overview'>Übersicht</a>";
   $nav.= "<a href='/valuation'>Bewertung</a>";
   $nav.= "<a href='/orga'>Organisationen</a>";
-  $nav.= "<a href='/dkmsfast'>DKMS Schnellbewertung</a>";
   $nav.= "<a href='/log'>Log</a>";
   $nav.= "<a href='/stats'>Statistiken</a>";
   $nav.= "<a href='/logout'>Logout</a>";
+  $nav.= "<br>";
+  $nav.= "<a href='/dkmsfast'>DKMS Schnellbewertung</a>";
+  $nav.= "<a href='/krebshilfefast'>Dt. Krebshilfe Schnellbewertung</a>";
 } else {
   $nav.= "<a href='/login'>Login</a>";
   $nav.= "<a href='https://RundesBalli.com' target='_blank' rel='noopener'>RundesBalli</a>";
