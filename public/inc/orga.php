@@ -146,7 +146,7 @@ if(mysqli_num_rows($result) == 1) {
   }
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Organisation</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'><input name='orga' type='text' placeholder='siehe Organisationen'".($autofocus === TRUE ? " autofocus" : NULL)."></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen'".($autofocus === TRUE ? " autofocus" : NULL)."></div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-6 col-l-6 col-xl-6'>".implode("<br>", $orgas)."</div>".PHP_EOL.
   "</div>".PHP_EOL;
 
