@@ -133,6 +133,9 @@ $content.= "<h1>Bewertung</h1>".PHP_EOL;
 $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `firstsightValue` IS NULL OR (`confirmedValue` IS NULL AND `firstsightUserId` != '".$userId."') ORDER BY RAND() LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 1) {
   $row = mysqli_fetch_array($result);
+  if($row['firstsightValue'] !== NULL) {
+    $content.= "<h3 class='highlight'>Erstsichtung: ".number_format($row['firstsightValue'], 2, ".", ",")." €</h3>".PHP_EOL;
+  }
   if($row['extension'] != "mp4") {
     /**
      * Bilder werden direkt angezeigt. Falls der Benis kleiner oder gleich 0 ist, wird der Benis Hinweis vergrößert dargestellt.
