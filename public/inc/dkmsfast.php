@@ -17,7 +17,7 @@ $title = "DKMS Schnellbewertung";
 $content.= "<h1>DKMS Schnellbewertung</h1>".PHP_EOL;
 $content.= "<h3 class='warn'>GENAU LESEN:</h3>".PHP_EOL;
 $content.= "<div class='row'>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 warn bold'>Beim Klick auf einen Thumbnail wird er DIREKT der DKMS zugeordnet.</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 warn bold'>Beim Klick auf einen Thumbnail wird er DIREKT der DKMS zugeordnet (Erst- und Zweitsichtung wie über die normale Bewertung finden trotzdem statt!).</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Mittelklick (Mausrad) öffnet neuen Tab.</div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
