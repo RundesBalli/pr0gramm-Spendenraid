@@ -110,13 +110,21 @@ if(mysqli_num_rows($result) == 1) {
   if($row['firstsightOrgaId'] !== NULL) {
     $content.= "<h3 class='highlight'>Erstsichtung: Orga ".$row['firstsightOrgaId']."</h3>".PHP_EOL;
   }
+  /**
+   * Organisationen auslesen und für das Formular vorbereiten
+   */
+  $orgaresult = mysqli_query($dbl, "SELECT `id`, `organame` FROM `orgas` ORDER BY `sortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
+  while($orgarow = mysqli_fetch_array($orgaresult)) {
+    $orgas[] = $orgarow['id']." - ".$orgarow['organame'];
+  }
   if($row['extension'] != "mp4") {
     /**
      * Bilder werden direkt angezeigt. Falls der Benis kleiner oder gleich 0 ist, wird der Benis Hinweis vergrößert dargestellt.
      * Da Bilder direkt angezeigt werden kann im Formular der Autofocus im Wert-Feld liegen.
      */
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 center'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8 center'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".implode("<br>", $orgas)."</div>".PHP_EOL.
     "</div>".PHP_EOL;
     $autofocus = TRUE;
   } else {
@@ -124,7 +132,8 @@ if(mysqli_num_rows($result) == 1) {
      * Videos nicht direkt anzeigen. Stattdessen den Post verlinken und das Formular nicht automatisch fokussieren.
      */
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 center'><h1 class='highlight'>VIDEO</h1><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>Video auf pr0gramm ansehen</a><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8 center'><h1 class='highlight'>VIDEO</h1><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>Video auf pr0gramm ansehen</a><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".implode("<br>", $orgas)."</div>".PHP_EOL.
     "</div>".PHP_EOL;
     $autofocus = FALSE;
   }
@@ -140,17 +149,9 @@ if(mysqli_num_rows($result) == 1) {
    * Sitzungstoken
    */
   $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
-  /**
-   * Organisationen auslesen und Formularfeld anzeigen
-   */
-  $result = mysqli_query($dbl, "SELECT `id`, `organame` FROM `orgas` ORDER BY `sortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
-  while($row = mysqli_fetch_array($result)) {
-    $orgas[] = $row['id']." - ".$row['organame'];
-  }
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Organisation</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen'".($autofocus === TRUE ? " autofocus" : NULL)."></div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-6 col-l-6 col-xl-6'>".implode("<br>", $orgas)."</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen'".($autofocus === TRUE ? " autofocus" : NULL)."></div>".PHP_EOL.
   "</div>".PHP_EOL;
 
   /**
@@ -161,6 +162,7 @@ if(mysqli_num_rows($result) == 1) {
   "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='submit' type='submit' value='Eintragen'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
+
   /**
    * Zurücksetzen
    */
