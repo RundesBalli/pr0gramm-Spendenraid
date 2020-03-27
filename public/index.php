@@ -50,6 +50,8 @@ $pageArray = array(
   'orga'            => 'orga.php',
   'overview'        => 'overview.php',
   'stats'           => 'stats.php',
+  'dellist'         => 'dellist.php',
+  'delpost'         => 'delpost.php',
 
   /* Schnellbewertung */
   'dkmsfast'        => 'dkmsfast.php',
@@ -83,6 +85,7 @@ if($loginNav == 1) {
   $nav.= "<a href='/stats'>Statistiken</a>";
   $nav.= "<a href='/logout'>Logout</a>";
   $nav.= "<br>";
+  $nav.= "<a href='/dellist'>Löschliste</a>";
   $nav.= "<a href='/dkmsfast'>DKMS Schnellbewertung</a>";
   $nav.= "<a href='/krebshilfefast'>Dt. Krebshilfe Schnellbewertung</a>";
 } else {

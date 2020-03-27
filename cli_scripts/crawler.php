@@ -80,41 +80,7 @@ do {
 } while($atStart === FALSE);
 
 /**
- * Delflag = 1 löschen
- */
-$deletedPosts = 0;
-$result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `delflag`='1'") OR DIE(MYSQLI_ERROR($dbl));
-while($row = mysqli_fetch_array($result)) {
-  /**
-   * Wenn der zu löschende Post ein Spendenpost war, muss geprüft werden, ob dem User das Perk wieder gesperrt werden muss.
-   */
-  if(!empty($perkSecret) AND $row['isDonation'] == 1) {
-    $innerresult = mysqli_query($dbl, "SELECT * FROM `items` WHERE (`username`='".$row['username']."' AND `isDonation`='1') AND `delflag`='0'") OR DIE(MYSQLI_ERROR($dbl));
-    if(mysqli_num_rows($innerresult) == 0) {
-      /**
-       * Keine weiteren validierten Spendenposts, also wird der User wieder gesperrt.
-       */
-      $response = apiCall("https://pr0gramm.com/api/slots/lockuser", array("secret" => $perkSecret, "itemId" => $row['postId']));
-      if($response['success'] == TRUE) {
-        /**
-         * Bei Erfolg wird ein Logeintrag erzeugt.
-         */
-        mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Perk gesperrt (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-      } else {
-        /**
-         * Wenn die Freischaltung nicht geklappt hat, wird ein gesonderter Logeintrag erzeugt und eine Fehlermeldung ausgegeben.
-         */
-        mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Perk-Sperrung fehlgeschlagen! (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-      }
-    }
-  }
-  $deletedPosts++;
-  mysqli_query($dbl, "DELETE FROM `items` WHERE `id`='".$row['id']."' AND `delflag`='1' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-  mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Post gelöscht da auf pr0gramm nicht mehr vorhanden (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-}
-
-/**
  * Logeintrag zum Ende erzeugen
  */
-mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Crawlvorgang beendet (total: ".$totalPosts.", new: ".$newPosts.", updated: ".$updatedPosts.", deleted: ".$deletedPosts.")')") OR DIE(MYSQLI_ERROR($dbl));
+mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CRON] Crawlvorgang beendet (total: ".$totalPosts.", new: ".$newPosts.", updated: ".$updatedPosts.")')") OR DIE(MYSQLI_ERROR($dbl));
 ?>
