@@ -18,8 +18,8 @@ if(isset($_POST['submit'])) {
   /**
    * Prüfung ob eine gültige Zahl eingegeben wurde
    */
-  if(is_numeric($_POST['value'])) {
-    $value = (double)str_replace(",", ".", defuse($_POST['value']));
+  $value = (double)str_replace(",", ".", defuse($_POST['value']));
+  if(is_numeric($value)) {
     /**
      * CSRF Prüfung
      */
