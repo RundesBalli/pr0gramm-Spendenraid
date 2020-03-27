@@ -107,6 +107,9 @@ $content.= "<h1>Organisationen</h1>".PHP_EOL;
 $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `isDonation`='1' AND (`firstsightOrgaId` IS NULL OR (`confirmedOrgaId` IS NULL AND `firstsightOrgaUserId`!='".$userId."')) ORDER BY RAND() LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 1) {
   $row = mysqli_fetch_array($result);
+  if($row['firstsightOrgaId'] !== NULL) {
+    $content.= "<h3 class='highlight'>Erstsichtung: Orga ".$row['firstsightOrgaId']."</h3>".PHP_EOL;
+  }
   if($row['extension'] != "mp4") {
     /**
      * Bilder werden direkt angezeigt. Falls der Benis kleiner oder gleich 0 ist, wird der Benis Hinweis vergrößert dargestellt.
