@@ -25,7 +25,7 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
 /**
  * Selektieren von Posts, der noch nicht bewertet oder noch nicht durch einen selbst bewertet wurde.
  */
-$result = mysqli_query($dbl, "SELECT * FROM `items` WHERE (`isDonation`='1' AND (`firstsightOrgaId` IS NULL OR (`confirmedOrgaId` IS NULL AND `firstsightOrgaUserId`!='".$userId."'))) AND `extension`!='mp4' ORDER BY RAND() LIMIT 100") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT * FROM `items` WHERE (`isDonation`='1' AND (`firstsightOrgaId` IS NULL OR (`confirmedOrgaId` IS NULL AND `firstsightOrgaUserId`!='".$userId."'))) AND `extension`!='mp4' ORDER BY RAND() LIMIT 250") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) != 0) {
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>".PHP_EOL;
