@@ -72,7 +72,7 @@ if(!empty($_GET['postId'])) {
         if(!empty($perkSecret)) {
           $row = mysqli_fetch_array($result);
           $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `username`='".$row['username']."' AND `isDonation`='1'") OR DIE(MYSQLI_ERROR($dbl));
-          if(mysql_num_rows($result) == 0) {
+          if(mysqli_num_rows($result) == 0) {
             /**
              * Keine weiteren validierten Spendenposts, also wird der User wieder gesperrt.
              */
