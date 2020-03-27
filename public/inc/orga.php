@@ -52,7 +52,7 @@ if(isset($_POST['submit'])) {
             $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
           } elseif(mysqli_errno($dbl) == 0) {
             mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
-            $content.= "<div class='successbox'>Spendenwert eingetragen.</div>".PHP_EOL;
+            $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
           } else {
             die(MYSQLI_ERROR($dbl));
           }
