@@ -51,13 +51,6 @@ $pageArray = array(
   'overview'        => 'overview.php',
   'stats'           => 'stats.php',
 
-  /* Schnellbewertung */
-  'resetfast'       => 'resetfast.php',
-  'dkmsfast1'       => 'dkmsfast1.php',
-  'dkmsfast2'       => 'dkmsfast2.php',
-  'krebshilfefast1' => 'krebshilfefast1.php',
-  'krebshilfefast2' => 'krebshilfefast2.php',
-  
   /* Fehlerseiten */
   '404'             => '404.php',
   '403'             => '403.php'
