@@ -125,7 +125,7 @@ INSERT INTO `orgas` (`id`, `organame`, `sortIndex`, `exportCountOnly`) VALUES
 (6,	'Schweizer Spendenorganisationen',	60,	0),
 (7,	'diverse andere',	70,	0),
 (8,	'nicht ersichtlich',	80,	0),
-(9,	'gute Tat',	90,	1);
+(9,	'Gute Tat',	90,	1);
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
