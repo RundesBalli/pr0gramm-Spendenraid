@@ -52,6 +52,10 @@ $pageArray = array(
   'stats'           => 'stats.php',
   'dellist'         => 'dellist.php',
   'delpost'         => 'delpost.php',
+  'fakes'           => 'fakes.php',
+  'delfake'         => 'delfake.php',
+  'fakeposts'       => 'fakeposts.php',
+  'fakepostsdkms'   => 'fakepostsdkms.php',
 
   /* Schnellbewertung */
   'dkmsfast'        => 'dkmsfast.php',
@@ -86,6 +90,7 @@ if($loginNav == 1) {
   $nav.= "<a href='/logout'>Logout</a>";
   $nav.= "<br>";
   $nav.= "<a href='/dellist'>Löschliste</a>";
+  $nav.= "<a href='/fakes'>Fälschungen</a>";
   $nav.= "<a href='/dkmsfast'>DKMS Schnellbewertung</a>";
   $nav.= "<a href='/krebshilfefast'>Dt. Krebshilfe Schnellbewertung</a>";
 } else {
