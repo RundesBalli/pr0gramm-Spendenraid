@@ -110,21 +110,22 @@ CREATE TABLE `orgas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `organame` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name der Organisation',
   `sortIndex` int(10) unsigned NOT NULL COMMENT 'Sortierindex',
+  `exportCountOnly` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = normaler Export, 1 = nur Anzahl exportieren',
   PRIMARY KEY (`id`),
   KEY `sortIndex` (`sortIndex`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Querverweistabelle - Organisationen';
 
 TRUNCATE `orgas`;
-INSERT INTO `orgas` (`id`, `organame`, `sortIndex`) VALUES
-(1,	'Deutsche Knochenmarkspenderdatei (DKMS)',	10),
-(2,	'Deutsche Krebshilfe (auch dt. Kinderkrebshilfe)',	20),
-(3,	'Deutsches Krebsforschungszentrum (DKFZ)',	30),
-(4,	'Deutsche Kinderkrebsstiftung',	40),
-(5,	'Österreichische Spendenorganisationen',	50),
-(6,	'Schweizer Spendenorganisationen',	60),
-(7,	'diverse andere',	70),
-(8,	'nicht ersichtlich',	80),
-(9,	'gute Tat',	90);
+INSERT INTO `orgas` (`id`, `organame`, `sortIndex`, `exportCountOnly`) VALUES
+(1,	'Deutsche Knochenmarkspenderdatei (DKMS)',	10,	0),
+(2,	'Deutsche Krebshilfe (auch dt. Kinderkrebshilfe)',	20,	0),
+(3,	'Deutsches Krebsforschungszentrum (DKFZ)',	30,	0),
+(4,	'Deutsche Kinderkrebsstiftung',	40,	0),
+(5,	'Österreichische Spendenorganisationen',	50,	0),
+(6,	'Schweizer Spendenorganisationen',	60,	0),
+(7,	'diverse andere',	70,	0),
+(8,	'nicht ersichtlich',	80,	0),
+(9,	'gute Tat',	90,	1);
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -151,4 +152,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2020-03-26 23:56:29
+-- 2020-03-28 00:08:08
