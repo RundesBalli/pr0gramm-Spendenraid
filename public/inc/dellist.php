@@ -31,7 +31,7 @@ if(mysqli_num_rows($result) != 0) {
     $content.= "<div class='row hover bordered'>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a></div>".PHP_EOL.
     "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Erstsicht: ".($row['firstsightValue'] !== NULL ? number_format($row['firstsightValue'], 2, ".", ",") : "<span class='italic'>NULL</span>")." €<br>Zweitsicht: ".($row['confirmedValue'] !== NULL ? number_format($row['confirmedValue'], 2, ".", ",") : "<span class='italic'>NULL</span>")." €</div>".PHP_EOL.
-    "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Erstsicht: ".($row['firstsightOrgaId'] !== NULL ? number_format($row['firstsightOrgaId'], 2, ".", ",") : "<span class='italic'>NULL</span>")."<br>Zweitsicht: ".($row['confirmedOrgaId'] !== NULL ? number_format($row['confirmedOrgaId'], 2, ".", ",") : "<span class='italic'>NULL</span>")."</div>".PHP_EOL.
+    "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Erstsicht: ".($row['firstsightOrgaId'] !== NULL ? $row['firstsightOrgaId'] : "<span class='italic'>NULL</span>")."<br>Zweitsicht: ".($row['confirmedOrgaId'] !== NULL ? $row['confirmedOrgaId'] : "<span class='italic'>NULL</span>")."</div>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'><a href='/delpost?postId=".$row['postId']."'>Löschen</a></div>".PHP_EOL.
     "</div>".PHP_EOL;
   }
