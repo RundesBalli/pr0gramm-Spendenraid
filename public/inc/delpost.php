@@ -77,6 +77,7 @@ if(!empty($_GET['postId'])) {
             /**
              * Keine weiteren validierten Spendenposts, also wird der User wieder gesperrt.
              */
+            require_once($apiCall);
             $response = apiCall("https://pr0gramm.com/api/slots/lockuser", array("secret" => $perkSecret, "itemId" => $row['postId']));
             if($response['success'] == TRUE) {
               /**
@@ -91,6 +92,8 @@ if(!empty($_GET['postId'])) {
               $content.= "<div class='warnbox'>Konnte Perk nicht sperren.</div>".PHP_EOL;
               mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 6, 'Perk-Sperrung fehlgeschlagen! (ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
             }
+          } else {
+            $content.= "<div class='infobox'>User hat noch andere Spendenpost(s). Daher muss der Perk nicht gesperrt werden.</div>".PHP_EOL;
           }
         }
         mysqli_query($dbl, "DELETE FROM `items` WHERE `id`='".$row['id']."' AND `delflag`='1' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
