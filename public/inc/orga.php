@@ -132,7 +132,6 @@ if(mysqli_num_rows($result) == 1) {
     "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8 center'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".implode("<br>", $orgas)."</div>".PHP_EOL.
     "</div>".PHP_EOL;
-    $autofocus = TRUE;
   } else {
     /**
      * Videos nicht direkt anzeigen. Stattdessen den Post verlinken und das Formular nicht automatisch fokussieren.
@@ -141,7 +140,6 @@ if(mysqli_num_rows($result) == 1) {
     "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8 center'><h1 class='highlight'>VIDEO</h1><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>Video auf pr0gramm ansehen</a><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".implode("<br>", $orgas)."</div>".PHP_EOL.
     "</div>".PHP_EOL;
-    $autofocus = FALSE;
   }
   /**
    * Formularanzeige
@@ -157,7 +155,7 @@ if(mysqli_num_rows($result) == 1) {
   $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Organisation</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen'".($autofocus === TRUE ? " autofocus" : NULL)."></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen' autofocus></div>".PHP_EOL.
   "</div>".PHP_EOL;
 
   /**

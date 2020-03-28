@@ -148,7 +148,6 @@ if(mysqli_num_rows($result) == 1) {
     $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 center'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='warn'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span")."></div>".PHP_EOL.
     "</div>".PHP_EOL;
-    $autofocus = TRUE;
   } else {
     /**
      * Videos nicht direkt anzeigen. Stattdessen den Post verlinken und das Formular nicht automatisch fokussieren.
@@ -156,7 +155,6 @@ if(mysqli_num_rows($result) == 1) {
     $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 center'><h1 class='highlight'>VIDEO</h1><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>Video auf pr0gramm ansehen</a><br><".($row['benis'] <= 0 ? "h1" : "span")." class='warn'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span")."></div>".PHP_EOL.
     "</div>".PHP_EOL;
-    $autofocus = FALSE;
   }
   /**
    * Formularanzeige
@@ -175,7 +173,7 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Geldbetrag</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='value' type='text' autocomplete='off' placeholder='Siehe Info unten'".($autofocus === TRUE ? " autofocus" : NULL)."></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='value' type='text' autocomplete='off' placeholder='Siehe Info unten' autofocus></div>".PHP_EOL.
   "</div>".PHP_EOL;
   /**
    * Absenden
