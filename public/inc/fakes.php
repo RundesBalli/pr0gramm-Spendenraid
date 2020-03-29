@@ -110,7 +110,7 @@ $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL
  * Geldbetrag
  */
 $content.= "<div class='row'>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Originalpost</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Posts</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-5 col-l-5 col-xl-5'><input name='original' type='text' autocomplete='off' placeholder='Originalpost'></div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-5 col-l-5 col-xl-5'><input name='fake' type='text' autocomplete='off' placeholder='Fälschung'></div>".PHP_EOL.
 "</div>".PHP_EOL;
@@ -134,6 +134,7 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
 /**
  * Anzeige der vorhandenen Fakes
  */
+$content.= "<h3>Fälschungen</h3>".PHP_EOL;
 $result = mysqli_query($dbl, "SELECT `fakes`.*, `fakes`.`id` AS `fakeId`, `users`.`username` FROM `fakes` LEFT OUTER JOIN `users` ON `users`.`id`=`fakes`.`userId` ORDER BY `fakeId` ASC") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 0) {
   $content.= "<div class='infobox'>Es sind keine Einträge vorhanden.</div>".PHP_EOL;
