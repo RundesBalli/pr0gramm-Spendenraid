@@ -56,6 +56,7 @@ $pageArray = array(
   'delfake'         => 'delfake.php',
   'fakeposts'       => 'fakeposts.php',
   'fakepostsdkms'   => 'fakepostsdkms.php',
+  'postinfo'        => 'postinfo.php',
 
   /* Schnellbewertung */
   'dkmsfast'        => 'dkmsfast.php',
@@ -85,6 +86,7 @@ if($loginNav == 1) {
   $nav.= "<a href='/overview'>Übersicht</a>";
   $nav.= "<a href='/valuation'>Bewertung</a>";
   $nav.= "<a href='/orga'>Organisationen</a>";
+  $nav.= "<a href='/postinfo'>PostInfo</a>";
   $nav.= "<a href='/log'>Log</a>";
   $nav.= "<a href='/stats'>Statistiken</a>";
   $nav.= "<a href='/logout'>Logout</a>";
