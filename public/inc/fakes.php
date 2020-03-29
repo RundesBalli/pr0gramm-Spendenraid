@@ -17,6 +17,22 @@ $title = "Fälschungen";
 $content.= "<h1>Fälschungen</h1>".PHP_EOL;
 
 /**
+ * Sicher/Unsicher-Status umstellen
+ */
+if(isset($_GET['setCertain']) AND !empty($_GET['id'])) {
+  $fakeId = (int)defuse($_GET['id']);
+  mysqli_query($dbl, "UPDATE `fakes` SET `certain`='1' WHERE `id`='".$fakeId."' LIMIT 1") OR DIE(MYSQLI_ERROR());
+  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 7, 'Fake als sicher eingestuft (ID: ".$fakeId.")')") OR DIE(MYSQLI_ERROR($dbl));
+  $content.= "<div class='successbox'>Fake-Eintrag als sicher markiert.</div>".PHP_EOL;
+}
+if(isset($_GET['setUncertain']) AND !empty($_GET['id'])) {
+  $fakeId = (int)defuse($_GET['id']);
+  mysqli_query($dbl, "UPDATE `fakes` SET `certain`='0' WHERE `id`='".$fakeId."' LIMIT 1") OR DIE(MYSQLI_ERROR());
+  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 7, 'Fake als unsicher eingestuft (ID: ".$fakeId.")')") OR DIE(MYSQLI_ERROR($dbl));
+  $content.= "<div class='successbox'>Fake-Eintrag als unsicher markiert.</div>".PHP_EOL;
+}
+
+/**
  * Formularauswertung
  */
 if(isset($_POST['submit']) AND (!empty($_POST['original']) AND !empty($_POST['fake']))) {
@@ -140,7 +156,7 @@ if(mysqli_num_rows($result) == 0) {
     "<div class='col-x-5 col-s-5 col-m-2 col-l-2 col-xl-2'><a href='https://pr0gramm.com/new/".$row['postIdFake']."' target='_blank' rel='noopener'>".$row['postIdFake']."</a> ".($row['certain'] == 1 ? "(sicher)" : "(unsicher)")."</div>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".date("d.m.Y, H:i:s", strtotime($row['ts']))."</div>".PHP_EOL.
     "<div class='col-x-6 col-s-6 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>NULL</span>" : ($row['username'] == $username ? "<span class='highlight'>".$row['username']."</span>" : $row['username']))."</div>".PHP_EOL.
-    "<div class='col-x-6 col-s-6 col-m-2 col-l-2 col-xl-2'><a href='/delfake?id=".$row['fakeId']."'>Löschen</a></div>".PHP_EOL.
+    "<div class='col-x-6 col-s-6 col-m-2 col-l-2 col-xl-2'><a href='/delfake?id=".$row['fakeId']."'>Löschen</a><br><a href='/fakes?set".($row['certain'] == 1 ? "Uncertain" : "Certain")."&id=".$row['fakeId']."'>".($row['certain'] == 1 ? "Unsicher" : "Sicher")."</a></div>".PHP_EOL.
     "</div>".PHP_EOL;
   }
 }
