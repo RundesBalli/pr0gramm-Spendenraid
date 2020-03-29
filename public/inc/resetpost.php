@@ -77,17 +77,17 @@ if(!empty($_GET['postId'])) {
              * Keine weiteren validierten Spendenposts, also wird der User wieder gesperrt.
              */
             require_once($apiCall);
-            $response = apiCall("https://pr0gramm.com/api/slots/lockuser", array("secret" => $perkSecret, "itemId" => $postId));
+            $response = apiCall("https://pr0gramm.com/api/slots/lockuser", array("secret" => $perkSecret, "username" => $row['username']));
             if($response['success'] == TRUE) {
               /**
                * Bei Erfolg wird ein Logeintrag erzeugt.
                */
-              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'gesperrt')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." gesperrt')") OR DIE(MYSQLI_ERROR($dbl));
             } else {
               /**
                * Wenn die Freischaltung nicht geklappt hat, wird ein gesonderter Logeintrag erzeugt und eine Fehlermeldung ausgegeben.
                */
-              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'Sperrung fehlgeschlagen!')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'Sperrung fehlgeschlagen (User ".$row['username'].")!')") OR DIE(MYSQLI_ERROR($dbl));
               $content.= "<div class='warnbox'>User konnte für das Perk nicht gesperrt werden.</div>".PHP_EOL;
             }
           }

@@ -96,12 +96,12 @@ if(isset($_POST['submit'])) {
                    */
                   if(!empty($perkSecret)) {
                     require_once($apiCall);
-                    $response = apiCall("https://pr0gramm.com/api/slots/unlockuser", array("secret" => $perkSecret, "itemId" => $postId));
+                    $response = apiCall("https://pr0gramm.com/api/slots/unlockuser", array("secret" => $perkSecret, "username" => $row['username']));
                     if($response['success'] == TRUE) {
                       /**
                        * Bei Erfolg wird ein Logeintrag erzeugt.
                        */
-                      mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
+                      mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
                     } else {
                       /**
                        * Wenn die Freischaltung nicht geklappt hat, wird der Post zurückgesetzt.
