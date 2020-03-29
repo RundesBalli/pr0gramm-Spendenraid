@@ -119,7 +119,7 @@ $content.= "<div class='row'>".PHP_EOL.
  */
 $content.= "<div class='row'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Sicher?</div>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-5 col-l-5 col-xl-5'><input name='certain' type='radio' autocomplete='off' value='1' id='certain-1' checked><label for='certain-1'> Ja</label> - <input name='certain' type='radio' autocomplete='off' value='0' id='certain-0'><label for='certain-0'> Nein</label></div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-5 col-l-5 col-xl-5'><input name='certain' type='radio' autocomplete='off' value='1' id='certain-1'><label for='certain-1'> Ja</label> - <input name='certain' type='radio' autocomplete='off' value='0' id='certain-0' checked><label for='certain-0'> Nein</label></div>".PHP_EOL.
 "</div>".PHP_EOL;
 /**
  * Absenden
