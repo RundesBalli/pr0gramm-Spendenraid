@@ -269,6 +269,7 @@ a:active, a:hover, a:focus {
 @media only screen and (max-width: 600px) {
   [class*="col-"] {
     padding: 5px 5px;
+    display: block;
   }
   .col-x-0 {width: 0%; display: none;}
   .col-x-1 {width: 8.33%;}
@@ -289,6 +290,7 @@ a:active, a:hover, a:focus {
 @media only screen and (min-width: 600px) {
   [class*="col-"] {
     padding: 5px 8px;
+    display: block;
   }
   .col-s-0 {width: 0%; display: none;}
   .col-s-1 {width: 8.33%;}
@@ -309,6 +311,7 @@ a:active, a:hover, a:focus {
 @media only screen and (min-width: 768px) {
   [class*="col-"] {
     padding: 7px 10px;
+    display: block;
   }
   .col-m-0 {width: 0%; display: none;}
   .col-m-1 {width: 8.33%;}
@@ -329,6 +332,7 @@ a:active, a:hover, a:focus {
 @media only screen and (min-width: 992px) {
   [class*="col-"] {
     padding: 8px 12px;
+    display: block;
   }
   .col-l-0 {width: 0%; display: none;}
   .col-l-1 {width: 8.33%;}
@@ -349,6 +353,7 @@ a:active, a:hover, a:focus {
 @media only screen and (min-width: 1200px) {
   [class*="col-"] {
     padding: 10px 15px;
+    display: block;
   }
   .col-xl-0 {width: 0%; display: none;}
   .col-xl-1 {width: 8.33%;}

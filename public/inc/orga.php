@@ -123,6 +123,7 @@ if(mysqli_num_rows($result) == 1) {
   while($orgarow = mysqli_fetch_array($orgaresult)) {
     $orgas[] = $orgarow['id']." - ".$orgarow['organame'];
   }
+  $orgas = implode("<br>", $orgas);
   if($row['extension'] != "mp4") {
     /**
      * Bilder werden direkt angezeigt. Falls der Benis kleiner oder gleich 0 ist, wird der Benis Hinweis vergrößert dargestellt.
@@ -130,7 +131,7 @@ if(mysqli_num_rows($result) == 1) {
      */
     $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8 center'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".implode("<br>", $orgas)."</div>".PHP_EOL.
+    "<div class='col-x-0 col-s-0 col-m-4 col-l-4 col-xl-4'>".$orgas."</div>".PHP_EOL.
     "</div>".PHP_EOL;
   } else {
     /**
@@ -138,7 +139,7 @@ if(mysqli_num_rows($result) == 1) {
      */
     $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8 center'><h1 class='highlight'>VIDEO</h1><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>Video auf pr0gramm ansehen</a><br><".($row['benis'] <= 0 ? "h1" : "span")." class='highlight'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span><br")."><span class='highlight'>Bestätigter Betrag: ".number_format($row['confirmedValue'], 2, ",", ".")."</span></div>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'>".implode("<br>", $orgas)."</div>".PHP_EOL.
+    "<div class='col-x-0 col-s-0 col-m-4 col-l-4 col-xl-4'>".$orgas."</div>".PHP_EOL.
     "</div>".PHP_EOL;
   }
   /**
@@ -166,6 +167,13 @@ if(mysqli_num_rows($result) == 1) {
   "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='submit' type='submit' value='Eintragen'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
+
+  /**
+   * In der Handy Ansicht werden die Organisationen unter dem Eingabefeld angezeigt.
+   */
+  $content.= "<div class='row'>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'>".$orgas."</div>".PHP_EOL.
+  "</div>".PHP_EOL;
 
   /**
    * Zurücksetzen
