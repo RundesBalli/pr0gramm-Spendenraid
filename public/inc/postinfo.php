@@ -51,7 +51,7 @@ if(isset($_POST['submit']) AND !empty($_POST['postId'])) {
     } else {
       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a> - <a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a></div>".PHP_EOL.
+      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a> - <a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a>".(($row['isDonation'] == 1 AND !empty($perkSecret)) ? " - <a href='/unlockuser?user=".$row['username']."'>User erneut freischalten</a>" : NULL)."</div>".PHP_EOL.
       "</div>".PHP_EOL;
       $content.= "<div class='row'>".PHP_EOL.
       "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><pre>".var_export($row, TRUE)."</pre></div>".PHP_EOL.

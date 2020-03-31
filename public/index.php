@@ -57,6 +57,7 @@ $pageArray = array(
   'fakeposts'       => 'fakeposts.php',
   'fakepostsdkms'   => 'fakepostsdkms.php',
   'postinfo'        => 'postinfo.php',
+  'unlockuser'      => 'unlockuser.php',
 
   /* Schnellbewertung */
   'dkmsfast'        => 'dkmsfast.php',
