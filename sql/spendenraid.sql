@@ -5,16 +5,37 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+SET NAMES utf8mb4;
+
+DROP DATABASE IF EXISTS `spendenraid`;
+CREATE DATABASE `spendenraid` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `spendenraid`;
 
 DELIMITER ;;
 
 DROP EVENT IF EXISTS `Sitzungsbereinigung`;;
-CREATE EVENT `Sitzungsbereinigung` ON SCHEDULE EVERY 1 HOUR STARTS '2020-03-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Löscht abgelaufene Sitzungen nach zwei Wochen' DO DELETE FROM `sessions` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 2 WEEK);;
+CREATE EVENT `Sitzungsbereinigung` ON SCHEDULE EVERY 1 HOUR STARTS '2021-03-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Löscht abgelaufene Sitzungen nach zwei Wochen' DO DELETE FROM `sessions` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 2 WEEK);;
 
 DELIMITER ;
 
-SET NAMES utf8mb4;
+DROP TABLE IF EXISTS `fakes`;
+CREATE TABLE `fakes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `postIdOriginal` int(10) unsigned NOT NULL COMMENT 'Querverweis - items.id',
+  `postIdFake` int(10) unsigned NOT NULL COMMENT 'Querverweis - items.id',
+  `userId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - users.id',
+  `certain` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = nicht ganz sicher; 1 = sicher',
+  `ts` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des Eintrages',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `postIdOriginal_postIdFake` (`postIdOriginal`,`postIdFake`),
+  KEY `userId` (`userId`),
+  KEY `postIdOriginal` (`postIdOriginal`),
+  KEY `postIdFake` (`postIdFake`),
+  CONSTRAINT `fakes_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fakes_ibfk_4` FOREIGN KEY (`postIdOriginal`) REFERENCES `items` (`postId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fakes_ibfk_5` FOREIGN KEY (`postIdFake`) REFERENCES `items` (`postId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabelle mit auffälligen Posts';
+
 
 DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
@@ -103,7 +124,8 @@ INSERT INTO `loglevel` (`id`, `title`, `color`) VALUES
 (3,	'Zweitsichtung - zurückgesetzt',	'ff9900'),
 (4,	'Zweitsichtung - okay',	'5bb91c'),
 (5,	'Post zurückgesetzt',	'c52b2f'),
-(6,	'Perk',	'337fd2');
+(6,	'Perk',	'337fd2'),
+(7,	'Fakes',	'10366f');
 
 DROP TABLE IF EXISTS `orgas`;
 CREATE TABLE `orgas` (
@@ -152,4 +174,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2020-03-28 00:08:08
+-- 2021-03-15 21:32:05
