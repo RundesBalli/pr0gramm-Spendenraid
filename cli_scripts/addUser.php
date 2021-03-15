@@ -5,7 +5,6 @@
  * Datei zum Anlegen eines Nutzeraccounts.
  * 
  * @param string $argv[1] Benutzername
- * @param string $argv[2] Passwort
  */
 
 /**
@@ -31,21 +30,18 @@ if(isset($argv[1]) AND preg_match('/^[0-9a-zA-Z]{3,32}$/', defuse($argv[1]), $ma
 }
 
 /**
- * Auslesen und verarbeiten des Passworts.
+ * Generieren eines zufälligen Strings der als Passwort dient.
  */
-if(isset($argv[2]) AND preg_match('/^.{20,}$/', $argv[2], $match) === 1) {
-  $salt = hash('sha256', random_bytes(4096));
-  $password = password_hash($match[0].$salt, PASSWORD_DEFAULT);
-} else {
-  die("Das Passwort ist zu kurz. Es muss mindestens 20 Zeichen enthalten.\nBeispielaufruf:\nphp ".$argv[0]." Hans LOL1asdf123xyz456lol\nErstellt einen Nutzer \"Hans\" mit dem Passwort \"LOL1asdf123xyz456lol\".\n\n");
-}
+$pw = hash('sha256', random_bytes(4096));
+$salt = hash('sha256', random_bytes(4096));
+$password = password_hash($pw.$salt, PASSWORD_DEFAULT);
 
 /**
  * Eintragen des neuen Nutzers.
  */
 if(mysqli_query($dbl, "INSERT INTO `users` (`username`, `password`, `salt`) VALUES ('".$username."', '".$password."', '".$salt."')")) {
   mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `text`) VALUES (1, '[CLI] User angelegt: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
-  die("Account erfolgreich angelegt.\n\n");
+  die("Account erfolgreich angelegt.\n\nUser: ".$username."\nPass: ".$pw."\n\n");
 } elseif(mysqli_errno($dbl) == 1062) {
   die("Es existiert bereits ein Account mit diesem Namen.\n\n");
 } else {
