@@ -42,7 +42,7 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
  */
 $content.= "<h1>Suchparameter</h1>".PHP_EOL;
 $content.= "<div class='row hover'>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Crawlen ab Post-ID</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Crawlen neuer als Post-ID</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'>".$crawler['newer']."</div>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
 "</div>".PHP_EOL;
