@@ -96,7 +96,7 @@ if(isset($_POST['submit'])) {
                    */
                   if(!empty($perkSecret)) {
                     require_once($apiCall);
-                    $response = apiCall("https://pr0gramm.com/api/slots/unlockuser", array("secret" => $perkSecret, "username" => $row['username']));
+                    $response = apiCall("https://pr0gramm.com/api/casino/unlockUser", array("secret" => $perkSecret, "name" => $row['username']));
                     if($response['success'] == TRUE) {
                       /**
                        * Bei Erfolg wird ein Logeintrag erzeugt.

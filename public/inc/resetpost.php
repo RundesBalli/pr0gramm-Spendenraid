@@ -77,7 +77,7 @@ if(!empty($_GET['postId'])) {
              * Keine weiteren validierten Spendenposts, also wird der User wieder gesperrt.
              */
             require_once($apiCall);
-            $response = apiCall("https://pr0gramm.com/api/slots/lockuser", array("secret" => $perkSecret, "username" => $row['username']));
+            $response = apiCall("https://pr0gramm.com/api/casino/lockUser", array("secret" => $perkSecret, "name" => $row['username']));
             if($response['success'] == TRUE) {
               /**
                * Bei Erfolg wird ein Logeintrag erzeugt.
