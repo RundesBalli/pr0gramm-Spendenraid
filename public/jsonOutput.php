@@ -20,17 +20,17 @@ $output = array();
  */
 $result = mysqli_query($dbl, "SELECT (SELECT IFNULL(sum(`firstsightValue`), 0) FROM `items` WHERE `firstsightValue` IS NOT NULL) AS `unconfirmed`, (SELECT IFNULL(sum(`confirmedValue`), 0) FROM `items` WHERE `confirmedValue` IS NOT NULL) AS `confirmed`") OR DIE(MYSQLI_ERROR($dbl));
 $bla = mysqli_fetch_array($result);
-$output['sums']['total']['unconfirmedValue'] = (double)$bla['unconfirmed'];
-$output['sums']['total']['confirmedValue'] = (double)$bla['confirmed'];
+$output['sums']['total']['unconfirmed'] = (double)$bla['unconfirmed'];
+$output['sums']['total']['confirmed'] = (double)$bla['confirmed'];
 
 /**
  * Items zählen
  */
 $result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `items`) AS `total`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1') AS `isDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='0') AS `isNotDonation`") OR DIE(MYSQLI_ERROR($dbl));
 $bla = mysqli_fetch_array($result);
-$output['sums']['total']['totalItems'] = (int)$bla['total'];
-$output['sums']['total']['donationItems'] = (int)$bla['isDonation'];
-$output['sums']['total']['isNotDonationItems'] = (int)$bla['isNotDonation'];
+$output['items']['total'] = (int)$bla['total'];
+$output['items']['isDonation'] = (int)$bla['isDonation'];
+$output['items']['isNotDonation'] = (int)$bla['isNotDonation'];
 
 /**
  * Tags
@@ -65,8 +65,8 @@ while($row = mysqli_fetch_array($result)) {
   $output['sums']['orgasCountOnly'][$orgaslfd]['name'] = $row['organame'];
   $innerresult = mysqli_query($dbl, "SELECT IFNULL(sum(`confirmedValue`), 0) as `k`, count(`id`) as `j` FROM `items` WHERE `isDonation`='1' AND `confirmedOrgaId`='".$row['id']."'") OR DIE(MYSQLI_ERROR($dbl));
   $bla = mysqli_fetch_array($innerresult);
-  $output['sums']['total']['unconfirmedValue'] -= (float)$bla['k'];
-  $output['sums']['total']['confirmedValue'] -= (float)$bla['k'];
+  $output['sums']['total']['unconfirmed'] -= (float)$bla['k'];
+  $output['sums']['total']['confirmed'] -= (float)$bla['k'];
   $output['sums']['orgasCountOnly'][$orgaslfd]['postCount'] = (int)$bla['j'];
 }
 
