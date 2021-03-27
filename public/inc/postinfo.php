@@ -71,7 +71,7 @@ if(!empty($_GET['postId'])) {
       "<div class='col-x-12 col-s-8 col-m-4 col-l-4 col-xl-4'>Text</div>".PHP_EOL.
       "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
       "</div>".PHP_EOL;
-      $result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `log`.`timestamp`, `loglevel`.`id` AS `loglevelId`, `loglevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `loglevel` ON `log`.`loglevel`=`loglevel`.`id` WHERE `postId`='".$row['postId']."' ORDER BY `log`.`id` DESC LIMIT 100") OR DIE(MYSQLI_ERROR($dbl));
+      $result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `log`.`timestamp`, `loglevel`.`id` AS `loglevelId`, `loglevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `loglevel` ON `log`.`loglevel`=`loglevel`.`id` WHERE `postId`='".$row['postId']."' ORDER BY `log`.`id` DESC") OR DIE(MYSQLI_ERROR($dbl));
       while($row = mysqli_fetch_array($result)) {
         $content.= "<div class='row hover bordered' style='border-left: 6px solid #".$row['color'].";'>".PHP_EOL.
         "<div class='col-x-4 col-s-4 col-m-1 col-l-1 col-xl-1'>".$row['id']."</div>".PHP_EOL.
