@@ -14,8 +14,8 @@ Ein Tool zum Auswerten des Spendenraids auf pr0gramm
 ![Organisation](/screenshots/orga.png?raw=true)  
 
 ## CRON
-Der Crawler läuft alle 15 Minuten in einem Voll-Scan (ab der ID, die in der Config eingetragen ist) und alle 5 Minuten in einem kleinen Scan (ab letzter Post-ID aus der Datenbank).  
-Die folgenden `crontab -e` Einträge sind dafür erforderlich:  
+Der Crawler läuft alle 5 Minuten, wobei jeweils in den Viertelstunden (incl. 0) ein voller Scan läuft. Ein voller Scan sucht ab der Post-ID aus der Config, ein kleiner Scan ab der letzten in der Datenbank vorhandenen Post-ID.  
+Die folgenden zwei `crontab -e` Einträge sind dafür erforderlich:  
 ```
 */15 * * * * /usr/bin/php /pfad/cli_scripts/crawler.php full > /dev/null
 5,10,20,25,35,40,50,55 * * * * /usr/bin/php /pfad/cli_scripts/crawler.php > /dev/null
