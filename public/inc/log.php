@@ -47,10 +47,10 @@ $result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `log`.`time
 while($row = mysqli_fetch_array($result)) {
   $content.= "<div class='row hover bordered' style='border-left: 6px solid #".$row['color'].";'>".PHP_EOL.
   "<div class='col-x-4 col-s-4 col-m-1 col-l-1 col-xl-1'>".$row['id']."</div>".PHP_EOL.
-  "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".$row['username']."</span>" : $row['username']))."</div>".PHP_EOL.
+  "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".output($row['username'])."</span>" : output($row['username'])))."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-4 col-m-3 col-l-3 col-xl-3'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['postId'] === NULL ? "<span class='italic'>NULL</span>" : "<a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a> - <a href='/postinfo?postId=".$row['postId']."' target='_blank' rel='noopener'>Info</a>".($row['loglevelId'] != 5 ? "<br><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a><br><a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a>" : NULL))."</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-8 col-m-4 col-l-4 col-xl-4'>".$row['text']."</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-8 col-m-4 col-l-4 col-xl-4'>".output($row['text'])."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
   "</div>".PHP_EOL;
 
@@ -79,25 +79,37 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
  * Highscore (Logeinträge)
  */
 $content.= "<h2>Highscore (Logeinträge)</h2>".PHP_EOL;
-$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
 $content.= "<div class='row highlight bold'>".PHP_EOL.
 "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>Platz</div>".PHP_EOL.
 "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>Username</div>".PHP_EOL.
 "<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>Einträge (Δ)</div>".PHP_EOL.
 "</div>".PHP_EOL;
+/**
+ * User
+ */
+$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` WHERE `userId` IS NOT NULL GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
 $platz = 0;
 $previous = 0;
 while($row = mysqli_fetch_array($result)) {
-  if($row['username'] !== NULL) {
-    $platz++;
-  }
+  $platz++;
   $content.= "<div class='row hover'>".PHP_EOL.
-  "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "&#x1F5A5;" : ($platz == 1 ? "&#x1F451;" : $platz))."</div>".PHP_EOL.
-  "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : $row['username'])."</div>".PHP_EOL.
+  "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>".($platz == 1 ? "&#x1F451;" : $platz)."</div>".PHP_EOL.
+  "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>".output($row['username'])."</div>".PHP_EOL.
   "<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count'].($previous != 0 ? " (".($previous-$row['count']).")" : NULL)."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $previous = $row['count'];
 }
+/**
+ * System
+ */
+$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count` FROM `log` WHERE `userId` IS NULL") OR DIE(MYSQLI_ERROR($dbl));
+$row = mysqli_fetch_array($result);
+$content.= "<div class='row hover'>".PHP_EOL.
+"<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>&#x1F5A5;</div>".PHP_EOL.
+"<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'><span class='italic'>System</span></div>".PHP_EOL.
+"<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
+"</div>".PHP_EOL;
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
 ?>
