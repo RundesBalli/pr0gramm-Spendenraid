@@ -13,7 +13,7 @@ require_once('cookiecheck.php');
 /**
  * Organisation eintragen, falls das Formular übergeben wurde.
  */
-if(isset($_POST['submit'])) {
+if(isset($_POST['orga'])) {
   $postId = (int)defuse($_POST['postId']);
   /**
    * Prüfung ob eine gültige Zahl eingegeben wurde
@@ -145,7 +145,7 @@ if(mysqli_num_rows($result) == 1) {
   /**
    * Formularanzeige
    */
-  $content.= "<form action='/orga' method='post'>".PHP_EOL;
+  $content.= "<form action='/orga' id='valuation-form' method='post'>".PHP_EOL;
   /**
    * Post-ID
    */
@@ -158,13 +158,19 @@ if(mysqli_num_rows($result) == 1) {
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Organisation</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen' autofocus></div>".PHP_EOL.
   "</div>".PHP_EOL;
-
+  /**
+   * Mobile Schnellbewertung (sichtbar ab <= 600px)
+   */
+  $content.= "<div class='row mobile-only'>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Schnellbewertung</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='#' class='msb-btn'>1</a><a href='#' class='msb-btn'>2</a><a href='#' class='msb-btn'>3</a><a href='#' class='msb-btn'>4</a><a href='#' class='msb-btn'>5</a><a href='#' class='msb-btn'>6</a><a href='#' class='msb-btn'>7</a><a href='#' class='msb-btn'>8</a><a href='#' class='msb-btn'>9</a><a href='#' class='msb-btn'>10</a><a href='#' class='msb-btn'>11</a></div>".PHP_EOL.
+  "</div>".PHP_EOL;
   /**
    * Absenden
    */
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Eintragen</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='submit' type='submit' value='Eintragen'></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='value-submit' name='value-submit' type='submit' value='Eintragen'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
 

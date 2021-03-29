@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Toggle Mobile menu
+ * @returns {any}
+ */
 let toggleMenu = function(){
     const x = document.getElementById("nav");
     x.classList.toggle("responsive");
