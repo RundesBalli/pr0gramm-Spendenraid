@@ -159,7 +159,7 @@ if(mysqli_num_rows($result) == 1) {
   /**
    * Formularanzeige
    */
-  $content.= "<form action='/valuation' method='post'>".PHP_EOL;
+  $content.= "<form action='/valuation' id='valuation-form' method='post'>".PHP_EOL;
   /**
    * Post-ID
    */
@@ -173,14 +173,21 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Geldbetrag</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='value' type='text' autocomplete='off' placeholder='Siehe Info unten' autofocus></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='value-input' name='value' type='text' autocomplete='off' placeholder='Siehe Info unten' autofocus></div>".PHP_EOL.
+  "</div>".PHP_EOL;
+  /**
+   * Mobile Schnellbewertung (sichtbar ab >= 600px)
+   */
+  $content.= "<div class='row mobile-only'>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Schnellbewertung</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='#' class='msb-btn msb-btn-0'>0</a><a href='#' class='msb-btn msb-btn-0.01'>0.01</a><a href='#' class='msb-btn msb-btn-5'>5</a><a href='#' class='msb-btn msb-btn-10'>10</a><a href='#' class='msb-btn msb-btn-15'>15</a><a href='#' class='msb-btn msb-btn-20'>20</a><a href='#' class='msb-btn msb-btn-25'>25</a><a href='#' class='msb-btn msb-btn-30'>30</a><a href='#' class='msb-btn msb-btn-40'>40</a><a href='#' class='msb-btn msb-btn-50'>50</a><a href='#' class='msb-btn msb-btn-100'>100</a></div>".PHP_EOL.
   "</div>".PHP_EOL;
   /**
    * Absenden
    */
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Eintragen</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='submit' type='submit' value='Eintragen'></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='value-submit' name='submit' type='submit' value='Eintragen'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
   /**
