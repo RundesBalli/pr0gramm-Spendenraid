@@ -176,7 +176,7 @@ if(mysqli_num_rows($result) == 1) {
   "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='value-input' name='value' type='text' autocomplete='off' placeholder='Siehe Info unten' autofocus></div>".PHP_EOL.
   "</div>".PHP_EOL;
   /**
-   * Mobile Schnellbewertung (sichtbar ab >= 600px)
+   * Mobile Schnellbewertung (sichtbar ab <= 600px)
    */
   $content.= "<div class='row mobile-only'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Schnellbewertung</div>".PHP_EOL.
