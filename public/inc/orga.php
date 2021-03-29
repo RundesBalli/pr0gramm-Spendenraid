@@ -156,7 +156,7 @@ if(mysqli_num_rows($result) == 1) {
   $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Organisation</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='orga' type='text' autocomplete='off' placeholder='siehe Organisationen' autofocus></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input name='orga' id='value-input' type='text' autocomplete='off' placeholder='siehe Organisationen' autofocus></div>".PHP_EOL.
   "</div>".PHP_EOL;
   /**
    * Mobile Schnellbewertung (sichtbar ab <= 600px)
