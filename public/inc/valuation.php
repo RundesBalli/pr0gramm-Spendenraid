@@ -13,7 +13,7 @@ require_once('cookiecheck.php');
 /**
  * Spendenbetrag eintragen, falls das Formular übergeben wurde.
  */
-if(isset($_POST['submit'])) {
+if(isset($_POST['value'])) {
   $postId = (int)defuse($_POST['postId']);
   /**
    * Prüfung ob eine gültige Zahl eingegeben wurde
@@ -187,7 +187,7 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Eintragen</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='value-submit' name='submit' type='submit' value='Eintragen'></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='value-submit' name='value-submit' type='submit' value='Eintragen'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
   /**
