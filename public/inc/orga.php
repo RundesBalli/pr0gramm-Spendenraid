@@ -52,7 +52,7 @@ if(isset($_POST['submit'])) {
             $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
           } elseif(mysqli_errno($dbl) == 0) {
             mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
-            $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+            $content.= "<div class='successbox'>Organisation eingetragen.<br><a href='/orgareset?postId=".$postId."'>Organisation zurücksetzen</a></div>".PHP_EOL;
           } else {
             die(MYSQLI_ERROR($dbl));
           }
@@ -78,7 +78,7 @@ if(isset($_POST['submit'])) {
                 $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
               } elseif(mysqli_errno($dbl) == 0) {
                 mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', 'Orga: ".$orga." (Erstsichtung: ".$row['firstsightOrgaId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-                $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+                $content.= "<div class='successbox'>Organisation eingetragen.<br><a href='/orgareset?postId=".$postId."'>Organisation zurücksetzen</a></div>".PHP_EOL;
               } else {
                 die(MYSQLI_ERROR($dbl));
               }
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])) {
                */
               mysqli_query($dbl, "UPDATE `items` SET `confirmedOrgaId`='".$orga."', `confirmedOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
               mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
-              $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+              $content.= "<div class='successbox'>Organisation eingetragen.<br><a href='/orgareset?postId=".$postId."'>Organisation zurücksetzen</a></div>".PHP_EOL;
             }
           }
         } else {
@@ -186,7 +186,7 @@ if(mysqli_num_rows($result) == 1) {
   /**
    * Alles erledigt.
    */
-  $content.= "<div class='infobox'>Alles erledigt.</div>".PHP_EOL;
+  $content.= "<div class='infobox'>Alles erledigt.<br><a href='/valuation'>Posts bewerten</a></div>".PHP_EOL;
   $content.= "<div class='spacer-m'></div>".PHP_EOL;
 }
 ?>
