@@ -31,5 +31,6 @@ https://github.com/RundesBalli/pr0gramm-Spendenraid
       <a href="https://RundesBalli.com" target="_blank" rel="noopener">RundesBalli</a> - <a href="https://github.com/RundesBalli/pr0gramm-Spendenraid" target="_blank" rel="noopener">Github</a>
     </div>
     <script type="text/javascript" src="/src/toggleMenu.js"></script>
+    <script type="text/javascript" src="/src/mobileButtons.js"></script>
   </body>
 </html>
