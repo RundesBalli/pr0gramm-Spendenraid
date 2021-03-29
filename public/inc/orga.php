@@ -161,7 +161,7 @@ if(mysqli_num_rows($result) == 1) {
   /**
    * Mobile Schnellbewertung (sichtbar ab <= 600px)
    */
-  $content.= "<div class='row'>".PHP_EOL.
+  $content.= "<div class='row mobile-only'>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Schnellbewertung</div>".PHP_EOL.
   "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='#' class='msb-btn'>1</a><a href='#' class='msb-btn'>2</a><a href='#' class='msb-btn'>3</a><a href='#' class='msb-btn'>4</a><a href='#' class='msb-btn'>5</a><a href='#' class='msb-btn'>6</a><a href='#' class='msb-btn'>7</a><a href='#' class='msb-btn'>8</a><a href='#' class='msb-btn'>9</a><a href='#' class='msb-btn'>10</a><a href='#' class='msb-btn'>11</a></div>".PHP_EOL.
   "</div>".PHP_EOL;
