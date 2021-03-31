@@ -169,6 +169,15 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
   /**
+   * NSFW Blur
+   */
+  if ($row['flags'] == 2 || $row['flags'] == 4){
+    $content.= "<div class='row'>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>NSFW-Blur</div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='nsfw-blur-cb' type='checkbox' checked></div>".PHP_EOL.
+    "</div>".PHP_EOL;
+  }
+  /**
    * Geldbetrag
    */
   $content.= "<div class='row'>".PHP_EOL.

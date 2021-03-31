@@ -20,5 +20,5 @@ let toggleBlur = function(){
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("toggle").addEventListener("click", toggleMenu);
-    document.getElementById("XXX").addEventListener("click", toggleBlur);
+    document.getElementById("nsfw-blur-cb").addEventListener("click", toggleBlur);
 });
