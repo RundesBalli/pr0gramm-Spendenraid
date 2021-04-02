@@ -138,6 +138,10 @@ a:active, a:hover, a:focus {
   display: none;
 }
 
+a.nsfw-blurred:not(.unblur) {
+    filter: blur(5px);
+}
+
 /*
   2. Header
 */

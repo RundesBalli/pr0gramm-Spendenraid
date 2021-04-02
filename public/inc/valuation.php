@@ -146,7 +146,7 @@ if(mysqli_num_rows($result) == 1) {
      * Da Bilder direkt angezeigt werden kann im Formular der Autofocus im Wert-Feld liegen.
      */
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 center'><a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='warn'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span")."></div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12 center'><a " . (($row['flags'] == 2 || $row['flags'] == 4) ? "class='nsfw-blurred'" : "") . " href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'><img src='https://img.pr0gramm.com/".$row['image']."' alt='Bild' class='imgmaxheight'></a><br><span class='info'>Zur Post-Ansicht einfach auf das Bild klicken</span><br><".($row['benis'] <= 0 ? "h1" : "span")." class='warn'>Score: ".$row['benis']."</".($row['benis'] <= 0 ? "h1" : "span")."></div>".PHP_EOL.
     "</div>".PHP_EOL;
   } else {
     /**
@@ -168,6 +168,15 @@ if(mysqli_num_rows($result) == 1) {
    * Sitzungstoken
    */
   $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
+  /**
+   * NSFW Blur
+   */
+  if ($row['flags'] == 2 || $row['flags'] == 4){
+    $content.= "<div class='row'>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>NSFW-Blur</div>".PHP_EOL.
+    "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><input id='nsfw-blur-cb' type='checkbox' checked></div>".PHP_EOL.
+    "</div>".PHP_EOL;
+  }
   /**
    * Geldbetrag
    */
