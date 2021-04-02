@@ -138,8 +138,8 @@ a:active, a:hover, a:focus {
   display: none;
 }
 
-a.nsfw-blurred:not(.unblur) {
-    filter: blur(5px);
+.nsfw-blurred:not(.unblur) {
+  filter: blur(5px);
 }
 
 /*
@@ -176,6 +176,7 @@ a.nsfw-blurred:not(.unblur) {
   position: sticky;
   top: 0;
   flex: none;
+  z-index: 5;
 }
 
 #nav a {
