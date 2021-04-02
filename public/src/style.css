@@ -139,7 +139,7 @@ a:active, a:hover, a:focus {
 }
 
 .nsfw-blurred:not(.unblur) {
-  filter: blur(5px);
+  filter: blur(15px);
 }
 
 /*
