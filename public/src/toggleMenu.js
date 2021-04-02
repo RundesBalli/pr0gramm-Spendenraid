@@ -10,7 +10,7 @@ let toggleMenu = function(){
 };
 
 /**
- * Toggle NSWF blur
+ * Toggle NSFW blur
  * @returns {any}
  */
 let toggleBlur = function(){
