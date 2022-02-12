@@ -178,26 +178,6 @@ foreach($postData AS $key => $values) {
   $value = floatval(defuse($value['value']));
 
   /**
-   * Prüfung der optional übergebbaren Organisation.
-   */
-  $orga = 0;
-  if(isset($value['orga']) AND !empty($value['orga'])) {
-    $orga = intval(defuse($value['orga']));
-    $orgaresult = mysqli_query($dbl, "SELECT `id` FROM `orgas` WHERE `id`=".$orga." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-
-    /**
-     * Wenn die Organisation nicht existiert, wird mit einer Fehlermeldung die Iteration fortgesetzt.
-     */
-    if(mysqli_num_rows($result) == 0) {
-      $errorData[$postId] = [
-        'error' => 'orgaNotFound',
-        'errorMsg' => "The organization with the provided orgaId could not be found."
-      ];
-      continue;
-    }
-  }
-
-  /**
    * Da der Post existiert, wird zuerst geprüft, ob schon eine Erstsichtung durchgeführt wurde.
    */
   if($row['firstsightValue'] === NULL OR $row['firstsightUserId'] === NULL) {
@@ -271,9 +251,27 @@ foreach($postData AS $key => $values) {
   }
 
   /**
-   * Wenn der Post nur mit einem Wert übergeben wurde, dann wird jetzt die nächste Iteration angestoßen.
+   * Prüfung der optional übergebbaren Organisation.
    */
-  if($orga == 0) {
+  $orga = 0;
+  if(isset($value['orga']) AND !empty($value['orga'])) {
+    $orga = intval(defuse($value['orga']));
+    $orgaresult = mysqli_query($dbl, "SELECT `id` FROM `orgas` WHERE `id`=".$orga." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+
+    /**
+     * Wenn die Organisation nicht existiert, wird mit einer Fehlermeldung die Iteration fortgesetzt.
+     */
+    if(mysqli_num_rows($result) == 0) {
+      $errorData[$postId] = [
+        'error' => 'orgaNotFound',
+        'errorMsg' => "The organization with the provided orgaId could not be found."
+      ];
+      continue;
+    }
+  } else {
+    /**
+     * Wenn der Post nur mit einem Wert aber ohne Organisation übergeben wurde, dann wird jetzt die nächste Iteration angestoßen.
+     */
     continue;
   }
 
