@@ -67,7 +67,7 @@ if(isset($_POST['orga'])) {
             $content.= "<div class='warnbox'>Du kannst nicht die Erst- und Zweitsichtung machen.</div>".PHP_EOL;
           } else {
             /**
-             * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Summe mit der übergebenen Summe übereinstimmt.
+             * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Organisation mit der übergebenen Organisation übereinstimmt.
              */
             if($row['firstsightOrgaId'] != $orga) {
               /**
