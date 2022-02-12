@@ -2,7 +2,7 @@
 /**
  * editPosts.php
  * 
- * API Endpunkt, damit die KI Ersteintragungen machen kann.
+ * API Endpunkt, damit die KI Wert- und Organisations-Eintragungen machen kann.
  */
 
 /**
