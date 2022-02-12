@@ -36,4 +36,13 @@ $apiCall = "";
  * @var string
  */
 $perkSecret = "";
+
+/**
+ * Tokens für die KI API
+ * 
+ * @var string $kiApiToken    Token zur Übergabe der PostIds an die KI API
+ * @var string $editPostToken Token für die KI API zur Übermittlung der Postdaten an die editPosts API
+ */
+$kiApiToken = "";
+$editPostToken = "";
 ?>
