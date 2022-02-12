@@ -43,7 +43,7 @@ if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isse
   /**
    * Abfragen ob eine Übereinstimmung in der Datenbank vorliegt.
    */
-  $result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `username`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+  $result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `username`='".$username."' AND `isBot`=0 LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($result) == 1) {
     /**
      * Wenn der User existiert, muss der Passworthash validiert werden.

@@ -42,7 +42,9 @@ $perkSecret = "";
  * 
  * @var string $kiApiToken    Token zur Übergabe der PostIds an die KI API
  * @var string $editPostToken Token für die KI API zur Übermittlung der Postdaten an die editPosts API
+ * @var int    $kiUserId      UserId der KI
  */
 $kiApiToken = "";
 $editPostToken = "";
+$kiUserId = 0;
 ?>

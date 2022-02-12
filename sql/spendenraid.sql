@@ -1,4 +1,4 @@
--- Adminer 4.7.3 MySQL dump
+-- Adminer 4.8.1 MySQL 5.5.5-10.1.48-MariaDB-0+deb9u2 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -124,7 +124,8 @@ INSERT INTO `loglevel` (`id`, `title`, `color`) VALUES
 (4,	'Zweitsichtung - okay',	'5bb91c'),
 (5,	'Post zurückgesetzt',	'c52b2f'),
 (6,	'Perk',	'337fd2'),
-(7,	'Fakes',	'10366f');
+(7,	'Fakes',	'10366f'),
+(8,	'KI Interaktion',	'ee4d2e');
 
 DROP TABLE IF EXISTS `orgas`;
 CREATE TABLE `orgas` (
@@ -169,11 +170,16 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `username` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Username',
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Passworthash',
-  `salt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Passwortsalt',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Passworthash',
+  `salt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Passwortsalt',
+  `isBot` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 = der Account ist ein Bot',
   PRIMARY KEY (`id`),
-  KEY `username` (`username`)
+  KEY `username` (`username`),
+  KEY `isBot` (`isBot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
+TRUNCATE `users`;
+INSERT INTO `users` (`id`, `username`, `password`, `salt`, `isBot`) VALUES
+(1,	'KI',	NULL,	NULL,	1);
 
--- 2021-03-27 20:07:58
+-- 2022-02-12 12:39:18
