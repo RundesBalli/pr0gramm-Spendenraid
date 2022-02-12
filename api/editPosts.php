@@ -121,10 +121,14 @@ if(empty($postData)) {
 }
 
 /**
+ * Initialisieren des errorData Arrays für die Ausgabe.
+ */
+$errorData = array();
+
+/**
  * Iterieren der PostIds und setzen der Werte in der Datenbank.
  * Beispielwerte der postData: {"123456":{"value":1337.00,"orga":2},"123457":{"value":13.37,"orga":1}}
  */
-$errorData = array();
 
 foreach($postData AS $key => $values) {
   $postId = intval(defuse($key));
