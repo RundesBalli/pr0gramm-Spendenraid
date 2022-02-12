@@ -22,7 +22,7 @@ $content.= "<h1>Organisation Schnellbewertung</h1>".PHP_EOL;
 if(!empty($_GET['postId']) AND !empty($_GET['orgaId'])) {
   $postId = (int)defuse($_GET['postId']);
   $orgaId = (int)defuse($_GET['orgaId']);
-  $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+  $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `postId`='".$postId."' AND `isDonation`=1 LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($result) == 0) {
     /**
      * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
