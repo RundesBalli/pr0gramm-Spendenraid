@@ -220,6 +220,10 @@ foreach($postData AS $key => $values) {
            */
           mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$kiUserId."', `isDonation`='0', `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
           mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 4, '".$postId."', 'kein Spendenpost')") OR DIE(MYSQLI_ERROR($dbl));
+          /**
+           * Da es kein Spendenpost ist, kann auch nachträglich keine Organisation eingetragen werden. Deshalb kann die Iteration fortgesetzt werden.
+           */
+          continue;
         } else {
           /**
            * Es ist ein Spendenpost.
