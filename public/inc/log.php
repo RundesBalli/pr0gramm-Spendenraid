@@ -43,11 +43,11 @@ if(!empty($_GET['older'])) {
 /**
  * Loganzeige
  */
-$result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `log`.`timestamp`, `logLevel`.`id` AS `logLevelId`, `logLevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` ".$where."ORDER BY `log`.`id` DESC LIMIT 100") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `users`.`isBot`, `log`.`timestamp`, `logLevel`.`id` AS `logLevelId`, `logLevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` ".$where."ORDER BY `log`.`id` DESC LIMIT 100") OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_array($result)) {
   $content.= "<div class='row hover bordered' style='border-left: 6px solid #".$row['color'].";'>".PHP_EOL.
   "<div class='col-x-4 col-s-4 col-m-1 col-l-1 col-xl-1'>".$row['id']."</div>".PHP_EOL.
-  "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".output($row['username'])."</span>" : output($row['username'])))."</div>".PHP_EOL.
+  "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".output($row['username'])."</span>" : ($row['isBot'] ? "<span class='italic'>".output($row['username'])."</span>" : output($row['username']))))."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-4 col-m-3 col-l-3 col-xl-3'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['postId'] === NULL ? "<span class='italic'>NULL</span>" : "<a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a> - <a href='/postinfo?postId=".$row['postId']."' rel='noopener'>Info</a>".($row['logLevelId'] != 5 ? "<br><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a><br><a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a>" : NULL))."</div>".PHP_EOL.
   "<div class='col-x-12 col-s-8 col-m-4 col-l-4 col-xl-4'>".output($row['text'])."</div>".PHP_EOL.

@@ -21,7 +21,7 @@ $content.= "<h1>PostInfo</h1>".PHP_EOL;
  */
 $content.= "<form action='/postinfo' method='get'>".PHP_EOL;
 /**
- * Geldbetrag
+ * PostId/Link
  */
 $content.= "<div class='row'>".PHP_EOL.
 "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Post</div>".PHP_EOL.
@@ -71,11 +71,11 @@ if(!empty($_GET['postId'])) {
       "<div class='col-x-12 col-s-8 col-m-4 col-l-4 col-xl-4'>Text</div>".PHP_EOL.
       "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
       "</div>".PHP_EOL;
-      $result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `log`.`timestamp`, `logLevel`.`id` AS `logLevelId`, `logLevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` WHERE `postId`='".$row['postId']."' ORDER BY `log`.`id` DESC") OR DIE(MYSQLI_ERROR($dbl));
+      $result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `users`.`isBot`, `log`.`timestamp`, `logLevel`.`id` AS `logLevelId`, `logLevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` WHERE `postId`='".$row['postId']."' ORDER BY `log`.`id` DESC") OR DIE(MYSQLI_ERROR($dbl));
       while($row = mysqli_fetch_array($result)) {
         $content.= "<div class='row hover bordered' style='border-left: 6px solid #".$row['color'].";'>".PHP_EOL.
         "<div class='col-x-4 col-s-4 col-m-1 col-l-1 col-xl-1'>".$row['id']."</div>".PHP_EOL.
-        "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".$row['username']."</span>" : $row['username']))."</div>".PHP_EOL.
+        "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".output($row['username'])."</span>" : ($row['isBot'] ? "<span class='italic'>".output($row['username'])."</span>" : output($row['username']))))."</div>".PHP_EOL.
         "<div class='col-x-12 col-s-4 col-m-3 col-l-3 col-xl-3'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".PHP_EOL.
         "<div class='col-x-12 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['postId'] === NULL ? "<span class='italic'>NULL</span>" : "<a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a>".($row['logLevelId'] != 5 ? "<br><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a><br><a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a>" : NULL))."</div>".PHP_EOL.
         "<div class='col-x-12 col-s-8 col-m-4 col-l-4 col-xl-4'>".$row['text']."</div>".PHP_EOL.
