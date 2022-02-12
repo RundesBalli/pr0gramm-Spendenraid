@@ -22,13 +22,13 @@ $content.= "<h1>Fälschungen</h1>".PHP_EOL;
 if(isset($_GET['setCertain']) AND !empty($_GET['id'])) {
   $fakeId = (int)defuse($_GET['id']);
   mysqli_query($dbl, "UPDATE `fakes` SET `certain`='1' WHERE `id`='".$fakeId."' LIMIT 1") OR DIE(MYSQLI_ERROR());
-  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 7, 'Fake als sicher eingestuft (ID: ".$fakeId.")')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 7, 'Fake als sicher eingestuft (ID: ".$fakeId.")')") OR DIE(MYSQLI_ERROR($dbl));
   $content.= "<div class='successbox'>Fake-Eintrag als sicher markiert.</div>".PHP_EOL;
 }
 if(isset($_GET['setUncertain']) AND !empty($_GET['id'])) {
   $fakeId = (int)defuse($_GET['id']);
   mysqli_query($dbl, "UPDATE `fakes` SET `certain`='0' WHERE `id`='".$fakeId."' LIMIT 1") OR DIE(MYSQLI_ERROR());
-  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 7, 'Fake als unsicher eingestuft (ID: ".$fakeId.")')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 7, 'Fake als unsicher eingestuft (ID: ".$fakeId.")')") OR DIE(MYSQLI_ERROR($dbl));
   $content.= "<div class='successbox'>Fake-Eintrag als unsicher markiert.</div>".PHP_EOL;
 }
 
@@ -74,7 +74,7 @@ if(isset($_POST['submit']) AND (!empty($_POST['original']) AND !empty($_POST['fa
       } elseif(mysqli_errno($dbl) == 1062) {
         $content.= "<div class='warnbox'>Dieser Fakeeintrag existiert bereits.</div>".PHP_EOL;
       } elseif(mysqli_errno($dbl) == 0) {
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 7, 'Fake eingetragen - Orig: ".($postIdOriginal < $postIdFake ? $postIdOriginal : $postIdFake).", Fake: ".($postIdFake > $postIdOriginal ? $postIdFake : $postIdOriginal)."')") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 7, 'Fake eingetragen - Orig: ".($postIdOriginal < $postIdFake ? $postIdOriginal : $postIdFake).", Fake: ".($postIdFake > $postIdOriginal ? $postIdFake : $postIdOriginal)."')") OR DIE(MYSQLI_ERROR($dbl));
         $content.= "<div class='successbox'>Fake eingetragen.</div>".PHP_EOL;
       } else {
         die(MYSQLI_ERROR($dbl));

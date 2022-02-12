@@ -64,7 +64,7 @@ if(!empty($_GET['postId'])) {
          * Token gültig. Post zurücksetzen.
          */
         mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 5, '".$postId."', 'Orga zurückgesetzt')") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 5, '".$postId."', 'Orga zurückgesetzt')") OR DIE(MYSQLI_ERROR($dbl));
         $content.= "<div class='successbox'>Post zurückgesetzt.<br><a href='/orga'>Organisationen bewerten</a></div>".PHP_EOL;
       }
     }

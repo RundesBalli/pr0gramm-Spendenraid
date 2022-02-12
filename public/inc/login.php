@@ -57,7 +57,7 @@ if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isse
       $sessionhash = hash('sha256', random_bytes(4096));
       mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
       setcookie('spendenraid', $sessionhash, time()+(6*7*86400));
-      mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$row['id']."', 1, 'Login: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$row['id']."', 1, 'Login: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
       header("Location: /overview");
       die();
     } else {

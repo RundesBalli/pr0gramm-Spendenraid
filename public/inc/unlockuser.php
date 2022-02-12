@@ -76,13 +76,13 @@ if(!empty($perkSecret)) {
               /**
                * Bei Erfolg wird ein Logeintrag erzeugt und eine Erledigtmeldung ausgegeben.
                */
-              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `userId`, `text`) VALUES (6, '".$userId."', 'User ".$user." manuell freigeschaltet.')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `userId`, `text`) VALUES (6, '".$userId."', 'User ".$user." manuell freigeschaltet.')") OR DIE(MYSQLI_ERROR($dbl));
               $content.= "<div class='successbox'>User freigeschaltet.</div>".PHP_EOL;
             } else {
               /**
                * Wenn die Freischaltung nicht geklappt hat, wird eine Fehlermeldung ausgegeben und ein Logeintrag erzeugt.
                */
-              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `userId`, `text`) VALUES (6, '".$userId."', 'User ".$user." konnte nicht manuell freigeschaltet werden.')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `userId`, `text`) VALUES (6, '".$userId."', 'User ".$user." konnte nicht manuell freigeschaltet werden.')") OR DIE(MYSQLI_ERROR($dbl));
               $content.= "<div class='warnbox'>Post zurückgesetzt, da Perkfreischaltung fehlschlug.</div>".PHP_EOL;
             }
           }

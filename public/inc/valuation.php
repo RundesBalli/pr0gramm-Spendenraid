@@ -51,7 +51,7 @@ if(isset($_POST['value'])) {
              * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
              */
             mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
             $content.= "<div class='successbox'>Spendenwert eingetragen.<br><a href='/resetpost?postId=".$postId."'>Post zurücksetzen</a></div>".PHP_EOL;
           } elseif($row['confirmedValue'] === NULL OR $row['confirmedUserId'] === NULL) {
             /**
@@ -71,7 +71,7 @@ if(isset($_POST['value'])) {
                  * Erst- und Zweitsichtung stimmen nicht überein. Post wird zurückgesetzt und die Zweitsichtung wird zur Erstsichtung.
                  */
                 mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', '".number_format($value, 2, ",", ".")." € (Erstsichtung: ".number_format($row['firstsightValue'], 2, ",", ".").")')") OR DIE(MYSQLI_ERROR($dbl));
+                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', '".number_format($value, 2, ",", ".")." € (Erstsichtung: ".number_format($row['firstsightValue'], 2, ",", ".").")')") OR DIE(MYSQLI_ERROR($dbl));
                 $content.= "<div class='successbox'>Spendenwert eingetragen.<br><a href='/resetpost?postId=".$postId."'>Post zurücksetzen</a></div>".PHP_EOL;
               } else {
                 /**
@@ -82,14 +82,14 @@ if(isset($_POST['value'])) {
                    * Es ist kein Spendenpost.
                    */
                   mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$userId."', `isDonation`='0', `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-                  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', 'kein Spendenpost')") OR DIE(MYSQLI_ERROR($dbl));
+                  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', 'kein Spendenpost')") OR DIE(MYSQLI_ERROR($dbl));
                   $content.= "<div class='successbox'>Spendenwert eingetragen.<br><a href='/resetpost?postId=".$postId."'>Post zurücksetzen</a></div>".PHP_EOL;
                 } else {
                   /**
                    * Es ist ein Spendenpost.
                    */
                   mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$userId."', `isDonation`='1' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-                  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+                  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
                   $content.= "<div class='successbox'>Spendenwert eingetragen.<br><a href='/resetpost?postId=".$postId."'>Post zurücksetzen</a></div>".PHP_EOL;
                   /**
                    * Nutzer für das Perk auf pr0gramm freischalten.
@@ -101,13 +101,13 @@ if(isset($_POST['value'])) {
                       /**
                        * Bei Erfolg wird ein Logeintrag erzeugt.
                        */
-                      mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
+                      mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
                     } else {
                       /**
                        * Wenn die Freischaltung nicht geklappt hat, wird der Post zurückgesetzt.
                        */
                       mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`=NULL, `firstsightUserId`=NULL, `confirmedValue`=NULL, `confirmedUserId`=NULL, `isDonation`=NULL, `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-                      mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (5, '".$postId."', 'zurückgesetzt, da Perkfreischaltung fehlschlug')") OR DIE(MYSQLI_ERROR($dbl));
+                      mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (5, '".$postId."', 'zurückgesetzt, da Perkfreischaltung fehlschlug')") OR DIE(MYSQLI_ERROR($dbl));
                       $content.= "<div class='warnbox'>Post zurückgesetzt, da Perkfreischaltung fehlschlug.</div>".PHP_EOL;
                     }
                   }

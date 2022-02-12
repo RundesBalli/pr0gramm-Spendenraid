@@ -84,20 +84,20 @@ if(!empty($_GET['postId'])) {
                * Bei Erfolg wird ein Logeintrag erzeugt.
                */
               $content.= "<div class='successbox'>Perk gesperrt.</div>".PHP_EOL;
-              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 6, 'Perk gesperrt (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 6, 'Perk gesperrt (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
             } else {
               /**
                * Wenn die Freischaltung nicht geklappt hat, wird ein gesonderter Logeintrag erzeugt und eine Fehlermeldung ausgegeben.
                */
               $content.= "<div class='warnbox'>Konnte Perk nicht sperren.</div>".PHP_EOL;
-              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 6, 'Perk-Sperrung fehlgeschlagen! (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 6, 'Perk-Sperrung fehlgeschlagen! (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
             }
           } else {
             $content.= "<div class='infobox'>User hat noch andere Spendenpost(s). Daher muss der Perk nicht gesperrt werden.</div>".PHP_EOL;
           }
         }
         mysqli_query($dbl, "DELETE FROM `items` WHERE `id`='".$row['id']."' AND `delflag`='1' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 5, 'Post gelöscht da auf pr0gramm nicht mehr vorhanden (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 5, 'Post gelöscht da auf pr0gramm nicht mehr vorhanden (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
         $content.= "<div class='successbox'>Post gelöscht.</div>".PHP_EOL;
       }
     }

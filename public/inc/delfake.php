@@ -71,7 +71,7 @@ if(!empty($_GET['id'])) {
          */
         $row = mysqli_fetch_array($result);
         mysqli_query($dbl, "DELETE FROM `fakes` WHERE `id`='".$id."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$userId."', 7, 'Fake-Eintrag gelöscht (Orig: ".$row['postIdOriginal'].", Fake: ".$row['postIdFake'].")')") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 7, 'Fake-Eintrag gelöscht (Orig: ".$row['postIdOriginal'].", Fake: ".$row['postIdFake'].")')") OR DIE(MYSQLI_ERROR($dbl));
         $content.= "<div class='successbox'>Eintrag gelöscht.</div>".PHP_EOL;
       }
     }

@@ -51,7 +51,7 @@ if(isset($_POST['orga'])) {
           if(mysqli_errno($dbl) == 1452) {
             $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
           } elseif(mysqli_errno($dbl) == 0) {
-            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
+            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
             $content.= "<div class='successbox'>Organisation eingetragen.<br><a href='/orgareset?postId=".$postId."'>Organisation zurücksetzen</a></div>".PHP_EOL;
           } else {
             die(MYSQLI_ERROR($dbl));
@@ -77,7 +77,7 @@ if(isset($_POST['orga'])) {
               if(mysqli_errno($dbl) == 1452) {
                 $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
               } elseif(mysqli_errno($dbl) == 0) {
-                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', 'Orga: ".$orga." (Erstsichtung: ".$row['firstsightOrgaId'].")')") OR DIE(MYSQLI_ERROR($dbl));
+                mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', 'Orga: ".$orga." (Erstsichtung: ".$row['firstsightOrgaId'].")')") OR DIE(MYSQLI_ERROR($dbl));
                 $content.= "<div class='successbox'>Organisation eingetragen.<br><a href='/orgareset?postId=".$postId."'>Organisation zurücksetzen</a></div>".PHP_EOL;
               } else {
                 die(MYSQLI_ERROR($dbl));
@@ -87,7 +87,7 @@ if(isset($_POST['orga'])) {
                * Erst- und Zweitsichtung stimmen überein.
                */
               mysqli_query($dbl, "UPDATE `items` SET `confirmedOrgaId`='".$orga."', `confirmedOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
               $content.= "<div class='successbox'>Organisation eingetragen.<br><a href='/orgareset?postId=".$postId."'>Organisation zurücksetzen</a></div>".PHP_EOL;
             }
           }

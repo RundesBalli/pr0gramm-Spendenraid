@@ -95,29 +95,29 @@ CREATE TABLE `log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `userId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - users.id',
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des Eintrags',
-  `loglevel` int(10) unsigned NOT NULL COMMENT 'Querverweis - loglevel.id',
+  `logLevel` int(10) unsigned NOT NULL COMMENT 'Querverweis - logLevel.id',
   `postId` int(10) unsigned DEFAULT NULL COMMENT 'Querverweis - items.postId, oder NULL bei User-/Systemaktion',
   `text` text COLLATE utf8mb4_unicode_ci COMMENT 'Logtext (optional)',
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
-  KEY `loglevel` (`loglevel`),
+  KEY `logLevel` (`logLevel`),
   KEY `itemId` (`postId`),
-  CONSTRAINT `log_ibfk_2` FOREIGN KEY (`loglevel`) REFERENCES `loglevel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `log_ibfk_2` FOREIGN KEY (`logLevel`) REFERENCES `logLevel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `log_ibfk_5` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `log_ibfk_6` FOREIGN KEY (`postId`) REFERENCES `items` (`postId`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-DROP TABLE IF EXISTS `loglevel`;
-CREATE TABLE `loglevel` (
+DROP TABLE IF EXISTS `logLevel`;
+CREATE TABLE `logLevel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Meldungsart',
   `color` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'HexCode der Meldungsfarbe',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Querverweistabelle - Loglevel Farben';
 
-TRUNCATE `loglevel`;
-INSERT INTO `loglevel` (`id`, `title`, `color`) VALUES
+TRUNCATE `logLevel`;
+INSERT INTO `logLevel` (`id`, `title`, `color`) VALUES
 (1,	'User-/Systemaktion',	'888888'),
 (2,	'Erstsichtung',	'e108e9'),
 (3,	'Zweitsichtung - zurückgesetzt',	'ff9900'),

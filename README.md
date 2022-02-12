@@ -7,7 +7,7 @@ Ein Tool zum Auswerten des Spendenraids auf pr0gramm
 
 ### Ausführliches Log mit Loglevel-Markierung
 ![Ausführliches Log](/screenshots/log.png?raw=true)  
-![Loglevel-Markierung](/screenshots/loglevel.png?raw=true)  
+![Loglevel-Markierung](/screenshots/logLevel.png?raw=true)  
 
 ### Eintragen des Spendenwertes und der Organisation
 ![Spendenwert](/screenshots/valuation.png?raw=true)  

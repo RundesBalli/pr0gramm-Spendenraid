@@ -64,7 +64,7 @@ if(!empty($_GET['postId'])) {
          * Token gültig. Post zurücksetzen.
          */
         mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`=NULL, `firstsightUserId`=NULL, `confirmedValue`=NULL, `confirmedUserId`=NULL, `isDonation`=NULL, `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `postId`, `text`) VALUES ('".$userId."', 5, '".$postId."', 'zurückgesetzt')") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 5, '".$postId."', 'zurückgesetzt')") OR DIE(MYSQLI_ERROR($dbl));
         $content.= "<div class='successbox'>Post zurückgesetzt.<br><a href='/valuation'>Posts bewerten</a></div>".PHP_EOL;
         /**
          * Perk wieder sperren, sofern der User sonst keine validierten Spendenposts hat.
@@ -82,12 +82,12 @@ if(!empty($_GET['postId'])) {
               /**
                * Bei Erfolg wird ein Logeintrag erzeugt.
                */
-              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." gesperrt')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." gesperrt')") OR DIE(MYSQLI_ERROR($dbl));
             } else {
               /**
                * Wenn die Freischaltung nicht geklappt hat, wird ein gesonderter Logeintrag erzeugt und eine Fehlermeldung ausgegeben.
                */
-              mysqli_query($dbl, "INSERT INTO `log` (`loglevel`, `postId`, `text`) VALUES (6, '".$postId."', 'Sperrung fehlgeschlagen (User ".$row['username'].")!')") OR DIE(MYSQLI_ERROR($dbl));
+              mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (6, '".$postId."', 'Sperrung fehlgeschlagen (User ".$row['username'].")!')") OR DIE(MYSQLI_ERROR($dbl));
               $content.= "<div class='warnbox'>User konnte für das Perk nicht gesperrt werden.</div>".PHP_EOL;
             }
           }
