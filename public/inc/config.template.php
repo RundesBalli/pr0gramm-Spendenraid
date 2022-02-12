@@ -31,7 +31,7 @@ $crawler['tags'] = '';
 $apiCall = "";
 
 /**
- * Nutzerfreischaltung für das Perk
+ * Geheimes Token zur Nutzerfreischaltung für das Perk / Setzen des Badges
  * 
  * @var string
  */
