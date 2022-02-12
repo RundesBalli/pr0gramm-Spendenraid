@@ -124,8 +124,7 @@ INSERT INTO `loglevel` (`id`, `title`, `color`) VALUES
 (4,	'Zweitsichtung - okay',	'5bb91c'),
 (5,	'Post zurückgesetzt',	'c52b2f'),
 (6,	'Perk',	'337fd2'),
-(7,	'Fakes',	'10366f'),
-(8,	'KI Interaktion',	'ee4d2e');
+(7,	'Fakes',	'10366f');
 
 DROP TABLE IF EXISTS `orgas`;
 CREATE TABLE `orgas` (
@@ -182,4 +181,4 @@ TRUNCATE `users`;
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `isBot`) VALUES
 (1,	'KI',	NULL,	NULL,	1);
 
--- 2022-02-12 12:39:18
+-- 2022-02-12 12:54:35
