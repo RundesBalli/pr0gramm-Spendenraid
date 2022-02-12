@@ -151,7 +151,7 @@ foreach($postData AS $key => $values) {
    * Hier kann ausdrücklich nicht die Funktion empty verwendet werden, da auch der Wert "0" gültig sein muss.
    */
   if(!isset($value['value']) OR $value['value'] == "") {
-    $errorData[$key] = [
+    $errorData[$postId] = [
       'error' => 'emptyValue',
       'errorMsg' => "The value field is empty."
     ];
@@ -162,7 +162,7 @@ foreach($postData AS $key => $values) {
    * Prüfung ob der Wert numerisch ist.
    */
   if(!is_numeric($value['value'])) {
-    $errorData[$key] = [
+    $errorData[$postId] = [
       'error' => 'notNumericValue',
       'errorMsg' => "The provided value is not numeric."
     ];
@@ -185,7 +185,7 @@ foreach($postData AS $key => $values) {
      * Wenn die Organisation nicht existiert, wird mit einer Fehlermeldung die Iteration fortgesetzt.
      */
     if(mysqli_num_rows($result) == 0) {
-      $errorData[$key] = [
+      $errorData[$postId] = [
         'error' => 'orgaNotFound',
         'errorMsg' => "The organization with the provided orgaId could not be found."
       ];
