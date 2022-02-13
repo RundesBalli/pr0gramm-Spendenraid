@@ -87,7 +87,7 @@ $content.= "<div class='row highlight bold'>".PHP_EOL.
 /**
  * User
  */
-$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` WHERE `userId` IS NOT NULL AND `userId`!=$kiUserId GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `users`.`username` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` WHERE `userId` IS NOT NULL".(!empty($kiUserId) ? " AND `userId`!=".$kiUserId : NULL)." GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
 $platz = 0;
 $previous = 0;
 while($row = mysqli_fetch_array($result)) {
@@ -103,7 +103,7 @@ while($row = mysqli_fetch_array($result)) {
 /**
  * System
  */
-$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count` FROM `log` WHERE `userId` IS NULL OR `userId`=".$kiUserId) OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count` FROM `log` WHERE `userId` IS NULL".(!empty($kiUserId) ? " OR `userId`=".$kiUserId : NULL)) OR DIE(MYSQLI_ERROR($dbl));
 $row = mysqli_fetch_array($result);
 $content.= "<div class='row hover'>".PHP_EOL.
 "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>&#x1F5A5;</div>".PHP_EOL.
