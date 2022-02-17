@@ -47,7 +47,12 @@ if(empty($editPostToken) OR empty($kiUserId)) {
   );
 }
 
-if(empty($_POST['token'])) {
+/**
+ * Header auslesen und prüfen ob der Auth Header gesetzt ist und korrekt ist.
+ */
+$headers = getallheaders();
+
+if(empty($headers['apiAuth'])) {
   http_response_code(400);
   die(
     json_encode(
@@ -59,7 +64,7 @@ if(empty($_POST['token'])) {
   );
 }
 
-if($_POST['token'] != $editPostToken) {
+if($headers['apiAuth'] != $editPostToken) {
   http_response_code(401);
   die(
     json_encode(
