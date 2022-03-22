@@ -128,7 +128,7 @@ if(!empty($kiApiToken) AND !empty($kiPosts)) {
   /**
    * Setzen des AuthToken Headers
    */
-  $options[CURLOPT_HTTPHEADER] = array("token: ".$kiApiToken, 'Content-Type: application/json');
+  $options[CURLOPT_HTTPHEADER] = array("token: ".$kiApiToken, 'Content-Type: application/json; charset=utf-8');
   
   /**
    * Setzen der KI URL
