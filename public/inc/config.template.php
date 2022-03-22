@@ -38,13 +38,19 @@ $apiCall = "";
 $perkSecret = "";
 
 /**
- * Tokens für die KI API
+ * Einstellungen für die KI API
  * 
- * @var string $kiApiToken    Token zur Übergabe der PostIds an die KI API
- * @var string $editPostToken Token für die KI API zur Übermittlung der Postdaten an die editPosts API
- * @var int    $kiUserId      UserId der KI
+ * @var string $kiApiToken          Token zur Übergabe der PostIds an die KI API
+ * @var string $editPostToken       Token für die KI API zur Übermittlung der Postdaten an die editPosts API
+ * @var int    $kiUserId            UserId der KI
+ * @var string $kiCURL['bindTo']    Interface mit welchem cURL die Verbindung aufbauen soll, z.B. eth0 (sudo ifconfig)
+ * @var string $kiCURL['userAgent'] Der UserAgent mit dem die Anfrage gesendet werden soll
+ * @var string $kiCURL['url']       Die KI-URL, die aufgerufen werden soll.
  */
 $kiApiToken = "";
 $editPostToken = "";
-$kiUserId = 0;
+$kiUserId = 1;
+$kiCURL['bindTo'] = "eth0";
+$kiCURL['userAgent'] = "";
+$kiCURL['url'] = "";
 ?>
