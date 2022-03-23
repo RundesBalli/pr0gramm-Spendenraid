@@ -47,7 +47,7 @@ CREATE TABLE `items` (
   `created` int(10) unsigned NOT NULL COMMENT 'Timestamp des Posts',
   `image` varchar(250) CHARACTER SET utf8 NOT NULL COMMENT 'Bild-URL',
   `thumb` varchar(250) CHARACTER SET utf8 NOT NULL COMMENT 'Thumbnail-URL',
-  `fullsize` varchar(250) CHARACTER SET utf8 NOT NULL COMMENT 'Fullsize-URL',
+  `fullsize` varchar(250) CHARACTER SET utf8 DEFAULT NULL COMMENT 'Fullsize-URL',
   `width` int(10) unsigned NOT NULL COMMENT 'Breite des Bildes',
   `height` int(10) unsigned NOT NULL COMMENT 'Höhe des Bildes',
   `audio` tinyint(1) unsigned NOT NULL COMMENT 'Audio',
@@ -181,4 +181,4 @@ TRUNCATE `users`;
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `isBot`) VALUES
 (1,	'KI',	NULL,	NULL,	1);
 
--- 2022-02-12 12:54:35
+-- 2022-03-23 20:01:47
