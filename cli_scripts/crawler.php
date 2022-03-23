@@ -20,7 +20,7 @@ if(isset($argv[1]) AND $argv[1] == "full") {
    * Wenn der "full" Parameter übergeben wurde, dann starte einen vollen Crawl.
    */
   $newer = $crawler['newer'];
-  mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, Crawl] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
   /**
    * Überall das Löschflag auf 1 setzen
    */
@@ -31,13 +31,13 @@ if(isset($argv[1]) AND $argv[1] == "full") {
     /**
      * Wenn keine Posts vorhanden sind, dann starte einen vollen Crawl.
      */
-    mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
+    mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, Crawl] Crawlvorgang gestartet (groß)')") OR DIE(MYSQLI_ERROR($dbl));
     $newer = $crawler['newer'];
   } else {
     /**
      * Wenn Posts vorhanden sind, dann starte die Suche beim letzten Post.
      */
-    mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON] Crawlvorgang gestartet (klein)')") OR DIE(MYSQLI_ERROR($dbl));
+    mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, Crawl] Crawlvorgang gestartet (klein)')") OR DIE(MYSQLI_ERROR($dbl));
     $row = mysqli_fetch_array($result);
     $newer = $row['postId'];
   }
@@ -95,7 +95,7 @@ do {
 /**
  * Logeintrag zum Ende erzeugen
  */
-mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON] Crawlvorgang beendet (total: ".$totalPosts.", new: ".$newPosts.", updated: ".$updatedPosts.")')") OR DIE(MYSQLI_ERROR($dbl));
+mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, Crawl] Crawlvorgang beendet (total: ".$totalPosts.", new: ".$newPosts.", updated: ".$updatedPosts.")')") OR DIE(MYSQLI_ERROR($dbl));
 
 /**
  * Übergeben der neuen Post-IDs mit Bild-URL an die KI.
