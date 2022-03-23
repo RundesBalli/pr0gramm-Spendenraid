@@ -158,11 +158,11 @@ foreach($postData AS $key => $values) {
   /**
    * Prüfung des optional übergebbaren Wertes.
    */
-  if(is_numeric($value['value']) AND (isset($value['value']) AND $value['value'] != "")) {
+  if(isset($value['amount']) AND (is_numeric($value['amount']) AND $value['amount'] != "")) {
     /**
      * Umwandlung der value in eine Float Zahl.
      */
-    $value = floatval(defuse($value['value']));
+    $value = floatval(defuse($value['amount']));
 
     /**
      * Da der Post existiert, wird zuerst geprüft, ob schon eine Erstsichtung durchgeführt wurde.
