@@ -132,7 +132,7 @@ $errorData = array();
 
 /**
  * Iterieren der PostIds und setzen der Werte in der Datenbank.
- * Beispielwerte der postData: {"123456":{"value":1337.00,"orga":2},"123457":{"value":13.37,"orga":1}}
+ * Beispielwerte der postData: {"123456":{"amount":1337.00,"orga":2},"123457":{"amount":13.37,"orga":1}}
  */
 
 foreach($postData AS $key => $values) {
