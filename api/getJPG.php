@@ -117,7 +117,7 @@ if(mysqli_num_rows($result) != 1) {
 /**
  * Erzeugen eines Logeintrages, dass die KI das Bild angefragt hat.
  */
-mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (1, '".$postId."', '[KI, JPG] KI Anfrage JPG')") OR DIE(MYSQLI_ERROR($dbl));
+mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 1, '".$postId."', '[KI, JPG] KI Anfrage JPG')") OR DIE(MYSQLI_ERROR($dbl));
 
 /**
  * cURL initialisieren
