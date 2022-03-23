@@ -14,7 +14,7 @@ require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIREC
 /**
  * Ausgabeformat auf JSON setzen.
  */
-header("Content-type: application/json; charset=utf-8");
+header("Content-Type: application/json; charset=utf-8");
 
 /**
  * Prüfen ob das Script per HTTP-POST Methode aufgerufen wurde.
