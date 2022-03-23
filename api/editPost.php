@@ -80,24 +80,9 @@ if($headers['apiAuth'] != $editPostToken) {
  */
 
 /**
- * Prüfung ob das postData Feld übergeben wurde.
+ * Prüfen des übergebenen Bodys, ob es gültiges JSON beinhaltet.
  */
-if(empty($_POST['postData'])) {
-  http_response_code(400);
-  die(
-    json_encode(
-      [
-        'error' => 'missingPostData',
-        'errorMsg' => 'You have to provide the postData parameter with data that should be changed.'
-      ]
-    )
-  );
-}
-
-/**
- * Prüfen des übergebenen Feldes, ob es gültiges JSON beinhaltet.
- */
-if(!$postData = json_decode($_POST['postData'])) {
+if(!$postData = json_decode(file_get_contents('php://input'), TRUE)) {
   http_response_code(400);
   die(
     json_encode(
