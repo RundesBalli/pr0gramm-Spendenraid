@@ -73,8 +73,7 @@ do {
           $ext = strtolower(pathinfo($itemcontent['image'])['extension']);
           if($ext != "mp4" AND $ext != "gif") {
             $kiPosts[] = array(
-              'id' => $itemcontent['id'],
-              'url' => $itemcontent['image']
+              'id' => $itemcontent['id']
             );
           }
         }
