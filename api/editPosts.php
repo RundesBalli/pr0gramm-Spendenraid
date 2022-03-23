@@ -156,102 +156,85 @@ foreach($postData AS $key => $values) {
   $row = mysqli_fetch_assoc($result);
 
   /**
-   * Wenn das value Feld leer ist, dann wird der Post mit einer Fehlermeldung ignoriert.
-   * Hier kann ausdrücklich nicht die Funktion empty verwendet werden, da auch der Wert "0" gültig sein muss.
+   * Prüfung des optional übergebbaren Wertes.
    */
-  if(!isset($value['value']) OR $value['value'] == "") {
-    $errorData[$postId] = [
-      'error' => 'emptyValue',
-      'errorMsg' => "The value field is empty."
-    ];
-    continue;
-  }
-
-  /**
-   * Prüfung ob der Wert numerisch ist.
-   */
-  if(!is_numeric($value['value'])) {
-    $errorData[$postId] = [
-      'error' => 'notNumericValue',
-      'errorMsg' => "The provided value is not numeric."
-    ];
-  }
-
-  /**
-   * Umwandlung der value in eine Float Zahl.
-   */
-  $value = floatval(defuse($value['value']));
-
-  /**
-   * Da der Post existiert, wird zuerst geprüft, ob schon eine Erstsichtung durchgeführt wurde.
-   */
-  if($row['firstsightValue'] === NULL OR $row['firstsightUserId'] === NULL) {
+  if(is_numeric($value['value']) AND (isset($value['value']) AND $value['value'] != "")) {
     /**
-     * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
+     * Umwandlung der value in eine Float Zahl.
      */
-    mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$kiUserId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-    mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 2, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
-  } elseif($row['confirmedValue'] === NULL OR $row['confirmedUserId'] === NULL) {
+    $value = floatval(defuse($value['value']));
+
     /**
-     * Wenn bereits eine Erstsichtung stattgefunden hat, dann prüfe, ob man selbst der Prüfende war.
-     * Kann nur eintreten, wenn die API mehrmals mit den selben Daten aufgerufen wird.
+     * Da der Post existiert, wird zuerst geprüft, ob schon eine Erstsichtung durchgeführt wurde.
      */
-    if($row['firstsightUserId'] == $kiUserId) {
+    if($row['firstsightValue'] === NULL OR $row['firstsightUserId'] === NULL) {
       /**
-       * Fehlermeldung, da die KI der Erstsichtende war.
+       * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
        */
-      $errorData[$postId] = [
-        'error' => 'firstSightSameUser',
-        'errorMsg' => "The first sight has already been done by this user."
-      ];
-      continue;
-    } else {
+      mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$kiUserId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 2, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+    } elseif($row['confirmedValue'] === NULL OR $row['confirmedUserId'] === NULL) {
       /**
-       * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Summe mit der übergebenen Summe übereinstimmt.
+       * Wenn bereits eine Erstsichtung stattgefunden hat, dann prüfe, ob man selbst der Prüfende war.
+       * Kann nur eintreten, wenn die API mehrmals mit den selben Daten aufgerufen wird.
        */
-      if($row['firstsightValue'] != $value) {
+      if($row['firstsightUserId'] == $kiUserId) {
         /**
-         * Erst- und Zweitsichtung stimmen nicht überein. Post wird zurückgesetzt und die Zweitsichtung wird zur Erstsichtung.
+         * Fehlermeldung, da die KI der Erstsichtende war.
          */
-        mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$kiUserId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-        mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 3, '".$postId."', '".number_format($value, 2, ",", ".")." € (Erstsichtung: ".number_format($row['firstsightValue'], 2, ",", ".").")')") OR DIE(MYSQLI_ERROR($dbl));
+        $errorData[$postId] = [
+          'error' => 'firstSightSameUser',
+          'errorMsg' => "The first sight has already been done by this user."
+        ];
+        continue;
       } else {
         /**
-         * Erst- und Zweitsichtung stimmen überein. Jetzt wird noch geprüft, ob es sich um eine Spende handelt, oder nicht.
+         * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Summe mit der übergebenen Summe übereinstimmt.
          */
-        if($value == 0) {
+        if($row['firstsightValue'] != $value) {
           /**
-           * Es ist kein Spendenpost.
+           * Erst- und Zweitsichtung stimmen nicht überein. Post wird zurückgesetzt und die Zweitsichtung wird zur Erstsichtung.
            */
-          mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$kiUserId."', `isDonation`='0', `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-          mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 4, '".$postId."', 'kein Spendenpost')") OR DIE(MYSQLI_ERROR($dbl));
-          /**
-           * Da es kein Spendenpost ist, kann auch nachträglich keine Organisation eingetragen werden. Deshalb kann die Iteration fortgesetzt werden.
-           */
-          continue;
+          mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`='".$value."', `firstsightUserId`='".$kiUserId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+          mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 3, '".$postId."', '".number_format($value, 2, ",", ".")." € (Erstsichtung: ".number_format($row['firstsightValue'], 2, ",", ".").")')") OR DIE(MYSQLI_ERROR($dbl));
         } else {
           /**
-           * Es ist ein Spendenpost.
+           * Erst- und Zweitsichtung stimmen überein. Jetzt wird noch geprüft, ob es sich um eine Spende handelt, oder nicht.
            */
-          mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$kiUserId."', `isDonation`='1' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-          mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
-          /**
-           * Nutzer für das Perk auf pr0gramm freischalten.
-           */
-          if(!empty($perkSecret)) {
-            require_once($apiCall);
-            $response = apiCall("https://pr0gramm.com/api/casino/unlockUser", array("secret" => $perkSecret, "name" => $row['username']));
-            if($response['success'] == TRUE) {
-              /**
-               * Bei Erfolg wird ein Logeintrag erzeugt.
-               */
-              mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
-            } else {
-              /**
-               * Wenn die Freischaltung nicht geklappt hat, wird der Post zurückgesetzt.
-               */
-              mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`=NULL, `firstsightUserId`=NULL, `confirmedValue`=NULL, `confirmedUserId`=NULL, `isDonation`=NULL, `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-              mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (5, '".$postId."', 'zurückgesetzt, da Perkfreischaltung fehlschlug')") OR DIE(MYSQLI_ERROR($dbl));
+          if($value == 0) {
+            /**
+             * Es ist kein Spendenpost.
+             */
+            mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$kiUserId."', `isDonation`='0', `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 4, '".$postId."', 'kein Spendenpost')") OR DIE(MYSQLI_ERROR($dbl));
+            /**
+             * Da es kein Spendenpost ist, kann auch nachträglich keine Organisation eingetragen werden. Deshalb kann die Iteration fortgesetzt werden.
+             */
+            continue;
+          } else {
+            /**
+             * Es ist ein Spendenpost.
+             */
+            mysqli_query($dbl, "UPDATE `items` SET `confirmedValue`='".$value."', `confirmedUserId`='".$kiUserId."', `isDonation`='1' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+            mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 4, '".$postId."', '".number_format($value, 2, ",", ".")." €')") OR DIE(MYSQLI_ERROR($dbl));
+            /**
+             * Nutzer für das Perk auf pr0gramm freischalten.
+             */
+            if(!empty($perkSecret)) {
+              require_once($apiCall);
+              $response = apiCall("https://pr0gramm.com/api/casino/unlockUser", array("secret" => $perkSecret, "name" => $row['username']));
+              if($response['success'] == TRUE) {
+                /**
+                 * Bei Erfolg wird ein Logeintrag erzeugt.
+                 */
+                mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (6, '".$postId."', 'User ".$row['username']." freigeschaltet')") OR DIE(MYSQLI_ERROR($dbl));
+              } else {
+                /**
+                 * Wenn die Freischaltung nicht geklappt hat, wird der Post zurückgesetzt.
+                 */
+                mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`=NULL, `firstsightUserId`=NULL, `confirmedValue`=NULL, `confirmedUserId`=NULL, `isDonation`=NULL, `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+                mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (5, '".$postId."', 'zurückgesetzt, da Perkfreischaltung fehlschlug')") OR DIE(MYSQLI_ERROR($dbl));
+              }
             }
           }
         }
