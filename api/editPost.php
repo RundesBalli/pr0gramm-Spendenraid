@@ -172,13 +172,13 @@ if(isset($postData['amount']) AND (is_numeric($postData['amount']) AND $postData
  * Prüfung der optional übergebbaren Organisation.
  */
 $orga = 0;
-if(!isset($orgaStop) AND (isset($postData['orga']) AND !empty($postData['orga']))) {
+if((isset($postData['orga']) AND !empty($postData['orga']))) {
   $orga = intval(defuse($postData['orga']));
-  $orgaresult = mysqli_query($dbl, "SELECT `id` FROM `orgas` WHERE `id`=".$orga." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+  $orgaResult = mysqli_query($dbl, "SELECT `id` FROM `orgas` WHERE `id`=".$orga." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   /**
    * Wenn die Organisation nicht existiert, wird mit einer Fehlermeldung beendet.
    */
-  if(mysqli_num_rows($result) == 0) {
+  if(mysqli_num_rows($orgaResult) == 0) {
     http_response_code(404);
     die(
       json_encode(
@@ -188,18 +188,18 @@ if(!isset($orgaStop) AND (isset($postData['orga']) AND !empty($postData['orga'])
         ]
       )
     );
+  } else {
+    /**
+     * Es wurde eine gültige Organsations-ID übergeben.
+     */
+    if($row['firstsightOrgaId'] === NULL OR $row['firstsightOrgaUserId'] === NULL) {
+      /**
+       * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
+       */
+      mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`='".$orga."', `firstsightOrgaUserId`='".$kiUserId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 2, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
+    }
   }
-}
-
-/**
- * Es wurde eine gültige Organsations-ID übergeben.
- */
-if($row['firstsightOrgaId'] === NULL OR $row['firstsightOrgaUserId'] === NULL) {
-  /**
-   * Wenn noch keine Erstsichtung durchgeführt wurde, dann leg sie an.
-   */
-  mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`='".$orga."', `firstsightOrgaUserId`='".$kiUserId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-  mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$kiUserId."', 2, '".$postId."', 'Orga: ".$orga."')") OR DIE(MYSQLI_ERROR($dbl));
 }
 
 /**
