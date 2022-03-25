@@ -24,3 +24,6 @@ Die folgenden zwei `crontab -e` Einträge sind dafür erforderlich:
 5,10,20,25,35,40,50,55 * 27-31 3 * /usr/bin/php /pfad/zum/spendenraid/cliScripts/crawler.php >/dev/null 2>&1
 0 0 1 4 * /usr/bin/php /pfad/zum/spendenraid/cliScripts/crawler.php full >/dev/null 2>&1
 ```
+
+## Danksagung
+Vielen Dank an [@NullDev / TheShad0w](https://github.com/NullDev) für seine KI [Spendenr-AI-d](https://github.com/pr0-dev/Spendenr-AI-d)!
