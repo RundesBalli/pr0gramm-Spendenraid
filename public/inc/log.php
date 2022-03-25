@@ -103,13 +103,21 @@ while($row = mysqli_fetch_array($result)) {
 /**
  * System
  */
-$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count` FROM `log` WHERE `userId` IS NULL".(!empty($kiUserId) ? " OR `userId`=".$kiUserId : NULL)) OR DIE(MYSQLI_ERROR($dbl));
-$row = mysqli_fetch_array($result);
-$content.= "<div class='row hover'>".PHP_EOL.
-"<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>&#x1F5A5;</div>".PHP_EOL.
-"<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'><span class='italic'>System</span></div>".PHP_EOL.
-"<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
+$content.= "<div class='spacer-m'></div>".PHP_EOL;
+$content.= "<h2>Highscore (System / KI)</h2>".PHP_EOL;
+$content.= "<div class='row highlight bold'>".PHP_EOL.
+"<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>Symbol</div>".PHP_EOL.
+"<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>System / KI</div>".PHP_EOL.
+"<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>Einträge</div>".PHP_EOL.
 "</div>".PHP_EOL;
+$result = mysqli_query($dbl, "SELECT count(`log`.`id`) AS `count`, `userId` FROM `log` WHERE `userId` IS NULL".(!empty($kiUserId) ? " OR `userId`=".$kiUserId : NULL)." GROUP BY `userId` ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
+while($row = mysqli_fetch_array($result)) {
+  $content.= "<div class='row hover'>".PHP_EOL.
+  "<div class='col-x-2 col-s-2 col-m-2 col-l-2 col-xl-2'>&#x1F5A5;</div>".PHP_EOL.
+  "<div class='col-x-6 col-s-6 col-m-4 col-l-4 col-xl-4'>".($row['userId'] === NULL ? "<span class='italic'>System</span>" : "<span class='italic'>KI</span>")."</div>".PHP_EOL.
+  "<div class='col-x-4 col-s-4 col-m-6 col-l-6 col-xl-6'>".$row['count']."</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
+  "</div>".PHP_EOL;
+}
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
 ?>
