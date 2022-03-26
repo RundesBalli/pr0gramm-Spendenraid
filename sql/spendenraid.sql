@@ -116,7 +116,6 @@ CREATE TABLE `logLevel` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Querverweistabelle - Loglevel Farben';
 
-TRUNCATE `logLevel`;
 INSERT INTO `logLevel` (`id`, `title`, `color`) VALUES
 (1,	'User-/Systemaktion',	'888888'),
 (2,	'Erstsichtung',	'e108e9'),
@@ -137,7 +136,6 @@ CREATE TABLE `orgas` (
   KEY `sortIndex` (`sortIndex`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Querverweistabelle - Organisationen';
 
-TRUNCATE `orgas`;
 INSERT INTO `orgas` (`id`, `organame`, `sortIndex`, `exportCountOnly`, `exportSortIndex`) VALUES
 (1,	'Deutsche Knochenmarkspenderdatei (DKMS)',	10,	0,	20),
 (2,	'Deutsche Krebshilfe (auch dt. Kinderkrebshilfe)',	20,	0,	10),
@@ -149,7 +147,8 @@ INSERT INTO `orgas` (`id`, `organame`, `sortIndex`, `exportCountOnly`, `exportSo
 (8,	'nicht ersichtlich',	80,	0,	80),
 (9,	'Gute Tat',	90,	1,	90),
 (10,	'Sonstige Depressionshilfe',	65,	0,	65),
-(11,	'Sonstige Tier-/Naturschutzorganisationen',	67,	0,	67);
+(11,	'Sonstige Tier-/Naturschutzorganisationen',	67,	0,	67),
+(12,	'Ukraine Nothilfe',	68,	0,	68);
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -181,4 +180,4 @@ TRUNCATE `users`;
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `isBot`) VALUES
 (1,	'KI',	NULL,	NULL,	1);
 
--- 2022-03-23 20:01:47
+-- 2022-03-26 22:09:00
