@@ -114,7 +114,7 @@ $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `isDonation`='1' AND (
 if(mysqli_num_rows($result) == 1) {
   $row = mysqli_fetch_array($result);
   if($row['firstsightOrgaId'] !== NULL) {
-    $content.= "<h3 class='highlight'>Erstsichtung: Orga ".$row['firstsightOrgaId']."</h3>".PHP_EOL;
+    $content.= "<h3 class='highlight'>".(!empty($kiUserId) AND $row['firstsightOrgaUserId'] == $kiUserId ? "KI-" : NULL)."Erstsichtung: Orga ".$row['firstsightOrgaId']."</h3>".PHP_EOL;
   }
   /**
    * Organisationen auslesen und für das Formular vorbereiten
