@@ -200,6 +200,14 @@ if(mysqli_num_rows($result) == 1) {
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
   /**
+   * PostInfo
+   */
+  $content.= "<div class='row'>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Links</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='/postinfo?postId=".$row['postId']."'>PostInfo</a></div>".PHP_EOL.
+  "</div>".PHP_EOL;
+  $content.= "</form>".PHP_EOL;
+  /**
    * Bewertungsinfos
    */
   $content.= "<div class='row'>".PHP_EOL.

@@ -191,11 +191,11 @@ if(mysqli_num_rows($result) == 1) {
   "</div>".PHP_EOL;
 
   /**
-   * Zurücksetzen
+   * Links
    */
   $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Zurücksetzen</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a></div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Links</div>".PHP_EOL.
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='/postinfo?postId=".$row['postId']."'>PostInfo</a> - <a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a></div>".PHP_EOL.
   "</div>".PHP_EOL;
 } else {
   /**
