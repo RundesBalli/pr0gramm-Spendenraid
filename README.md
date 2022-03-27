@@ -6,13 +6,18 @@ Ein Tool zum Auswerten des Spendenraids auf pr0gramm
 ![Übersicht](/screenshots/overview1.png?raw=true)  
 ![Übersicht](/screenshots/overview2.png?raw=true)  
 
-### Ausführliches Log mit Loglevel-Markierung
+### Ausführliches Log und PostInfo mit Loglevel-Markierung
 ![Ausführliches Log](/screenshots/log.png?raw=true)  
+![PostInfo](/screenshots/postInfo.png?raw=true)  
 ![Loglevel-Markierung](/screenshots/logLevel.png?raw=true)  
 
 ### Eintragen des Spendenwertes und der Organisation
 ![Spendenwert](/screenshots/valuation.png?raw=true)  
 ![Organisation](/screenshots/orga.png?raw=true)  
+
+### Mobilansichten zum schnellen Eintragen vordefinierter Werte
+![Spendenwert](/screenshots/valuationMobile.png?raw=true)
+![Organisation](/screenshots/orgaMobile.png?raw=true)  
 
 ## CRON
 Der Crawler läuft alle 5 Minuten, wobei jeweils in den Viertelstunden (incl. 0) ein voller Scan läuft. Ein voller Scan sucht ab der Post-ID aus der Config, ein kleiner Scan ab der letzten in der Datenbank vorhandenen Post-ID.  
