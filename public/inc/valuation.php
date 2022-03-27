@@ -138,7 +138,7 @@ $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `firstsightValue` IS N
 if(mysqli_num_rows($result) == 1) {
   $row = mysqli_fetch_array($result);
   if($row['firstsightValue'] !== NULL) {
-    $content.= "<h3 class='highlight'>".(!empty($kiUserId) AND $row['firstsightUserId'] == $kiUserId ? "KI-" : NULL)."Erstsichtung: ".number_format($row['firstsightValue'], 2, ".", ",")." €</h3>".PHP_EOL;
+    $content.= "<h3 class='highlight'>".((!empty($kiUserId) AND $row['firstsightUserId'] == $kiUserId) ? "KI-" : NULL)."Erstsichtung: ".number_format($row['firstsightValue'], 2, ".", ",")." €</h3>".PHP_EOL;
   }
   if($row['extension'] != "mp4") {
     /**
