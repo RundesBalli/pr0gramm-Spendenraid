@@ -47,9 +47,21 @@ while($row = mysqli_fetch_array($result)) {
   }
 }
 
+/**
+ * Häufigste Spendenbeträge
+ */
 $content.= "<h1>Häufigste Spendenbeträge (5x oder öfter)</h1>";
 $result = mysqli_query($dbl, "SELECT `confirmedValue`, count(`confirmedValue`) AS `count` FROM `items` WHERE `isDonation` = '1' AND `confirmedValue`!=0.01 GROUP BY `confirmedValue` HAVING `count`>=5 ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_array($result)) {
-  $content.= $row['count']."x ".$row['confirmedValue']."<br>";
+  $content.= $row['count']."x ".number_format($row['confirmedValue'], 2, ",", ".")." €<br>";
+}
+
+/**
+ * Größte Spendenbeträge
+ */
+$content.= "<h1>Größte Spendenbeträge (ab 500 Euro)</h1>";
+$result = mysqli_query($dbl, "SELECT `confirmedValue`, `postId`, `username` FROM `items` WHERE `isDonation` = '1' AND `confirmedValue`>=500 ORDER BY `confirmedValue` DESC") OR DIE(MYSQLI_ERROR($dbl));
+while($row = mysqli_fetch_array($result)) {
+  $content.= number_format($row['confirmedValue'], 2, ",", ".")." € - <a href='https://pr0gramm.com/new/".$row['postId']."' target='_blank' rel='noopener'>".$row['postId']."</a> von <a href='https://pr0gramm.com/user/".$row['username']."' target='_blank' rel='noopener'>".$row['username']."</a><br>";
 }
 ?>
