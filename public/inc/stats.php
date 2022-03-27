@@ -46,4 +46,10 @@ while($row = mysqli_fetch_array($result)) {
     $content.= $thousands."00k - ".date("d.m.Y, H:i:s", $row['created'])."<br>";
   }
 }
+
+$content.= "<h1>Häufigste Spendenbeträge (5x oder öfter)</h1>";
+$result = mysqli_query($dbl, "SELECT `confirmedValue`, count(`confirmedValue`) AS `count` FROM `items` WHERE `isDonation` = '1' AND `confirmedValue`!=0.01 GROUP BY `confirmedValue` HAVING `count`>=5 ORDER BY `count` DESC") OR DIE(MYSQLI_ERROR($dbl));
+while($row = mysqli_fetch_array($result)) {
+  $content.= $row['count']."x ".$row['confirmedValue']."<br>";
+}
 ?>
