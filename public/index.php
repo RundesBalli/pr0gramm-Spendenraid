@@ -57,6 +57,7 @@ $pageArray = array(
   'fakeposts'           => 'fakeposts.php',
   'fakepostsdkms'       => 'fakepostsdkms.php',
   'fakepostskrebshilfe' => 'fakepostskrebshilfe.php',
+  'fakepostsgt'         => 'fakepostsgt.php',
   'postinfo'            => 'postinfo.php',
   'unlockuser'          => 'unlockuser.php',
 
