@@ -41,34 +41,34 @@ if(!isset($_GET['p']) OR empty($_GET['p'])) {
  */
 $pageArray = array(
   /* Standardseiten */
-  'login'           => 'login.php',
-  'logout'          => 'logout.php',
-  'log'             => 'log.php',
-  'resetpost'       => 'resetpost.php',
-  'orgareset'       => 'orgareset.php',
-  'valuation'       => 'valuation.php',
-  'orga'            => 'orga.php',
-  'overview'        => 'overview.php',
-  'stats'           => 'stats.php',
-  'dellist'         => 'dellist.php',
-  'delpost'         => 'delpost.php',
-  'fakes'           => 'fakes.php',
-  'delfake'         => 'delfake.php',
-  'fakeposts'       => 'fakeposts.php',
-  'fakepostsdkms'   => 'fakepostsdkms.php',
+  'login'               => 'login.php',
+  'logout'              => 'logout.php',
+  'log'                 => 'log.php',
+  'resetpost'           => 'resetpost.php',
+  'orgareset'           => 'orgareset.php',
+  'valuation'           => 'valuation.php',
+  'orga'                => 'orga.php',
+  'overview'            => 'overview.php',
+  'stats'               => 'stats.php',
+  'dellist'             => 'dellist.php',
+  'delpost'             => 'delpost.php',
+  'fakes'               => 'fakes.php',
+  'delfake'             => 'delfake.php',
+  'fakeposts'           => 'fakeposts.php',
+  'fakepostsdkms'       => 'fakepostsdkms.php',
   'fakepostskrebshilfe' => 'fakepostskrebshilfe.php',
-  'postinfo'        => 'postinfo.php',
-  'unlockuser'      => 'unlockuser.php',
+  'postinfo'            => 'postinfo.php',
+  'unlockuser'          => 'unlockuser.php',
 
   /* Schnellbewertung */
-  'dkmsfast'        => 'dkmsfast.php',
-  'krebshilfefast'  => 'krebshilfefast.php',
-  'gtfast'          => 'gtfast.php',
-  'orgafast'        => 'orgafast.php',
+  'dkmsfast'            => 'dkmsfast.php',
+  'krebshilfefast'      => 'krebshilfefast.php',
+  'gtfast'              => 'gtfast.php',
+  'orgafast'            => 'orgafast.php',
 
   /* Fehlerseiten */
-  '404'             => '404.php',
-  '403'             => '403.php'
+  '404'                 => '404.php',
+  '403'                 => '403.php'
 );
 
 /**
