@@ -130,15 +130,13 @@ $content.= "<div class='row highlight bold'>".
 "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>bestätigte Spendenposts</div>".
 "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>Ø pro Spende</div>".
 "</div>";
-$result = mysqli_query($dbl, "SELECT * FROM `orgas` ORDER BY `sortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT `orgas`.`organame`, IFNULL(sum(`confirmedValue`), 0) AS `sum`, COUNT(`items`.`id`) AS `count` FROM `items` JOIN `orgas` ON `orgas`.`id`=`items`.`confirmedOrgaId` WHERE `isDonation`='1' AND `confirmedOrgaId` IN (SELECT `id` FROM `orgas`) GROUP BY `confirmedOrgaId` ORDER BY `orgas`.`sortIndex`") OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_array($result)) {
-  $innerresult = mysqli_query($dbl, "SELECT IFNULL(sum(`confirmedValue`), 0) AS `sum`, COUNT(`id`) AS `count` FROM `items` WHERE `isDonation`='1' AND `confirmedOrgaId`='".$row['id']."'") OR DIE(MYSQLI_ERROR($dbl));
-  $innerrow = mysqli_fetch_array($innerresult);
   $content.= "<div class='row hover'>".
   "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".$row['organame']."</div>".
-  "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format($innerrow['sum'], 2, ",", ".")." €</div>".
-  "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format($innerrow['count'], 0, ",", ".")."</div>".
-  "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format(($innerrow['count'] == 0 ? 0 : ($innerrow['sum']/$innerrow['count'])), 2, ",", ".")." €</div>".
+  "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format($row['sum'], 2, ",", ".")." €</div>".
+  "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format($row['count'], 0, ",", ".")."</div>".
+  "<div class='col-x-12 col-s-12 col-m-3 col-l-3 col-xl-3'>".number_format(($row['count'] == 0 ? 0 : ($row['sum']/$row['count'])), 2, ",", ".")." €</div>".
   "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".
   "</div>";
 }
