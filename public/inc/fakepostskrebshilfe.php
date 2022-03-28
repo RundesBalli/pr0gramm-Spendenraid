@@ -13,8 +13,8 @@ require_once('cookiecheck.php');
 /**
  * Titel und Überschrift
  */
-$title = "Duplikatfinder DKMS";
-$content.= "<h1>Duplikatfinder DKMS</h1>".PHP_EOL;
+$title = "Duplikatfinder Dt. Krebshilfe";
+$content.= "<h1>Duplikatfinder Dt. Krebshilfe</h1>".PHP_EOL;
 
 /**
  * Alle gleichen Werte finden (Höhe, Breite, Spendenbetrag, Organisation)
