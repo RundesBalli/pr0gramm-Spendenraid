@@ -23,7 +23,7 @@ if(!empty($_GET['postId'])) {
     /**
      * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
      */
-    $content.= "<div class='warnbox'>Der angeforderte Post existiert nicht.</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Der angeforderte Post existiert nicht.</div>";
   } else {
     if(!isset($_POST['submit'])) {
       /**
@@ -32,21 +32,21 @@ if(!empty($_GET['postId'])) {
       /**
        * Formularanzeige
        */
-      $content.= "<form action='/resetpost?postId=".$postId."' method='post'>".PHP_EOL;
+      $content.= "<form action='/resetpost?postId=".$postId."' method='post'>";
       /**
        * Sitzungstoken
        */
-      $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
+      $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
       /**
        * Bestätigung
        */
-      $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Soll der Post zurückgesetzt werden?</div>".PHP_EOL.
-      "</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><input type='submit' name='submit' value='ja, zurücksetzen'></div>".PHP_EOL.
-      "</div>".PHP_EOL;
-      $content.= "</form>".PHP_EOL;
+      $content.= "<div class='row'>".
+      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Soll der Post zurückgesetzt werden?</div>".
+      "</div>";
+      $content.= "<div class='row'>".
+      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><input type='submit' name='submit' value='ja, zurücksetzen'></div>".
+      "</div>";
+      $content.= "</form>";
     } else {
       /**
        * Es wurde bestätigt, dass der Post zurückgesetzt werden soll.
@@ -58,14 +58,14 @@ if(!empty($_GET['postId'])) {
         /**
          * Token ungültig
          */
-        $content.= "<div class='warnbox'>Ungültiges Token</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Ungültiges Token</div>";
       } else {
         /**
          * Token gültig. Post zurücksetzen.
          */
         mysqli_query($dbl, "UPDATE `items` SET `firstsightValue`=NULL, `firstsightUserId`=NULL, `confirmedValue`=NULL, `confirmedUserId`=NULL, `isDonation`=NULL, `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 5, '".$postId."', 'zurückgesetzt')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='successbox'>Post zurückgesetzt.<br><a href='/valuation'>Posts bewerten</a></div>".PHP_EOL;
+        $content.= "<div class='successbox'>Post zurückgesetzt.<br><a href='/valuation'>Posts bewerten</a></div>";
         /**
          * Perk wieder sperren, sofern der User sonst keine validierten Spendenposts hat.
          */
@@ -88,7 +88,7 @@ if(!empty($_GET['postId'])) {
                * Wenn die Freischaltung nicht geklappt hat, wird ein gesonderter Logeintrag erzeugt und eine Fehlermeldung ausgegeben.
                */
               mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `postId`, `text`) VALUES (6, '".$postId."', 'Sperrung fehlgeschlagen (User ".$row['username'].")!')") OR DIE(MYSQLI_ERROR($dbl));
-              $content.= "<div class='warnbox'>User konnte für das Perk nicht gesperrt werden.</div>".PHP_EOL;
+              $content.= "<div class='warnbox'>User konnte für das Perk nicht gesperrt werden.</div>";
             }
           }
         }
@@ -99,6 +99,6 @@ if(!empty($_GET['postId'])) {
   /**
    * Es wurde keine Post-ID übergeben. Beende mit einer Fehlermeldung.
    */
-  $content.= "<div class='warnbox'>Es wurde keine Post-ID übergeben.</div>".PHP_EOL;
+  $content.= "<div class='warnbox'>Es wurde keine Post-ID übergeben.</div>";
 }
 ?>

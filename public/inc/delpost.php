@@ -14,7 +14,7 @@ require_once('cookiecheck.php');
  * Titel und Überschrift
  */
 $title = "Post löschen";
-$content.= "<h1>Post löschen</h1>".PHP_EOL;
+$content.= "<h1>Post löschen</h1>";
 
 /**
  * Prüfung ob eine Post-ID übergeben wurde.
@@ -29,7 +29,7 @@ if(!empty($_GET['postId'])) {
     /**
      * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
      */
-    $content.= "<div class='warnbox'>Der angeforderte Post existiert nicht oder ist nicht mit einem Löschkennzeichen versehen.</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Der angeforderte Post existiert nicht oder ist nicht mit einem Löschkennzeichen versehen.</div>";
   } else {
     if(!isset($_POST['submit'])) {
       /**
@@ -38,21 +38,21 @@ if(!empty($_GET['postId'])) {
       /**
        * Formularanzeige
        */
-      $content.= "<form action='/delpost?postId=".$postId."' method='post'>".PHP_EOL;
+      $content.= "<form action='/delpost?postId=".$postId."' method='post'>";
       /**
        * Sitzungstoken
        */
-      $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
+      $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
       /**
        * Bestätigung
        */
-      $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Soll der Post gelöscht werden?</div>".PHP_EOL.
-      "</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><input type='submit' name='submit' value='ja, löschen'></div>".PHP_EOL.
-      "</div>".PHP_EOL;
-      $content.= "</form>".PHP_EOL;
+      $content.= "<div class='row'>".
+      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Soll der Post gelöscht werden?</div>".
+      "</div>";
+      $content.= "<div class='row'>".
+      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><input type='submit' name='submit' value='ja, löschen'></div>".
+      "</div>";
+      $content.= "</form>";
     } else {
       /**
        * Es wurde bestätigt, dass der Post gelöscht werden soll.
@@ -64,7 +64,7 @@ if(!empty($_GET['postId'])) {
         /**
          * Token ungültig
          */
-        $content.= "<div class='warnbox'>Ungültiges Token</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Ungültiges Token</div>";
       } else {
         /**
          * Token gültig. Post kann gelöscht werden. Nun muss geprüft werden, ob der zu löschende
@@ -83,22 +83,22 @@ if(!empty($_GET['postId'])) {
               /**
                * Bei Erfolg wird ein Logeintrag erzeugt.
                */
-              $content.= "<div class='successbox'>Perk gesperrt.</div>".PHP_EOL;
+              $content.= "<div class='successbox'>Perk gesperrt.</div>";
               mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 6, 'Perk gesperrt (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
             } else {
               /**
                * Wenn die Freischaltung nicht geklappt hat, wird ein gesonderter Logeintrag erzeugt und eine Fehlermeldung ausgegeben.
                */
-              $content.= "<div class='warnbox'>Konnte Perk nicht sperren.</div>".PHP_EOL;
+              $content.= "<div class='warnbox'>Konnte Perk nicht sperren.</div>";
               mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 6, 'Perk-Sperrung fehlgeschlagen! (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
             }
           } else {
-            $content.= "<div class='infobox'>User hat noch andere Spendenpost(s). Daher muss der Perk nicht gesperrt werden.</div>".PHP_EOL;
+            $content.= "<div class='infobox'>User hat noch andere Spendenpost(s). Daher muss der Perk nicht gesperrt werden.</div>";
           }
         }
         mysqli_query($dbl, "DELETE FROM `items` WHERE `id`='".$row['id']."' AND `delflag`='1' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('".$userId."', 5, 'Post gelöscht da auf pr0gramm nicht mehr vorhanden (User: ".$row['username'].", ID: ".$row['postId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='successbox'>Post gelöscht.</div>".PHP_EOL;
+        $content.= "<div class='successbox'>Post gelöscht.</div>";
       }
     }
   }
@@ -106,6 +106,6 @@ if(!empty($_GET['postId'])) {
   /**
    * Es wurde keine Post-ID übergeben. Beende mit einer Fehlermeldung.
    */
-  $content.= "<div class='warnbox'>Es wurde keine Post-ID übergeben.</div>".PHP_EOL;
+  $content.= "<div class='warnbox'>Es wurde keine Post-ID übergeben.</div>";
 }
 ?>

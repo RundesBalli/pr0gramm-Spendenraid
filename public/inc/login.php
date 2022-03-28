@@ -10,28 +10,28 @@ $title = "Login";
  * Kein Cookie gesetzt oder Cookie leer und Formular nicht übergeben.
  */
 if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isset($_POST['submit'])) {
-  $content.= "<h1>Login</h1>".PHP_EOL;
+  $content.= "<h1>Login</h1>";
   /**
    * Cookiewarnung
    */
-  $content.= "<div class='infobox'>Ab diesem Punkt werden Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!</div>".PHP_EOL;
+  $content.= "<div class='infobox'>Ab diesem Punkt werden Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!</div>";
   /**
    * Loginformular
    */
-  $content.= "<form action='/login' method='post'>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Name</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'><input type='text' name='username' placeholder='Name' autofocus></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Passwort</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'><input type='password' name='password' placeholder='Passwort'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Einloggen</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'><input type='submit' name='submit' value='Einloggen'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "</form>".PHP_EOL;
+  $content.= "<form action='/login' method='post'>";
+  $content.= "<div class='row'>".
+  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Name</div>".
+  "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'><input type='text' name='username' placeholder='Name' autofocus></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Passwort</div>".
+  "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'><input type='password' name='password' placeholder='Passwort'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-3'>Einloggen</div>".
+  "<div class='col-x-12 col-s-12 col-m-8 col-l-9 col-xl-9'><input type='submit' name='submit' value='Einloggen'></div>".
+  "</div>";
+  $content.= "</form>";
 } elseif((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND isset($_POST['submit'])) {
   /**
    * Kein Cookie gesetzt oder Cookie leer und Formular wurde übergeben.
@@ -65,22 +65,22 @@ if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isse
        * Wenn das Passwort nicht verifiziert werden konnte wird HTTP403 zurückgegeben und eine Fehlermeldung wird ausgegeben.
        */
       http_response_code(403);
-      $content.= "<h1>Login gescheitert</h1>".PHP_EOL;
-      $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/login'>Erneut versuchen</a></div>".PHP_EOL.
-      "</div>".PHP_EOL;
+      $content.= "<h1>Login gescheitert</h1>";
+      $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>";
+      $content.= "<div class='row'>".
+      "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/login'>Erneut versuchen</a></div>".
+      "</div>";
     }
   } else {
     /**
      * Wenn keine Übereinstimmung vorliegt, dann wird HTTP403 zurückgegeben und eine Fehlermeldung wird ausgegeben.
      */
     http_response_code(403);
-    $content.= "<h1>Login gescheitert</h1>".PHP_EOL;
-    $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
-    $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/login'>Erneut versuchen</a></div>".PHP_EOL.
-    "</div>".PHP_EOL;
+    $content.= "<h1>Login gescheitert</h1>";
+    $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>";
+    $content.= "<div class='row'>".
+    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/login'>Erneut versuchen</a></div>".
+    "</div>";
   }
 } else {
   /**

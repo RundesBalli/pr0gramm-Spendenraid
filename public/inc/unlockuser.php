@@ -30,7 +30,7 @@ if(!empty($perkSecret)) {
         /**
          * Wenn der User keinen Spendenpost hat, dann wird er auch nicht freigeschaltet.
          */
-        $content.= "<div class='warnbox'>Der User <span class='italic'>".$user."</span> hat keinen Spendenpost erstellt.</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Der User <span class='italic'>".$user."</span> hat keinen Spendenpost erstellt.</div>";
       } else {
         if(!isset($_POST['submit'])) {
           /**
@@ -39,21 +39,21 @@ if(!empty($perkSecret)) {
           /**
            * Formularanzeige
            */
-          $content.= "<form action='/unlockuser?user=".$user."' method='post'>".PHP_EOL;
+          $content.= "<form action='/unlockuser?user=".$user."' method='post'>";
           /**
            * Sitzungstoken
            */
-          $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
+          $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
           /**
            * Bestätigung
            */
-          $content.= "<div class='row'>".PHP_EOL.
-          "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Soll der User freigeschaltet werden?</div>".PHP_EOL.
-          "</div>".PHP_EOL;
-          $content.= "<div class='row'>".PHP_EOL.
-          "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><input type='submit' name='submit' value='ja, freischalten'></div>".PHP_EOL.
-          "</div>".PHP_EOL;
-          $content.= "</form>".PHP_EOL;
+          $content.= "<div class='row'>".
+          "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Soll der User freigeschaltet werden?</div>".
+          "</div>";
+          $content.= "<div class='row'>".
+          "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><input type='submit' name='submit' value='ja, freischalten'></div>".
+          "</div>";
+          $content.= "</form>";
         } else {
           /**
            * Es wurde bestätigt, dass der User freigeschaltet werden soll.
@@ -65,7 +65,7 @@ if(!empty($perkSecret)) {
             /**
              * Token ungültig
              */
-            $content.= "<div class='warnbox'>Ungültiges Token</div>".PHP_EOL;
+            $content.= "<div class='warnbox'>Ungültiges Token</div>";
           } else {
             /**
              * Token gültig. User freischalten.
@@ -77,30 +77,30 @@ if(!empty($perkSecret)) {
                * Bei Erfolg wird ein Logeintrag erzeugt und eine Erledigtmeldung ausgegeben.
                */
               mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `userId`, `text`) VALUES (6, '".$userId."', 'User ".$user." manuell freigeschaltet.')") OR DIE(MYSQLI_ERROR($dbl));
-              $content.= "<div class='successbox'>User freigeschaltet.</div>".PHP_EOL;
+              $content.= "<div class='successbox'>User freigeschaltet.</div>";
             } else {
               /**
                * Wenn die Freischaltung nicht geklappt hat, wird eine Fehlermeldung ausgegeben und ein Logeintrag erzeugt.
                */
               mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `userId`, `text`) VALUES (6, '".$userId."', 'User ".$user." konnte nicht manuell freigeschaltet werden.')") OR DIE(MYSQLI_ERROR($dbl));
-              $content.= "<div class='warnbox'>Post zurückgesetzt, da Perkfreischaltung fehlschlug.</div>".PHP_EOL;
+              $content.= "<div class='warnbox'>Post zurückgesetzt, da Perkfreischaltung fehlschlug.</div>";
             }
           }
         }
       }
     } else {
-      $content.= "<div class='warnbox'>Der Username <span class='italic'>".output($_GET['user'])."</span> ist ungültig.</div>".PHP_EOL;
+      $content.= "<div class='warnbox'>Der Username <span class='italic'>".output($_GET['user'])."</span> ist ungültig.</div>";
     }
   } else {
     /**
      * Es wurde kein Username übergeben. Beende mit einer Fehlermeldung.
      */
-    $content.= "<div class='warnbox'>Es wurde kein Username übergeben.</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Es wurde kein Username übergeben.</div>";
   }
 } else {
   /**
    * Kein perkSecret gesetzt.
    */
-  $content.= "<div class='warnbox'>Es ist kein perkSecret gesetzt.</div>".PHP_EOL;
+  $content.= "<div class='warnbox'>Es ist kein perkSecret gesetzt.</div>";
 }
 ?>

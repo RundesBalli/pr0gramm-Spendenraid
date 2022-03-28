@@ -14,7 +14,7 @@ require_once('cookiecheck.php');
  * Titel und Überschrift
  */
 $title = "Organisation Schnellbewertung";
-$content.= "<h1>Organisation Schnellbewertung</h1>".PHP_EOL;
+$content.= "<h1>Organisation Schnellbewertung</h1>";
 
 /**
  * Organisation eintragen
@@ -27,7 +27,7 @@ if(!empty($_GET['postId']) AND !empty($_GET['orgaId'])) {
     /**
      * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
      */
-    $content.= "<div class='infobox'>Der Post existiert nicht (mehr).</div>".PHP_EOL;
+    $content.= "<div class='infobox'>Der Post existiert nicht (mehr).</div>";
   } else {
     /**
      * Wenn der Post existiert prüfe zuerst ob schon eine Erstsichtung durchgeführt wurde.
@@ -39,10 +39,10 @@ if(!empty($_GET['postId']) AND !empty($_GET['orgaId'])) {
        */
       mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`='".$orgaId."', `firstsightOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1");
       if(mysqli_errno($dbl) == 1452) {
-        $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Die Organisation existiert nicht.</div>";
       } elseif(mysqli_errno($dbl) == 0) {
         mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 2, '".$postId."', '(Schnell) Orga: ".$orgaId."')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+        $content.= "<div class='successbox'>Organisation eingetragen.</div>";
       } else {
         die(MYSQLI_ERROR($dbl));
       }
@@ -54,7 +54,7 @@ if(!empty($_GET['postId']) AND !empty($_GET['orgaId'])) {
         /**
          * Fehlermeldung, wenn man selbst der Erstsichtende war.
          */
-        $content.= "<div class='warnbox'>Du kannst nicht die Erst- und Zweitsichtung machen.</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Du kannst nicht die Erst- und Zweitsichtung machen.</div>";
       } else {
         /**
          * Erstsichtung erfolgte von jemand anderem. Prüfe ob die eingetragene Summe mit der übergebenen Summe übereinstimmt.
@@ -65,14 +65,14 @@ if(!empty($_GET['postId']) AND !empty($_GET['orgaId'])) {
            */
           mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`='".$orgaId."', `firstsightOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
           mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 3, '".$postId."', '(Schnell) Orga: ".$orgaId." (Erstsichtung: ".$row['firstsightOrgaId'].")')") OR DIE(MYSQLI_ERROR($dbl));
-          $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+          $content.= "<div class='successbox'>Organisation eingetragen.</div>";
         } else {
           /**
            * Erst- und Zweitsichtung stimmen überein.
            */
           mysqli_query($dbl, "UPDATE `items` SET `confirmedOrgaId`='".$orgaId."', `confirmedOrgaUserId`='".$userId."' WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
           mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `postId`, `text`) VALUES ('".$userId."', 4, '".$postId."', '(Schnell) Orga: ".$orgaId."')") OR DIE(MYSQLI_ERROR($dbl));
-          $content.= "<div class='successbox'>Organisation eingetragen.</div>".PHP_EOL;
+          $content.= "<div class='successbox'>Organisation eingetragen.</div>";
         }
       }
     } else {
