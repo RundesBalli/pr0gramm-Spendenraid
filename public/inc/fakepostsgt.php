@@ -1,6 +1,6 @@
 <?php
 /**
- * fakeposts.php
+ * fakepostsgt.php
  * 
  * Anzeige aller Posts, die die selben Maße und die selben Beträge und Organisationen haben.
  */
@@ -13,13 +13,13 @@ require_once('cookiecheck.php');
 /**
  * Titel und Überschrift
  */
-$title = "Duplikatfinder ohne DKMS und Dt. Krebshilfe";
-$content.= "<h1>Duplikatfinder</h1>".PHP_EOL;
+$title = "Duplikatfinder Gute Tat";
+$content.= "<h1>Duplikatfinder Gute Tat</h1>".PHP_EOL;
 
 /**
  * Alle gleichen Werte finden (Höhe, Breite, Spendenbetrag, Organisation)
  */
-$result = mysqli_query($dbl, "SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`='1' AND ((`extension` != 'gif' AND `extension` != 'mp4') AND (`confirmedOrgaId` IS NOT NULL AND ((`confirmedOrgaId`!='1' OR `confirmedOrgaId`!='2') OR `confirmedOrgaId`!='9'))) GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`='1' AND ((`extension` != 'gif' AND `extension` != 'mp4') AND `confirmedOrgaId`='9') GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC") OR DIE(MYSQLI_ERROR($dbl));
 
 /**
  * Innerhalb dieser zusammengefassten Werte alle Posts ausfindig machen und ausgeben
