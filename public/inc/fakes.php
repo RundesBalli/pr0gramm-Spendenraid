@@ -90,7 +90,7 @@ if(isset($_POST['submit']) AND (!empty($_POST['original']) AND !empty($_POST['fa
  */
 $content.= "<h3>Menü</h3>".PHP_EOL;
 $content.= "<div class='row'>".PHP_EOL.
-"<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/fakeposts'>Alle Posts listen (ohne DKMS)</a> - <a href='/fakepostsdkms'>Alle Posts listen (nur DKMS)</a></div>".PHP_EOL.
+"<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/fakeposts'>Alle Posts listen (ohne DKMS und Dt. Krebshilfe)</a> - <a href='/fakepostsdkms'>Alle Posts listen (nur DKMS)</a> - <a href='/fakepostskrebshilfe'>Alle Posts listen (nur Dt. Krebshilfe)</a></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
 

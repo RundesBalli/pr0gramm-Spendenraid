@@ -1,6 +1,6 @@
 <?php
 /**
- * duplicateposts.php
+ * fakepostsdkms.php
  * 
  * Anzeige aller Posts, die die selben Maße und die selben Beträge und Organisationen haben.
  */
