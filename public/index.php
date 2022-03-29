@@ -87,9 +87,20 @@ if(isset($pageArray[$getp])) {
  */
 $nav = "";
 if($loginNav == 1) {
+  /**
+   * Anzeige der noch zu bearbeitenden Elemente in der Navigation
+   */
+  // Bewertung
+  $result = mysqli_query($dbl, "SELECT count(`id`) AS `c` FROM `items` WHERE `firstsightValue` IS NULL OR (`confirmedValue` IS NULL AND `firstsightUserId` != '".$userId."')") OR DIE(MYSQLI_ERROR($dbl));
+  $row = mysqli_fetch_assoc($result);
+  $valCount = $row['c'];
+  // Organisationen
+  $result = mysqli_query($dbl, "SELECT count(`id`) AS `c` FROM `items` WHERE `isDonation`='1' AND (`firstsightOrgaId` IS NULL OR (`confirmedOrgaId` IS NULL AND `firstsightOrgaUserId`!='".$userId."'))") OR DIE(MYSQLI_ERROR($dbl));
+  $row = mysqli_fetch_assoc($result);
+  $orgaCount = $row['c'];
   $nav.= "<a href='/overview'>Übersicht</a>";
-  $nav.= "<a href='/valuation'>Bewertung</a>";
-  $nav.= "<a href='/orga'>Organisationen</a>";
+  $nav.= "<a href='/valuation'>Bewertung".(!empty($valCount) ? " (".$valCount.")" : NULL)."</a>";
+  $nav.= "<a href='/orga'>Organisationen".(!empty($orgaCount) ? " (".$orgaCount.")" : NULL)."</a>";
   $nav.= "<a href='/postinfo'>PostInfo</a>";
   $nav.= "<a href='/log'>Log</a>";
   $nav.= "<a href='/stats'>Statistiken</a>";
