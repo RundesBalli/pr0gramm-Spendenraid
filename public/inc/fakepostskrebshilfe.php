@@ -19,7 +19,7 @@ $content.= "<h1>Duplikatfinder Dt. Krebshilfe</h1>";
 /**
  * Alle gleichen Werte finden (Höhe, Breite, Spendenbetrag, Organisation)
  */
-$result = mysqli_query($dbl, "SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`='1' AND ((`extension` != 'gif' AND `extension` != 'mp4') AND `confirmedOrgaId`='1') GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`='1' AND ((`extension` != 'gif' AND `extension` != 'mp4') AND `confirmedOrgaId`='2') GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC") OR DIE(MYSQLI_ERROR($dbl));
 
 /**
  * Innerhalb dieser zusammengefassten Werte alle Posts ausfindig machen und ausgeben
