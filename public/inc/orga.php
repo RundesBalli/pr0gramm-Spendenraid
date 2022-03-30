@@ -13,7 +13,7 @@ require_once('cookiecheck.php');
 /**
  * Organisation eintragen, falls das Formular übergeben wurde.
  */
-if(isset($_POST['orga'])) {
+if(!empty($_POST['orga']) AND !empty($_POST['postId'])) {
   $postId = (int)defuse($_POST['postId']);
   /**
    * Prüfung ob eine gültige Zahl eingegeben wurde
