@@ -60,6 +60,7 @@ $pageArray = array(
   'fakepostsgt'         => 'fakepostsgt.php',
   'postinfo'            => 'postinfo.php',
   'unlockuser'          => 'unlockuser.php',
+  'addLogEntry'         => 'addLogEntry.php',
 
   /* Schnellbewertung */
   'dkmsfast'            => 'dkmsfast.php',

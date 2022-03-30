@@ -68,6 +68,18 @@ if(!empty($_GET['postId'])) {
       "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><pre>".var_export($row, TRUE)."</pre></div>".
       "</div>";
       /**
+       * Logeintrag hinzufügen
+       */
+      $content.= "<h2>Logeintrag hinzufügen</h2>";
+      $content.= "<form action='/addLogEntry' method='post'>";
+      $content.= "<input type='hidden' name='postId' value='".$row['postId']."'>";
+      $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
+      $content.= "<div class='row'>".
+      "<div class='col-x-12 col-s-12 col-m-8 col-l-8 col-xl-8'><input name='text' type='text' autocomplete='off' placeholder='Notiz'></div>".
+      "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'><input type='submit' value='Eintragen'></div>".
+      "</div>";
+      $content.= "</form>";
+      /**
        * Log zum Artikel anzeigen
        */
       $content.= "<h2>Log</h2>";
