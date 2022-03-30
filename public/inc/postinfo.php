@@ -42,17 +42,28 @@ $content.= "<div class='spacer-m'></div>";
  * Anzeige des Posts
  */
 if(!empty($_GET['postId'])) {
-  $content.= "<h2>Info</h2>";
   if(preg_match('/(?:(?:http(?:s?):\/\/pr0gramm\.com)?\/(?:top|new|user\/\w+\/(?:uploads|likes)|stalk)(?:(?:\/\w+)?)\/)?([1-9]\d*)(?:(?::comment(?:\d+))?)?/i', defuse($_GET['postId']), $match) === 1) {
     $postId = (int)$match[1];
     $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `postId`='".$postId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 0) {
       $content.= "<div class='infobox'>Der Post ist nicht in der Datenbank.</div>";
     } else {
-      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+      $row = mysqli_fetch_assoc($result);
+      /**
+       * Überschrift
+       */
+      $content.= "<h1>Info, PostId ".$row['postId']."</h1>";
+      /**
+       * Links
+       */
+      $content.= "<h2>Links</h2>";
       $content.= "<div class='row'>".
       "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/resetpost?postId=".$row['postId']."'>Post zurücksetzen</a> - <a href='/orgareset?postId=".$row['postId']."'>Orga zurücksetzen</a>".(($row['isDonation'] == 1 AND !empty($perkSecret)) ? " - <a href='/unlockuser?user=".$row['username']."'>User erneut freischalten</a>" : NULL)."</div>".
       "</div>";
+      /**
+       * DB Dump
+       */
+      $content.= "<h2>DB-Dump</h2>";
       $content.= "<div class='row'>".
       "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><pre>".var_export($row, TRUE)."</pre></div>".
       "</div>";
