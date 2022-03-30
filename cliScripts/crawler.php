@@ -100,7 +100,7 @@ mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, Cr
  * Übergeben der neuen Post-IDs mit Bild-URL an die KI.
  */
 if(!empty($kiApiToken) AND !empty($kiPosts)) {
-  mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, KI] Übergabe von ".count($kiPosts)." Posts an die KI')") OR DIE(MYSQLI_ERROR($dbl));
+  mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '[CRON, KI] Übergabe von ".count($kiPosts)." Post".(count($kiPosts) > 1 ? "s" : NULL)." an die KI')") OR DIE(MYSQLI_ERROR($dbl));
   /**
    * cURL initialisieren
   */
