@@ -31,4 +31,17 @@ function defuse($defuse_string, $trim = TRUE) {
 function output($string) {
   return htmlentities($string, ENT_QUOTES);
 }
+
+/**
+ * clickableLinks
+ * 
+ * Funktion zum Anklickbar machen von Links in Fließtexten
+ *
+ * @param string $string String dessen Links umgewandelt werden sollen.
+ * 
+ * @return string Der String mit umgewandelten Links.
+ */
+function clickableLink(string $string) {
+  return preg_replace('/https?:\/\/[^\s]+/im', '<a href=\'$0\' target=\'_blank\' rel=\'noopener\'>$0</a>', $string);
+}
 ?>
