@@ -94,6 +94,7 @@ $content.= "<div class='row'>".
 "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/fakepostsdkms'>alle DKMS</a></div>".
 "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/fakepostskrebshilfe'>alle dt. Krebshilfe</a></div>".
 "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/fakepostsgt'>alle guten Taten</a></div>".
+"<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/fakepostsvalue'>alle sortiert nach gleichem Wert/Orga</a></div>".
 "</div>";
 $content.= "<div class='spacer-m'></div>";
 
