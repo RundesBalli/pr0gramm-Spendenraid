@@ -219,7 +219,7 @@ if(mysqli_num_rows($result) == 1) {
    * Alles erledigt.
    */
   $secondsToNextCrawl = (ceil(time()/300)*300)-time();
-  $content.= "<div class='infobox'>Alles erledigt. Nächster Crawl alle 5 Minuten. (in ".$secondsToNextCrawl." Sekunden)<br><a href='/orga'>Organisationen bewerten</a></div>";
+  $content.= "<div class='infobox'>Alles erledigt. Nächster Crawl alle 5 Minuten. (in ".$secondsToNextCrawl." Sekunden)<br><a href='/orga' autofocus>Organisationen bewerten</a></div>";
   $content.= "<meta http-equiv='refresh' content='5'>";
   $content.= "<div class='spacer-m'></div>";
 }

@@ -201,7 +201,7 @@ if(mysqli_num_rows($result) == 1) {
   /**
    * Alles erledigt.
    */
-  $content.= "<div class='infobox'>Alles erledigt.<br><a href='/valuation'>Posts bewerten</a></div>";
+  $content.= "<div class='infobox'>Alles erledigt.<br><a href='/valuation' autofocus>Posts bewerten</a></div>";
   $content.= "<div class='spacer-m'></div>";
 }
 ?>
