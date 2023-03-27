@@ -45,7 +45,8 @@ if(!empty($_GET['older'])) {
  */
 $result = mysqli_query($dbl, "SELECT `log`.`id`, `users`.`username`, `users`.`isBot`, `log`.`timestamp`, `logLevel`.`id` AS `logLevelId`, `logLevel`.`color`, `log`.`postId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` ".$where."ORDER BY `log`.`id` DESC LIMIT 100") OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_array($result)) {
-  $content.= "<div class='row hover bordered' style='border-left: 6px solid #".$row['color'].";'>".
+  $colorRgb = hex2rgb($row['color']);
+  $content.= "<div class='row hover bordered' style='border-left: 6px solid #".$row['color']."; background-color: rgba(".$colorRgb['r'].", ".$colorRgb['g'].", ".$colorRgb['b'].", 0.04);'>".
   "<div class='col-x-4 col-s-4 col-m-1 col-l-1 col-xl-1'>".$row['id']."</div>".
   "<div class='col-x-8 col-s-4 col-m-2 col-l-2 col-xl-2'>".($row['username'] === NULL ? "<span class='italic'>System</span>" : ($row['username'] == $username ? "<span class='highlight'>".output($row['username'])."</span>" : ($row['isBot'] ? "<span class='italic'>".output($row['username'])."</span>" : output($row['username']))))."</div>".
   "<div class='col-x-12 col-s-4 col-m-3 col-l-3 col-xl-3'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".
