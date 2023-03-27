@@ -189,7 +189,7 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= "<div class='row mobile-only'>".
   "<div class='col-x-12 col-s-12 col-m-2 col-l-2 col-xl-2'>Schnellbewertung</div>".
-  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='#' class='msb-btn'>0</a><a href='#' class='msb-btn'>0.01</a><a href='#' class='msb-btn'>5</a><a href='#' class='msb-btn'>10</a><a href='#' class='msb-btn'>15</a><a href='#' class='msb-btn'>20</a><a href='#' class='msb-btn'>25</a><a href='#' class='msb-btn'>30</a><a href='#' class='msb-btn'>40</a><a href='#' class='msb-btn'>50</a><a href='#' class='msb-btn'>100</a></div>".
+  "<div class='col-x-12 col-s-12 col-m-10 col-l-10 col-xl-10'><a href='#' class='msb-btn'>0</a><a href='#' class='msb-btn'>0.01</a><a href='#' class='msb-btn'>5</a><a href='#' class='msb-btn'>10</a><a href='#' class='msb-btn'>15</a><a href='#' class='msb-btn'>20</a><a href='#' class='msb-btn'>25</a><a href='#' class='msb-btn'>30</a><a href='#' class='msb-btn'>35</a><a href='#' class='msb-btn'>40</a><a href='#' class='msb-btn'>50</a><a href='#' class='msb-btn'>100</a></div>".
   "</div>";
   /**
    * Absenden
