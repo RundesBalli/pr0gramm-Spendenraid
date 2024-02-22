@@ -55,6 +55,14 @@ $lang = [
       'log' => '[CLI] Organisation zurückgesetzt.',
       'done' => 'Erledigt.'."\n\n",
     ],
+    'crawler' => [
+      'startFull' => '[CRON, Crawl] Crawlvorgang gestartet (groß); Beginnend bei itemId %s.',
+      'startSmall' => '[CRON, Crawl] Crawlvorgang gestartet (klein); Beginnend bei itemId %s.',
+      'finished' => '[CRON, Crawl] Crawlvorgang beendet (total: %d, new: %d, updated: %d.',
+      'transmitToAi' => '[CRON, KI] Übergabe von %d Post%s an die KI.',
+      'transmitToAiSuccessful' => '[CRON, KI] Übergabe an die KI erfolgreich.',
+      'transmitToAiFailed' => '[CRON, KI] Übergabe an die KI NICHT erfolgreich. Response: %s',
+    ],
   ],
 
   /**
