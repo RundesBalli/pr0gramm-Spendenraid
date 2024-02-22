@@ -8,7 +8,7 @@
 /**
  * No cookie set or cookie empty and form not submitted.
  */
-if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isset($_POST['submit'])) {
+if((!isset($_COOKIE[COOKIE_NAME]) OR empty($_COOKIE[COOKIE_NAME])) AND !isset($_POST['submit'])) {
   $content.= '<h1>'.$lang['login']['title'].'</h1>';
   /**
    * Cookiewarnung
@@ -31,7 +31,7 @@ if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isse
     '<div class="col-s-12 col-l-9"><input type="submit" name="submit" value="'.$lang['login']['form']['submit'].'"></div>'.
   '</div>';
   $content.= '</form>';
-} elseif((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND isset($_POST['submit'])) {
+} elseif((!isset($_COOKIE[COOKIE_NAME]) OR empty($_COOKIE[COOKIE_NAME])) AND isset($_POST['submit'])) {
   /**
    * No cookie set or cookie empty and form submitted.
    */
@@ -52,7 +52,7 @@ if((!isset($_COOKIE['spendenraid']) OR empty($_COOKIE['spendenraid'])) AND !isse
        */
       $sessionHash = hash('sha256', random_bytes(4096));
       mysqli_query($dbl, 'INSERT INTO `sessions` (`userId`, `hash`) VALUES ("'.$row['id'].'", "'.$sessionHash.'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
-      setcookie('spendenraid', $sessionHash, time()+COOKIE_DURATION);
+      setcookie(COOKIE_NAME, $sessionHash, time()+COOKIE_DURATION);
       mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ("'.$row['id'].'", 1, "Login")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
       header('Location: /overview');
       die();

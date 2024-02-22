@@ -30,4 +30,11 @@ const PAGE_INCLUDE_DIR = INCLUDE_DIR.'..'.DIRECTORY_SEPARATOR.'pages'.DIRECTORY_
  * The time period during which the cookies are valid, or the time until which they are extended.
  */
 const COOKIE_DURATION = 86400*7;
+
+/**
+ * Cookie name
+ * 
+ * The name of the cookie.
+ */
+const COOKIE_NAME = 'spendenraid';
 ?>
