@@ -131,7 +131,7 @@ $lang = [
     'title' => 'Logout',
     'form' => [
       'question' => 'Möchtest du dich ausloggen?',
-      'submit' => 'logout',
+      'submit' => 'Logout',
     ],
     'logoutFailed' => [
       'invalidToken' => 'Ungültiges Token.',

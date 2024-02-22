@@ -13,8 +13,8 @@ require_once(INCLUDE_DIR.'cookieCheck.php');
 /**
  * Title
  */
-$title = $lang['login']['title'];
-$content.= '<h1>'.$lang['login']['title'].'</h1>';
+$title = $lang['logout']['title'];
+$content.= '<h1>'.$lang['logout']['title'].'</h1>';
 
 /**
  * Check if the form has already been submitted.
@@ -31,9 +31,9 @@ if(!isset($_POST['submit'])) {
   /**
    * Choice.
    */
-  $content.= '<div class="row hover bordered">'.
-    '<div class="col-s-12 col-l-3">'.$lang['login']['form']['question'].'</div>'.
-    '<div class="col-s-12 col-l-4"><input type="submit" name="submit" value="'.$lang['login']['form']['submit'].'"></div>'.
+  $content.= '<div class="row">'.
+    '<div class="col-s-12 col-l-12">'.$lang['logout']['form']['question'].'</div>'.
+    '<div class="col-s-12 col-l-12"><input type="submit" name="submit" value="'.$lang['logout']['form']['submit'].'"></div>'.
   '</div>';
   $content.= '</form>';
 } else {
@@ -45,9 +45,9 @@ if(!isset($_POST['submit'])) {
    */
   if($_POST['token'] != $sessionHash) {
     http_response_code(403);
-    $content.= '<div class="warnBox">'.$lang['login']['logoutFailed']['invalidToken'].'</div>';
+    $content.= '<div class="warnBox">'.$lang['logout']['logoutFailed']['invalidToken'].'</div>';
     $content.= '<div class="row">'.
-      '<div class="col-s-12 col-l-12"><a href="/overview">'.$lang['login']['logoutFailed']['submit'].'</a></div>'.
+      '<div class="col-s-12 col-l-12"><a href="/overview">'.$lang['logout']['logoutFailed']['submit'].'</a></div>'.
     '</div>';
   } else {
     /**
