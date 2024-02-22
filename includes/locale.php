@@ -69,6 +69,14 @@ $lang = [
    * metaLogLevel
    */
   'logLevel' => [
+    'system' => 'User-/Systemaktion',
+    'firstsight' => 'Erstsichtung',
+    'confirmingReset' => 'Zweitsichtung - zurückgesetzt',
+    'confirmingOk' => 'Zweitsichtung - ok',
+    'reset' => 'Post zurückgesetzt',
+    'perk' => 'Belohnung und Badge',
+    'fake' => 'Fakes',
+    'note' => 'Notiz',
   ],
 
   /**
