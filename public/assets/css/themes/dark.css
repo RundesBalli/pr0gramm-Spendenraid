@@ -1,0 +1,34 @@
+/**
+ * dark.css
+ *
+ * Dark theme
+ */
+:root {
+  /**
+   * General
+   */
+  --bgColor: url('/assets/images/noise_hex-161618-t50-tS7-bW0-mB-mu1.5-st8_637487e0d51236f56169f5e72cfe3f7b.png') #161618;
+  --bgColorForms: #161618;
+  --fontColor: #f2f5f4;
+  --fontColorDimmed: rgba(242, 245, 244, 0.6);
+  --hrColor: rgba(0, 0, 0, 0.2);
+  --shadowColor: rgba(0, 0, 0, 0.8);
+  --codeColor: #ee4d2e;
+  --warnColor: #c52b2f;
+  --highlightColor: #ee4d2e;
+
+  /**
+   * Links
+   */
+  --linkColor: #57c4e5;
+  --linkHover: #fea82f;
+
+  /**
+   * Navigation
+   */
+  --navbarBackgroundColor: #000000;
+  --navbarFontColor: #f2f5f4;
+  --navbarHoverColor: #ee4d2e;
+  --activeColor: #ee4d2e;
+  --borderColorNav: #888888;
+}
