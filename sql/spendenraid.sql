@@ -128,6 +128,7 @@ DROP TABLE IF EXISTS `metaOrganizations`;
 CREATE TABLE `metaOrganizations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name of the organization',
+  `shortName` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Short name of the organization (for fast evaluation navigation)',
   `sortIndex` int(10) unsigned NOT NULL DEFAULT '9999999' COMMENT 'Sort index; 0 = higher',
   `exportCountOnly` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = normal export; 1 = only export the count',
   `exportSortIndex` int(10) unsigned NOT NULL DEFAULT '9999999' COMMENT 'Sort index for the export; 0 = higher',
@@ -137,20 +138,20 @@ CREATE TABLE `metaOrganizations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Organizations';
 
 TRUNCATE `metaOrganizations`;
-INSERT INTO `metaOrganizations` (`id`, `name`, `sortIndex`, `exportCountOnly`, `exportSortIndex`) VALUES
-(1,	'Deutsche Knochenmarkspenderdatei (DKMS)',	10,	0,	20),
-(2,	'Deutsche Krebshilfe (auch dt. Kinderkrebshilfe)',	20,	0,	10),
-(3,	'Deutsches Krebsforschungszentrum (DKFZ)',	30,	0,	30),
-(4,	'Deutsche Kinderkrebsstiftung',	40,	0,	40),
-(5,	'Österreichische Spendenorganisationen',	50,	0,	50),
-(6,	'Schweizer Spendenorganisationen',	60,	0,	60),
-(7,	'diverse andere',	110,	0,	110),
-(8,	'nicht ersichtlich',	120,	0,	120),
-(9,	'Gute Tat',	130,	1,	130),
-(10,	'Sonstige Depressionshilfe',	70,	0,	70),
-(11,	'Sonstige Tier-/Naturschutzorganisationen',	80,	0,	80),
-(12,	'Ukraine Nothilfe',	90,	0,	90),
-(13,	'DRK ohne Ukraine',	100,	0,	100);
+INSERT INTO `metaOrganizations` (`id`, `name`, `shortName`, `sortIndex`, `exportCountOnly`, `exportSortIndex`) VALUES
+(1,	'Deutsche Knochenmarkspenderdatei (DKMS)',	'DKMS',	10,	0,	20),
+(2,	'Deutsche Krebshilfe (auch dt. Kinderkrebshilfe)',	'DtKrebshilfe',	20,	0,	10),
+(3,	'Deutsches Krebsforschungszentrum (DKFZ)',	NULL,	30,	0,	30),
+(4,	'Deutsche Kinderkrebsstiftung',	NULL,	40,	0,	40),
+(5,	'Österreichische Spendenorganisationen',	NULL,	50,	0,	50),
+(6,	'Schweizer Spendenorganisationen',	NULL,	60,	0,	60),
+(7,	'diverse andere',	NULL,	110,	0,	110),
+(8,	'nicht ersichtlich',	NULL,	120,	0,	120),
+(9,	'Gute Tat',	'GT',	130,	1,	130),
+(10,	'Sonstige Depressionshilfe',	NULL,	70,	0,	70),
+(11,	'Sonstige Tier-/Naturschutzorganisationen',	NULL,	80,	0,	80),
+(12,	'Ukraine Nothilfe',	NULL,	90,	0,	90),
+(13,	'DRK ohne Ukraine',	NULL,	100,	0,	100);
 
 DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE `permissions` (
@@ -162,6 +163,10 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Special permissions';
 
 TRUNCATE `permissions`;
+INSERT INTO `permissions` (`id`, `name`, `description`) VALUES
+(1,	'delList',	'Allow access to the delList and delete items'),
+(2,	'fastOrgaEvaluation',	'Allow access to the fast organization evaluation'),
+(3,	'fakes',	'Allow access to the fakes list and the modification of entrys');
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -205,4 +210,4 @@ CREATE TABLE `users` (
 
 TRUNCATE `users`;
 
--- 2024-02-22 14:47:44
+-- 2024-02-22 14:58:32
