@@ -1,5 +1,0 @@
-IndexIgnore *
-<Files template.tpl>
-    Order Deny,Allow
-    Deny from all
-</Files>
