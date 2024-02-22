@@ -106,5 +106,25 @@ $lang = [
     'fakes' => 'Fälschungen',
     'fastOrga' => 'fastOrga',
   ],
+
+  /**
+   * 
+   * Pages
+   * 
+   */
+  'login' => [
+    'title' => 'Login',
+    'cookieNote' => 'Ab diesem Punkt werden Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!',
+    'form' => [
+      'name' => 'Name',
+      'password' => 'Passwort',
+      'submit' => 'Login',
+    ],
+    'loginFailed' => [
+      'title' => 'Login gescheitert',
+      'warnBox' => 'Die Zugangsdaten sind falsch.',
+      'tryAgain' => 'Erneut versuchen',
+    ]
+  ],
 ];
 ?>
