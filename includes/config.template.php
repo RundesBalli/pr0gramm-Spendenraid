@@ -56,7 +56,7 @@ $perkSecret = '';
  * 
  * @var array
  *   @var string apiToken      Token for transmitting the itemIds to the AI API.
- *   @var string editPostToken Token for the AI to transmit the post data to the editPosts API.
+ *   @var string editPostToken Token for the AI to transmit the post data to the editPost API.
  *   @var int    userId        userId of the AI.
  *   @var array  cURL          cURL settings.
  *     @var string bindTo      Interface with which cURL should establish the connection, e.g. eth0.
