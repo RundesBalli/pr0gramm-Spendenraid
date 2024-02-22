@@ -25,9 +25,9 @@ require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'defuse
 require_once(__DIR__.DIRECTORY_SEPARATOR.'locale.php');
 
 /**
- * If the loader has been called from a cli script, the content/page generation is not needed.
+ * If the loader has been called from a cli script or the API, the content/page generation is not needed.
  */
-if(php_sapi_name() != 'cli') {
+if(php_sapi_name() != 'cli' AND !defined('api')) {
   /**
    * Content generation and router
    */
@@ -42,7 +42,5 @@ if(php_sapi_name() != 'cli') {
    */
   require_once(__DIR__.DIRECTORY_SEPARATOR.'generation'.DIRECTORY_SEPARATOR.'generateOutput.php');
   require_once(__DIR__.DIRECTORY_SEPARATOR.'generation'.DIRECTORY_SEPARATOR.'tidyOutput.php');
-} else {
-  echo 'CLI mode.'."\n";
 }
 ?>
