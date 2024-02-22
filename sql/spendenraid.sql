@@ -152,6 +152,17 @@ INSERT INTO `metaOrganizations` (`id`, `name`, `sortIndex`, `exportCountOnly`, `
 (12,	'Ukraine Nothilfe',	90,	0,	90),
 (13,	'DRK ohne Ukraine',	100,	0,	100);
 
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE `permissions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name of the permission',
+  `description` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Description',
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Special permissions';
+
+TRUNCATE `permissions`;
+
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -165,6 +176,20 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Sessions';
 
 TRUNCATE `sessions`;
+
+DROP TABLE IF EXISTS `userPermissions`;
+CREATE TABLE `userPermissions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `userId` int(10) unsigned NOT NULL COMMENT 'users.id',
+  `permissionId` int(10) unsigned NOT NULL COMMENT 'permissions.id',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `permissionId` (`permissionId`),
+  CONSTRAINT `userPermissions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `userPermissions_ibfk_2` FOREIGN KEY (`permissionId`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User special permissions';
+
+TRUNCATE `userPermissions`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -180,4 +205,4 @@ CREATE TABLE `users` (
 
 TRUNCATE `users`;
 
--- 2024-02-22 13:31:51
+-- 2024-02-22 14:47:44
