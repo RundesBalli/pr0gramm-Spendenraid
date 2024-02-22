@@ -10,7 +10,8 @@ $routes = [
   /**
    * Pages
    */
-  
+  'login' => 'login.php',
+
   /**
    * Error pages
    */
