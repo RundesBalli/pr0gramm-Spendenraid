@@ -31,7 +31,7 @@ if(empty($loggedIn)) {
     $nav.= '<a href="/fakes"'.($route == 'fakes' ? $a : NULL).'>'.$lang['nav']['fakes'].'</a>';
   }
   if(defined('perm-fastOrgaEvaluation')) {
-    $result = mysqli_query($dbl, 'SELECT `id`, `shortName` FROM `metaOrganizations` WHERE `shortName` IS NOT NULL ORDER BY `sortIndex` ASC') OR DIE(MYSQLI_ERROR($dbl));
+    $result = mysqli_query($dbl, 'SELECT `id`, `shortName` FROM `metaOrganizations` WHERE `shortName` IS NOT NULL ORDER BY `sortIndex` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
     while($row = mysqli_fetch_assoc($result)) {
       $nav.= '<a href="/fastOrga?id='.output($row['id']).'"'.(($route == 'fastOrga' AND !empty($_GET['id']) AND $_GET['id'] == $row['id']) ? $a : NULL).'>'.output($row['shortName']).'-'.$lang['nav']['fastOrga'].'</a>';
     }
