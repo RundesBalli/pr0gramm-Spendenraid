@@ -126,5 +126,17 @@ $lang = [
       'tryAgain' => 'Erneut versuchen',
     ]
   ],
+
+  'logout' => [
+    'title' => 'Logout',
+    'form' => [
+      'question' => 'Möchtest du dich ausloggen?',
+      'submit' => 'logout',
+    ],
+    'logoutFailed' => [
+      'invalidToken' => 'Ungültiges Token.',
+      'back' => 'Zurück zur Übersicht',
+    ]
+  ],
 ];
 ?>
