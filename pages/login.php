@@ -20,7 +20,7 @@ if((!isset($_COOKIE[COOKIE_NAME]) OR empty($_COOKIE[COOKIE_NAME])) AND !isset($_
   $content.= '<form method="post">';
   $content.= '<div class="row">'.
     '<div class="col-s-12 col-l-3">'.$lang['login']['form']['name'].'</div>'.
-    '<div class="col-s-12 col-l-9"><input type="text" name="username" placeholder="'.$lang['login']['form']['name'].'" autofocus></div>'.
+    '<div class="col-s-12 col-l-9"><input type="text" name="name" placeholder="'.$lang['login']['form']['name'].'" autofocus></div>'.
   '</div>';
   $content.= '<div class="row">'.
     '<div class="col-s-12 col-l-3">'.$lang['login']['form']['password'].'</div>'.
@@ -35,11 +35,11 @@ if((!isset($_COOKIE[COOKIE_NAME]) OR empty($_COOKIE[COOKIE_NAME])) AND !isset($_
   /**
    * No cookie set or cookie empty and form submitted.
    */
-  $username = defuse($_POST['username']);
+  $username = defuse($_POST['name']);
   /**
    * Check if the user exists.
    */
-  $result = mysqli_query($dbl, 'SELECT * FROM `users` WHERE `username`="'.$username.'" AND `isBot`=0 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+  $result = mysqli_query($dbl, 'SELECT * FROM `users` WHERE `name`="'.$username.'" AND `bot`=0 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
   if(mysqli_num_rows($result) == 1) {
     /**
      * If the user exists, the password has to be verified.

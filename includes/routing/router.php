@@ -14,10 +14,10 @@ if(!empty($error)) {
   /**
    * Check if a specifig page is being requested.
    */
-  if(empty($_GET['page'])) {
+  if(empty($_GET['p'])) {
     $page = 'login';
   } else {
-    $page = $_GET['page'];
+    $page = $_GET['p'];
   }
 
   /**

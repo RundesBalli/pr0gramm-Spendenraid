@@ -38,7 +38,7 @@ $password = password_hash($pw.$salt, PASSWORD_DEFAULT);
 /**
  * Update the existing account.
  */
- mysqli_query($dbl, "UPDATE `users` SET `password`='".$password."', `salt`='".$salt."' WHERE `username`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+ mysqli_query($dbl, "UPDATE `users` SET `password`='".$password."', `salt`='".$salt."' WHERE `name`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_affected_rows($dbl) == 1) {
   mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '".sprintf($lang['cli']['passwd']['log'], $username)."')") OR DIE(MYSQLI_ERROR($dbl));
   die(sprintf($lang['cli']['passwd']['success'], $username, $pw));

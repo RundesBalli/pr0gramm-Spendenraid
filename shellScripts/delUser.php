@@ -31,7 +31,7 @@ if(!empty($argv[1]) AND preg_match('/^[0-9a-zA-Z]{2,32}$/', defuse($argv[1]), $m
 /**
  * Deleting the account.
  */
-mysqli_query($dbl, "DELETE FROM `users` WHERE `username`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+mysqli_query($dbl, "DELETE FROM `users` WHERE `name`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_affected_rows($dbl) == 1) {
   mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '".sprintf($lang['cli']['delUser']['log'], $username)."')") OR DIE(MYSQLI_ERROR($dbl));
   die($lang['cli']['delUser']['success']);
