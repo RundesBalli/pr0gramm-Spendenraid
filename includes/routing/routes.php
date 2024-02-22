@@ -11,6 +11,7 @@ $routes = [
    * Pages
    */
   'login' => 'login.php',
+  'logout' => 'logout.php',
 
   /**
    * Error pages
