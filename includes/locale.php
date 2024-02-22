@@ -66,6 +66,15 @@ $lang = [
   ],
 
   /**
+   * API
+   */
+  'api' => [
+    'getJPG' => [
+      'log' => '[KI, JPG] KI Anfrage JPG',
+    ],
+  ],
+
+  /**
    * metaLogLevel
    */
   'logLevel' => [
