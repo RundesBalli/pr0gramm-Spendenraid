@@ -1,6 +1,6 @@
 <?php
 /**
- * passwd.php
+ * shellScripts/passwd.php
  * 
  * Shell script to change the password of a given user.
  * 

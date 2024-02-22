@@ -1,6 +1,6 @@
 <?php
 /**
- * addUser.php
+ * shellScripts/resetWholeOrga.php
  * 
  * Shell script to reset a whole organization.
  * 

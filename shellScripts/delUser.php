@@ -1,6 +1,6 @@
 <?php
 /**
- * delUser.php
+ * shellScripts/delUser.php
  * 
  * Shell script to delete an user.
  * 

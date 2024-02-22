@@ -1,6 +1,6 @@
 <?php
 /**
- * addUser.php
+ * shellScripts/addUser.php
  * 
  * Shell script to add a new user.
  * 
