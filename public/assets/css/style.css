@@ -358,7 +358,7 @@ hr {
   max-width: 1200px;
   width: 100%;
   flex: auto;
-  margin: calc(var(--fontSize) * 3) 0px calc(var(--fontSize) * 2.5);
+  margin: calc(var(--fontSize) * 3) auto calc(var(--fontSize) * 2.5);
   padding: 0px var(--fontSize);
 }
 
