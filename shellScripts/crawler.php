@@ -54,7 +54,7 @@ if(!empty($argv[1]) AND $argv[1] == 'full') {
     /**
      * If there are posts, start the crawl at the last existing itemId.
      */
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     $newer = $row['itemId'];
     mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `text`) VALUES (1, '".sprintf($lang['cli']['crawler']['startSmall'], $newer)."')") OR DIE(MYSQLI_ERROR($dbl));
   }
