@@ -22,6 +22,45 @@ $lang = [
       'unknownError' => 'Unbekannter Fehler.',
     ],
     'templateFileNotFound' => 'Templatedatei nicht gefunden.',
+    'noCli' => 'Das Script kann nur im Terminal ausgeführt werden.'."\n\n",
+  ],
+
+  /**
+   * CLI scripts
+   */
+  'cli' => [
+    'addUser' => [
+      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php '.$argv[0].' Hans'."\n".'Erstellt den Nutzer "Hans" mit einem zufälligen Passwort.'."\n\n",
+      'success' => 'Account erfolgreich angelegt.'."\n\n".'User: %s'."\n".'Pass: %s'."\n\n",
+      'duplicate' => 'Es existiert bereits ein Account mit diesem Namen.'."\n\n",
+      'unknownError' => 'Unknown error: %s'."\n\n",
+      'log' => '[CLI] User angelegt: %s',
+    ],
+    'delUser' => [
+      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php '.$argv[0].' Hans'."\n".'Löscht den Nutzer "Hans".'."\n\n",
+      'success' => 'Account erfolgreich entfernt.'."\n\n",
+      'notFound' => 'Es existiert kein Account mit diesem Namen.'."\n\n",
+      'log' => '[CLI] User gelöscht: %s',
+    ],
+    'passwd' => [
+      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php '.$argv[0].' Hans'."\n".'Setzt ein neues, zufälliges Passwort für den Nutzer "Hans".'."\n\n",
+      'success' => 'Passwort erfolgreich geändert.'."\n\n".'User: %s'."\n".'Pass: %s'."\n\n",
+      'notFound' => 'Es existiert kein Account mit diesem Namen.'."\n\n",
+      'log' => '[CLI] User-Passwort geändert: %s',
+    ],
+    'resetWholeOrga' => [
+      'invalidId' => 'Die Organisations-ID ist ungültig.'."\n\n",
+      'question' => 'Möchtest du wirklich die ganze Organisation "%s" zurücksetzen? STRG+C zum Abbrechen oder "ok" eingeben und Enter drücken zum Fortfahren.'."\n\n",
+      'aborting' => 'Abbruch.'."\n\n",
+      'log' => '[CLI] Organisation zurückgesetzt.',
+      'done' => 'Erledigt.'."\n\n",
+    ],
+  ],
+
+  /**
+   * metaLogLevel
+   */
+  'logLevel' => [
   ],
 
   /**

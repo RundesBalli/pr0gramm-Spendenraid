@@ -42,5 +42,7 @@ if(php_sapi_name() != 'cli') {
    */
   require_once(__DIR__.DIRECTORY_SEPARATOR.'generation'.DIRECTORY_SEPARATOR.'generateOutput.php');
   require_once(__DIR__.DIRECTORY_SEPARATOR.'generation'.DIRECTORY_SEPARATOR.'tidyOutput.php');
+} else {
+  echo 'CLI mode.'."\n";
 }
 ?>
