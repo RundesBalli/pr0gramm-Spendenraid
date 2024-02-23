@@ -251,5 +251,35 @@ $lang = [
     'allDone' => 'Alles erledigt. Nächster Crawl alle 5 Minuten. (in %d Sekunden)',
     'evaluateOrganizations' => 'Organisationen bewerten'
   ],
+
+  /**
+   * Organization
+   */
+  'organization' => [
+    'title' => 'Organisationen',
+    'organizationNotFound' => 'Die Organisation existiert nicht.',
+    'invalidToken' => 'Ungültiges Token',
+    'itemNotFound' => 'Der Post existiert nicht (mehr) oder ist nicht als Spendenpost klassifiziert.',
+    'log' => [
+      'organization' => 'Orga',
+      'confirmingReset' => 'Erstsichtung',
+    ],
+    'success' => 'Organisation eingetragen.',
+    'resetItem' => 'Post zurücksetzen',
+    'resetOrga' => 'Organisation zurücksetzen',
+    'aiPrefix' => 'KI-',
+    'firstsight' => 'Erstsichtung',
+    'clickImage' => 'Zur Post-Ansicht einfach auf das Bild klicken',
+    'confirmedValue' => 'Bestätigter Betrag',
+    'video' => 'Video auf pr0gramm ansehen',
+    'value' => 'Organisation',
+    'seeInfo' => 'Siehe Organisationen',
+    'fastEvaluation' => 'Schnellbewertung',
+    'submit' => 'Eintragen',
+    'links' => 'Links',
+    'itemInfo' => 'Post-Info',
+    'allDone' => 'Alles erledigt.',
+    'evaluateItems' => 'Posts bewerten'
+  ],
 ];
 ?>

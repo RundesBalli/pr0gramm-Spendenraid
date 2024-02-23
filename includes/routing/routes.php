@@ -14,6 +14,7 @@ $routes = [
   'logout' => 'logout.php',
   'overview' => 'overview.php',
   'evaluation' => 'evaluation.php',
+  'organization' => 'organization.php',
 
   /**
    * Error pages
