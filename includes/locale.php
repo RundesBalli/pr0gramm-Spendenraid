@@ -112,6 +112,9 @@ $lang = [
    * Pages
    * 
    */
+  /**
+   * Login
+   */
   'login' => [
     'title' => 'Login',
     'cookieNote' => 'Ab diesem Punkt werden Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!',
@@ -127,6 +130,9 @@ $lang = [
     ]
   ],
 
+  /**
+   * Logout
+   */
   'logout' => [
     'title' => 'Logout',
     'form' => [
@@ -139,6 +145,9 @@ $lang = [
     ]
   ],
 
+  /**
+   * Overview
+   */
   'overview' => [
     'title' => 'Übersicht',
     'general' => 'Eingeloggt als: <span class="warn bold">%s</span> - (<a href="/logout">Ausloggen</a>)',
@@ -211,5 +220,36 @@ $lang = [
       'average' => 'Ø pro Spende',
     ]
   ],
+
+  /**
+   * Evaluation
+   */
+  'evaluation' => [
+    'title' => 'Bewertung',
+    'invalidToken' => 'Ungültiges Token',
+    'itemNotFound' => 'Der Post existiert nicht (mehr).',
+    'success' => 'Spendenwert eingetragen.',
+    'resetItem' => 'Post zurücksetzen',
+    'log' => [
+      'confirmingReset' => 'Erstsichtung',
+      'goodAct' => 'Orga: 9',
+      'noDonation' => 'Kein Spendenpost',
+    ],
+    'aiPrefix' => 'KI-',
+    'firstsight' => 'Erstsichtung',
+    'firstsightGoodAct' => 'Erstsichtung: Gute Tat',
+    'clickImage' => 'Zur Post-Ansicht einfach auf das Bild klicken',
+    'video' => 'Video auf pr0gramm ansehen',
+    'value' => 'Geldbetrag',
+    'seeInfo' => 'Siehe Info unten',
+    'fastEvaluation' => 'Schnellbewertung',
+    'submit' => 'Eintragen',
+    'links' => 'Links',
+    'itemInfo' => 'Post-Info',
+    'info' => 'Informationen zur Auswertung',
+    'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt 0,01 eintragen!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!<br><span class="warn">NEU IN 2024:</span> Gute Tat = g, G oder + eintragen!',
+    'allDone' => 'Alles erledigt. Nächster Crawl alle 5 Minuten. (in %d Sekunden)',
+    'evaluateOrganizations' => 'Organisationen bewerten'
+  ]
 ];
 ?>
