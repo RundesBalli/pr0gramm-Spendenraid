@@ -8,7 +8,6 @@ let toggleBlur = function(){
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("toggle").addEventListener("click", toggleMenu);
   document.getElementById("nsfw-blur-cb").addEventListener("click", toggleBlur);
 });
 

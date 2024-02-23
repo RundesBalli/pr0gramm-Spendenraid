@@ -141,9 +141,10 @@ if(mysqli_num_rows($result) == 1) {
     if($row['firstsightOrgaId'] == 9) {
       $content.= '<h3 class="highlight">'.$lang['evaluation']['firstsightGoodAct'].'</h3>';
     } else {
-      $content.= '<h3 class="highlight">'.((!empty($aiSettings['userId']) AND $row['firstsightUserId'] == $aiSettings['userId']) ? $lang['evalutation']['aiPrefix'] : NULL).$lang['evaluation']['firstsight'].': '.number_format($row['firstsightValue'], 2, ',', '.').' €</h3>';
+      $content.= '<h3 class="highlight">'.((!empty($aiSettings['userId']) AND $row['firstsightUserId'] == $aiSettings['userId']) ? $lang['evaluation']['aiPrefix'] : NULL).$lang['evaluation']['firstsight'].': '.number_format($row['firstsightValue'], 2, ',', '.').' €</h3>';
     }
   }
+
   if($row['extension'] != 'mp4') {
     /**
      * Images are displayed directly. If the Benis is less than or equal to 0, the Benis note is displayed
@@ -154,7 +155,7 @@ if(mysqli_num_rows($result) == 1) {
     '</div>';
   } else {
     /**
-     * Videos nicht direkt anzeigen. Stattdessen den Post verlinken und das Formular nicht automatisch fokussieren.
+     * Do not display videos directly. Instead, link the post and do not automatically focus the form.
      */
     $content.= '<div class="row">'.
       '<div class="col-s-12 col-l-12 center"><h2 class="highlight">VIDEO</h2><a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$lang['evaluation']['video'].'</a><br><'.($row['benis'] <= 0 ? 'h2' : 'span').' class="warn">Score: '.$row['benis'].'</'.($row['benis'] <= 0 ? 'h2' : 'span').'></div>'.
@@ -164,11 +165,13 @@ if(mysqli_num_rows($result) == 1) {
    * Show form.
    */
   $content.= '<form action="/evaluation" id="valuation-form" method="post">';
+
   /**
    * ID & Token
    */
   $content.= '<input type="hidden" name="id" value="'.$row['id'].'">';
   $content.= '<input type="hidden" name="token" value="'.$sessionHash.'">';
+
   /**
    * NSFW Blur
    */
@@ -178,6 +181,7 @@ if(mysqli_num_rows($result) == 1) {
       '<div class="col-s-12 col-l-9"><input id="nsfw-blur-cb" type="checkbox" checked></div>'.
     '</div>';
   }
+
   /**
    * Value
    */
@@ -185,6 +189,7 @@ if(mysqli_num_rows($result) == 1) {
     '<div class="col-s-12 col-l-3">'.$lang['evaluation']['value'].'</div>'.
     '<div class="col-s-12 col-l-9"><input id="value-input" name="value" type="text" autocomplete="off" placeholder="'.$lang['evaluation']['seeInfo'].'" autofocus></div>'.
   '</div>';
+
   /**
    * Mobile fast evaluation (visible below 600px viewport)
    */
@@ -192,6 +197,7 @@ if(mysqli_num_rows($result) == 1) {
     '<div class="col-s-12 col-l-3">'.$lang['evaluation']['fastEvaluation'].'</div>'.
     '<div class="col-s-12 col-l-9"><a href="#" class="msb-btn">G</a><a href="#" class="msb-btn">0</a><a href="#" class="msb-btn">0.01</a><a href="#" class="msb-btn">5</a><a href="#" class="msb-btn">10</a><a href="#" class="msb-btn">15</a><a href="#" class="msb-btn">20</a><a href="#" class="msb-btn">25</a><a href="#" class="msb-btn">30</a><a href="#" class="msb-btn">35</a><a href="#" class="msb-btn">40</a><a href="#" class="msb-btn">50</a><a href="#" class="msb-btn">100</a></div>'.
   '</div>';
+
   /**
    * Submit
    */
@@ -200,13 +206,15 @@ if(mysqli_num_rows($result) == 1) {
     '<div class="col-s-12 col-l-9"><input id="value-submit" name="value-submit" type="submit" value="'.$lang['evaluation']['submit'].'"></div>'.
   '</div>';
   $content.= '</form>';
+
   /**
    * ItemInfo
    */
   $content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-3">'.$lang['evaluation']['links'].'</div>'.
-  '<div class="col-s-12 col-l-9"><a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['evaluation']['itemInfo'].'</a></div>'.
+    '<div class="col-s-12 col-l-3">'.$lang['evaluation']['links'].'</div>'.
+    '<div class="col-s-12 col-l-9"><a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['evaluation']['itemInfo'].'</a></div>'.
   '</div>';
+
   /**
    * Informations for evaluation
    */
@@ -221,6 +229,5 @@ if(mysqli_num_rows($result) == 1) {
   $secondsToNextCrawl = (ceil(time()/300)*300)-time();
   $content.= '<div class="infoBox">'.sprintf($lang['evaluation']['allDone'], $secondsToNextCrawl).'<br><a href="/organization" autofocus>'.$lang['evaluation']['evaluateOrganization'].'</a></div>';
   $content.= '<meta http-equiv="refresh" content="5">';
-  $content.= '<div class="spacer"></div>';
 }
 ?>

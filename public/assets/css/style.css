@@ -146,6 +146,10 @@ hr {
   text-align: right;
 }
 
+.textLeft {
+  text-align: left;
+}
+
 .left {
   float: left;
 }
