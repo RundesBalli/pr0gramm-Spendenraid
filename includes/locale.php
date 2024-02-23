@@ -30,20 +30,20 @@ $lang = [
    */
   'cli' => [
     'addUser' => [
-      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php '.$argv[0].' Hans'."\n".'Erstellt den Nutzer "Hans" mit einem zufälligen Passwort.'."\n\n",
+      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php %s Hans'."\n".'Erstellt den Nutzer "Hans" mit einem zufälligen Passwort.'."\n\n",
       'success' => 'Account erfolgreich angelegt.'."\n\n".'User: %s'."\n".'Pass: %s'."\n\n",
       'duplicate' => 'Es existiert bereits ein Account mit diesem Namen.'."\n\n",
       'unknownError' => 'Unknown error: %s'."\n\n",
       'log' => '[CLI] User angelegt: %s',
     ],
     'delUser' => [
-      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php '.$argv[0].' Hans'."\n".'Löscht den Nutzer "Hans".'."\n\n",
+      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php %s Hans'."\n".'Löscht den Nutzer "Hans".'."\n\n",
       'success' => 'Account erfolgreich entfernt.'."\n\n",
       'notFound' => 'Es existiert kein Account mit diesem Namen.'."\n\n",
       'log' => '[CLI] User gelöscht: %s',
     ],
     'passwd' => [
-      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php '.$argv[0].' Hans'."\n".'Setzt ein neues, zufälliges Passwort für den Nutzer "Hans".'."\n\n",
+      'invalidUsername' => 'Der Name ist ungültig. Er muss zwischen 2 und 32 Zeichen lang sein und darf keine Sonderzeichen enthalten (0-9a-zA-Z).'."\n".'Beispielaufruf:'."\n".'php %s Hans'."\n".'Setzt ein neues, zufälliges Passwort für den Nutzer "Hans".'."\n\n",
       'success' => 'Passwort erfolgreich geändert.'."\n\n".'User: %s'."\n".'Pass: %s'."\n\n",
       'notFound' => 'Es existiert kein Account mit diesem Namen.'."\n\n",
       'log' => '[CLI] User-Passwort geändert: %s',

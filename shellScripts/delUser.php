@@ -25,7 +25,7 @@ if(php_sapi_name() != 'cli') {
 if(!empty($argv[1]) AND preg_match('/^[0-9a-zA-Z]{2,32}$/', defuse($argv[1]), $match) === 1) {
   $username = $match[0];
 } else {
-  die($lang['cli']['delUser']['invalidUsername']);
+  die(sprintf($lang['cli']['delUser']['invalidUsername'], $argv[0]));
 }
 
 /**
