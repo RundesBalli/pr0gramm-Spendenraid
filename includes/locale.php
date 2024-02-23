@@ -138,5 +138,78 @@ $lang = [
       'back' => 'Zurück zur Übersicht',
     ]
   ],
+
+  'overview' => [
+    'title' => 'Übersicht',
+    'general' => 'Eingeloggt als: <span class="warn bold">%s</span> - (<a href="/logout">Ausloggen</a>)',
+    'dkmsInfo' => [
+      'Siehe <a href="https://pr0gramm.com/top/dkms%20sms/2465205" target="_blank" rel="noopener">hier</a>:',
+      'Alle <span class="highlight">DKMS5, DKMS10, DKMSxx</span> SMS sind <span class="highlight">FÜNF</span> Euro wert.',
+      'Alle <span class="highlight">LEBEN</span> SMS sind <span class="highlight">EINEN</span> Euro wert.',
+      '<span class="warn bold">WICHTIG! Wenn keine Antwort von der DKMS kommt, dann zählt die Spende nicht (Drittanbietersperre)!</span>',
+    ],
+    'search' => [
+      'title' => 'Suchparameter',
+      'newer' => 'Crawlen neuer als Post-ID',
+      'tags'=> 'Suchquery',
+    ],
+    'total' => [
+      'title' => 'Posts / Bewertungen',
+      'items' => [
+        'total' => [
+          'title' => 'Gesamt',
+          'description' => 'Anzahl der Posts, die in das o.g. Suchmuster fallen',
+        ],
+        'isDonation' => [
+          'title' => 'Spendenposts',
+          'description' => 'Anzahl der bestätigten Spendenposts',
+        ],
+        'isGoodAct' => [
+          'title' => 'Gute Taten',
+          'description' => 'Anzahl der bestätigten guten Taten',
+        ],
+        'isNoDonation' => [
+          'title' => 'Nicht-Spendenposts',
+          'description' => 'Anzahl der bestätigten Nicht-Spendenposts',
+        ],
+        'pendingFirst' => [
+          'title' => 'ausstehende Erstsichtung',
+          'description' => 'Anzahl der Posts, bei denen noch keine Erstsichtung stattgefunden hat.',
+        ],
+        'pendingSecond' => [
+          'title' => 'ausstehende Zweitsichtung',
+          'description' => 'Anzahl der Posts, bei denen noch keine Zweitsichtung stattgefunden hat.',
+        ],
+        'pendingOrgaFirst' => [
+          'title' => 'ausstehende Orga-Erstsichtung',
+          'description' => 'Anzahl der Spendenposts, bei denen noch keine Orga-Erstsichtung stattgefunden hat.',
+        ],
+        'pendingOrgaSecond' => [
+          'title' => 'ausstehende Orga-Zweitsichtung',
+          'description' => 'Anzahl der Spendenposts, bei denen noch keine Orga-Zweitsichtung stattgefunden hat.',
+        ],
+      ],
+    ],
+    'sums' => [
+      'title' => 'Summen',
+      'items' => [
+        'unconfirmedTotalsum' => [
+          'title' => 'Gesamtsumme nach Erstsichtung',
+          'description' => 'Gesamtsumme der Erstsichtungen',
+        ],
+        'confirmedTotalsum' => [
+          'title' => 'bestätigte Gesamtsumme nach Zweitsichtung',
+          'description' => 'Gesamtsumme der Zweitsichtungen (Bei der Zweitsichtung wurde der Wert aus der Erstsichtung bestätigt und ist damit gültig)',
+        ],
+      ],
+    ],
+    'organizations' => [
+      'title' => 'Organisationen',
+      'name' => 'Name der Organisation',
+      'confirmedValue' => 'bestätigte Spendensumme',
+      'confirmedCount' => 'bestätigte Spendenposts',
+      'average' => 'Ø pro Spende',
+    ]
+  ],
 ];
 ?>
