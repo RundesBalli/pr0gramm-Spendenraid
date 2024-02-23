@@ -85,7 +85,7 @@ do {
          * Item does not exist. Creating item.
          */
         $stats['new']++;
-        mysqli_query($dbl, "INSERT INTO `items` (`itemId`, `promoted`, `up`, `down`, `benis`, `created`, `image`, `thumb`, `fullsize`, `width`, `height`, `audio`, `extension`, `source`, `flags`, `username`, `mark`) VALUES ('".defuse($item['id'])."', '".($item['promoted'] ? 1 : 0)."', '".defuse($item['up'])."', '".defuse($item['down'])."', '".(defuse($item['up'])-defuse($item['down']))."', '".defuse($item['created'])."', '".defuse($item['image'])."', '".defuse($item['thumb'])."', '".defuse($item['fullsize'])."', '".defuse($item['width'])."', '".defuse($item['height'])."', '".($item['audio'] === TRUE ? 1 : 0)."', '".defuse(pathinfo($item['image'])['extension'])."', '".defuse($item['source'])."', '".defuse($item['flags'])."', '".defuse($item['user'])."', '".defuse($item['mark'])."')") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "INSERT INTO `items` (`itemId`, `promoted`, `up`, `down`, `benis`, `created`, `image`, `thumb`, `fullsize`, `width`, `height`, `audio`, `extension`, `flags`, `username`, `mark`) VALUES ('".defuse($item['id'])."', '".($item['promoted'] ? 1 : 0)."', '".defuse($item['up'])."', '".defuse($item['down'])."', '".(defuse($item['up'])-defuse($item['down']))."', '".defuse($item['created'])."', '".defuse($item['image'])."', '".defuse($item['thumb'])."', '".defuse($item['fullsize'])."', '".defuse($item['width'])."', '".defuse($item['height'])."', '".($item['audio'] === TRUE ? 1 : 0)."', '".defuse(pathinfo($item['image'])['extension'])."', '".defuse($item['flags'])."', '".defuse($item['user'])."', '".defuse($item['mark'])."')") OR DIE(MYSQLI_ERROR($dbl));
         if((intval($item['up'])-intval($item['down'])) >= 0) {
           /**
            * Nur Posts automatisieren, die nicht im negativen Scorebereich sind.
@@ -147,7 +147,7 @@ curl_setopt_array($ch, [
   CURLOPT_POST => TRUE,
   CURLOPT_POSTFIELDS => json_encode($aiIds),
   CURLOPT_HTTPHEADER => [
-    'token: '.$kiApiToken,
+    'token: '.$aiSettings['apiToken'],
     'Content-Type: application/json; charset=utf-8'
   ],
   CURLOPT_URL => $aiSettings['cURL']['url'],
