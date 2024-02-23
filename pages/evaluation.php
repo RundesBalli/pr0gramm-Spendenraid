@@ -38,12 +38,12 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
         $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE `id`="'.$id.'" LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
         if(mysqli_num_rows($result) == 0) {
           /**
-           * Wenn der Post nicht existiert, beende mit einer Fehlermeldung.
+           * The item does not exist.
            */
           $content.= '<div class="infoBox">'.$lang['evaluation']['itemNotFound'].'</div>';
         } else {
           /**
-           * The post exists.
+           * The item exists.
            */
           $row = mysqli_fetch_assoc($result);
           $error = TRUE;
@@ -117,7 +117,7 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
             if(!empty($perk) AND $perk) {
               mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUES ("'.$row['username'].'", 1)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
             }
-            $content.= '<div class="successBox">'.$lang['evaluation']['success'].'<br><a href="/resetItem?id='.$id.'">'.$lang['evaluation']['resetItem'].'</a></div>';
+            $content.= '<div class="successBox">'.$lang['evaluation']['success'].'<br><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['evaluation']['resetItem'].'</a></div>';
           }
         }
       }
@@ -205,7 +205,7 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= '<div class="row">'.
   '<div class="col-s-12 col-l-3">'.$lang['evaluation']['links'].'</div>'.
-  '<div class="col-s-12 col-l-9"><a href="/itemInfo?id='.$row['id'].'">'.$lang['evaluation']['itemInfo'].'</a></div>'.
+  '<div class="col-s-12 col-l-9"><a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['evaluation']['itemInfo'].'</a></div>'.
   '</div>';
   /**
    * Informations for evaluation
