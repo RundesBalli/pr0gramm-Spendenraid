@@ -25,5 +25,6 @@ https://RundesBalli.com
     </div>
     <script type="text/javascript" src="/assets/js/toggleMenu.js"></script>
     <script type="text/javascript" src="/assets/js/mobileButtons.js"></script>
+    <script type="text/javascript" src="/assets/js/blurNsfw.js"></script>
   </body>
 </html>
