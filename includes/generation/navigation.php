@@ -39,9 +39,6 @@ if(empty($loggedIn)) {
   $nav.= '<a href="/log"'.($route == 'log' ? $a : NULL).'>'.$lang['nav']['log'].'</a>';
   $nav.= '<a href="/stats"'.($route == 'stats' ? $a : NULL).'>'.$lang['nav']['stats'].'</a>';
   $nav.= '<a href="/logout"'.($route == 'logout' ? $a : NULL).'>'.$lang['nav']['logout'].'</a>';
-  if(defined('perm-delList') OR defined('perm-fakes') OR defined('perm-fastOrgaEvaluation')) {
-    $nav.= '<br>';
-  }
   if(defined('perm-delList')) {
     $nav.= '<a href="/delList"'.($route == 'delList' ? $a : NULL).'>'.$lang['nav']['delList'].'</a>';
   }
