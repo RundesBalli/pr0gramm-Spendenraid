@@ -29,6 +29,12 @@ if(!mysqli_num_rows($result)) {
 }
 
 /**
+ * Title and heading
+ */
+$title = $lang['reset']['title'.(isset($_GET['organization']) ? 'Organization' : NULL)];
+$content.= '<h1>'.$lang['reset']['title'.(isset($_GET['organization']) ? 'Organization' : NULL)].'</h1>';
+
+/**
  * Check whether the user has already confirmed the action. If not, a form is displayed.
  */
 if(!isset($_POST['submit'])) {

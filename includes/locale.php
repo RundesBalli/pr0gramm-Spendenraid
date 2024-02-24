@@ -376,6 +376,8 @@ $lang = [
    * Reset
    */
   'reset' => [
+    'title' => 'Post zurücksetzen',
+    'titleOrganization' => 'Organisation zurücksetzen',
     'noId' => 'Es wurde keine Post-ID übergeben.',
     'invalidId' => 'Ein Post mit der Post-ID existiert nicht in der Datenbank.',
     'confirmationQuestion' => 'Soll %s zurückgesetzt werden?',
