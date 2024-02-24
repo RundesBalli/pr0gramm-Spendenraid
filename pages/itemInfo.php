@@ -111,7 +111,7 @@ if(!empty($_GET['itemId'])) {
       /**
        * Log entrys
        */
-      $logResult = mysqli_query($dbl, 'SELECT `log`.`id`, `users`.`name`, `users`.`bot`, `log`.`timestamp`, `logLevel`, `metaLogLevel`.`color`, `log`.`itemId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `metaLogLevel` ON `log`.`logLevel`=`metaLogLevel`.`id` WHERE `itemId`="'.$row['itemId'].'" ORDER BY `log`.`id` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+      $logResult = mysqli_query($dbl, 'SELECT `log`.`id`, `users`.`name`, `users`.`bot`, `log`.`timestamp`, `log`.`logLevel`, `metaLogLevel`.`color`, `log`.`itemId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `metaLogLevel` ON `log`.`logLevel`=`metaLogLevel`.`id` WHERE `itemId`="'.$row['itemId'].'" ORDER BY `log`.`id` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
       while($logRow = mysqli_fetch_assoc($logResult)) {
         $colorRgb = hex2rgb($logRow['color']);
         $content.= '<div class="row hover bordered" style="border-left: 6px solid #'.$logRow['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">'.
