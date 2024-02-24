@@ -13,8 +13,8 @@ require_once(INCLUDE_DIR.'cookieCheck.php');
 /**
  * Enter the donation value if the form has been submitted.
  */
-if(isset($_POST['value']) AND !empty($_POST['id'])) {
-  $id = (int)defuse($_POST['id']);
+if(isset($_POST['value']) AND !empty($_POST['itemId'])) {
+  $itemId = (int)defuse($_POST['itemId']);
   /**
    * Check whether a valid number has been entered.
    * 
@@ -35,7 +35,7 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
         /**
          * Token is valid. Check whether the item exists.
          */
-        $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE `id`="'.$id.'" LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+        $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE `itemId`="'.$itemId.'" LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
         if(mysqli_num_rows($result) == 0) {
           /**
            * The item does not exist.
@@ -53,7 +53,7 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
              * First sight
              */
             $fields = [
-              'query' => 'UPDATE `items` SET `firstsightValue`="'.$value.'", `firstsightUserId`="'.$userId.'", '.($goodAct ? '`firstsightOrgaId`=9, `firstsightOrgaUserId`="'.$userId.'"' : '`firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL').' WHERE `id`="'.$id.'" LIMIT 1',
+              'query' => 'UPDATE `items` SET `firstsightValue`="'.$value.'", `firstsightUserId`="'.$userId.'", '.($goodAct ? '`firstsightOrgaId`=9, `firstsightOrgaUserId`="'.$userId.'"' : '`firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL').' WHERE `itemId`="'.$itemId.'" LIMIT 1',
               'logLevel' => 2,
               'logText' => number_format($value, 2, ',', '.').' €',
             ];
@@ -70,7 +70,7 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
                * Firstsight value and entered value are not equal.
                */
               $fields = [
-                'query' => 'UPDATE `items` SET `firstsightValue`="'.$value.'", `firstsightUserId`="'.$userId.'", '.($goodAct ? '`firstsightOrgaId`=9, `firstsightOrgaUserId`="'.$userId.'"' : '`firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL').' WHERE `id`="'.$id.'" LIMIT 1',
+                'query' => 'UPDATE `items` SET `firstsightValue`="'.$value.'", `firstsightUserId`="'.$userId.'", '.($goodAct ? '`firstsightOrgaId`=9, `firstsightOrgaUserId`="'.$userId.'"' : '`firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL').' WHERE `itemId`="'.$itemId.'" LIMIT 1',
                 'logLevel' => 3,
                 'logText' => number_format($value, 2, ',', '.').' € ('.$lang['evaluation']['log']['confirmingReset'].': '.number_format($row['firstsightValue'], 2, ',', '.').' €)',
               ];
@@ -86,7 +86,7 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
                  * It is not a donation.
                  */
                 $fields = [
-                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="0", `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `id`="'.$id.'" LIMIT 1',
+                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="0", `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `itemId`="'.$itemId.'" LIMIT 1',
                   'logLevel' => 4,
                   'logText' => $lang['evaluation']['log']['noDonation'],
                 ];
@@ -96,7 +96,7 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
                  */
                 $perk = TRUE;
                 $fields = [
-                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="'.($goodAct ? 2 : 1).'", '.($goodAct ? '`confirmedOrgaId`=9, `confirmedOrgaUserId`="'.$userId.'"' : '`confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL').' WHERE `id`="'.$id.'" LIMIT 1',
+                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="'.($goodAct ? 2 : 1).'", '.($goodAct ? '`confirmedOrgaId`=9, `confirmedOrgaUserId`="'.$userId.'"' : '`confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL').' WHERE `itemId`="'.$itemId.'" LIMIT 1',
                   'logLevel' => 4,
                   'logText' => number_format($value, 2, ',', '.').' €',
                 ];
@@ -110,9 +110,9 @@ if(isset($_POST['value']) AND !empty($_POST['id'])) {
 
           if(empty($error)) {
             mysqli_query($dbl, $fields['query']) OR DIE(MYSQLI_ERROR($dbl));$qc++;
-            mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$id.'", "'.$fields['logText'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+            mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$itemId.'", "'.$fields['logText'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
             if(!empty($fields['logText2'])) {
-              mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$id.'", "'.$fields['logText2'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+              mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$itemId.'", "'.$fields['logText2'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
             }
             if(!empty($perk) AND $perk) {
               mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUES ("'.$row['username'].'", 1)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
@@ -167,9 +167,9 @@ if(mysqli_num_rows($result) == 1) {
   $content.= '<form action="/evaluation" id="valuation-form" method="post">';
 
   /**
-   * ID & Token
+   * itemId & Token
    */
-  $content.= '<input type="hidden" name="id" value="'.$row['id'].'">';
+  $content.= '<input type="hidden" name="itemId" value="'.$row['itemId'].'">';
   $content.= '<input type="hidden" name="token" value="'.$sessionHash.'">';
 
   /**

@@ -13,8 +13,8 @@ require_once(INCLUDE_DIR.'cookieCheck.php');
 /**
  * Enter the organization if the form has been submitted.
  */
-if(!empty($_POST['organization']) AND !empty($_POST['id'])) {
-  $id = intval(defuse($_POST['id']));
+if(!empty($_POST['organization']) AND !empty($_POST['itemId'])) {
+  $itemId = intval(defuse($_POST['itemId']));
   /**
    * Check whether a valid number has been entered.
    */
@@ -42,7 +42,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['id'])) {
         /**
          * Token is valid. Check whether the item exists.
           */
-        $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE `id`='.$id.' AND `isDonation`!=0 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+        $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE `itemId`='.$itemId.' AND `isDonation`!=0 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
         if(mysqli_num_rows($result) == 0) {
           /**
            * The item does not exist.
@@ -59,7 +59,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['id'])) {
              * First sight
              */
             $fields = [
-              'query' => 'UPDATE `items` SET `firstsightOrgaId`='.$organization.', `firstsightOrgaUserId`='.$userId.' WHERE `id`='.$id.' LIMIT 1',
+              'query' => 'UPDATE `items` SET `firstsightOrgaId`='.$organization.', `firstsightOrgaUserId`='.$userId.' WHERE `itemId`='.$itemId.' LIMIT 1',
               'logLevel' => 2,
               'logText' => $lang['organization']['log']['organization'].': '.$organization,
             ];
@@ -73,7 +73,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['id'])) {
                * Firstsight organization and entered organization are not equal.
                */
               $fields = [
-                'query' => 'UPDATE `items` SET `firstsightOrgaId`='.$organization.', `firstsightOrgaUserId`='.$userId.' WHERE `id`='.$id.' LIMIT 1',
+                'query' => 'UPDATE `items` SET `firstsightOrgaId`='.$organization.', `firstsightOrgaUserId`='.$userId.' WHERE `itemId`='.$itemId.' LIMIT 1',
                 'logLevel' => 3,
                 'logText' => $lang['organization']['log']['organization'].': '.$organization.' ('.$lang['organization']['log']['confirmingReset'].': '.$row['firstsightOrgaId'].')',
               ];
@@ -82,7 +82,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['id'])) {
                * Firstsight organization and entered organization are equal.
                */
               $fields = [
-                'query' => 'UPDATE `items` SET `confirmedOrgaId`='.$organization.', `confirmedOrgaUserId`='.$userId.' WHERE `id`='.$id.' LIMIT 1',
+                'query' => 'UPDATE `items` SET `confirmedOrgaId`='.$organization.', `confirmedOrgaUserId`='.$userId.' WHERE `itemId`='.$itemId.' LIMIT 1',
                 'logLevel' => 4,
                 'logText' => $lang['organization']['log']['organization'].': '.$organization,
               ];
@@ -92,7 +92,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['id'])) {
 
           if(empty($error)) {
             mysqli_query($dbl, $fields['query']) OR DIE(MYSQLI_ERROR($dbl));$qc++;
-            mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$id.'", "'.$fields['logText'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+            mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$itemId.'", "'.$fields['logText'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
             $content.= '<div class="successBox">'.$lang['organization']['success'].'<br><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['organization']['resetItem'].'</a><br><a href="/resetOrga?itemId='.$row['itemId'].'">'.$lang['organization']['resetOrga'].'</a></div>';
           }
         }
@@ -151,9 +151,9 @@ if(mysqli_num_rows($result) == 1) {
   $content.= '<form action="/organization" id="valuation-form" method="post">';
 
   /**
-   * ID & Token
+   * itemId & Token
    */
-  $content.= '<input type="hidden" name="id" value='.$row['id'].'>';
+  $content.= '<input type="hidden" name="itemId" value='.$row['itemId'].'>';
   $content.= '<input type="hidden" name="token" value="'.$sessionHash.'">';
 
   /**
