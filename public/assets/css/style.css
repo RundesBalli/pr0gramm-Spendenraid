@@ -395,7 +395,7 @@ pre {
 }
 
 .bordered {
-  border-bottom: 1px solid #212121;
+  border-bottom: 2px solid var(--hrColor);
 }
 
 @media only screen and (max-width: 1000px) {
