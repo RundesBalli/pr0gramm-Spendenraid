@@ -55,14 +55,6 @@ if(!empty($_GET['itemId'])) {
       $content.= '<div class="row">'.
         '<div class="col-s-12 col-l-12"><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/resetOrga?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/unlockuser?user='.$row['username'].'">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</div>'.
       '</div>';
-
-      /**
-       * DB Dump
-       */
-      $content.= '<h3>'.$lang['itemInfo']['dbDump'].'</h3>';
-      $content.= '<div class="row">'.
-        '<div class="col-s-12 col-l-12"><pre>'.var_export($row, TRUE).'</pre></div>'.
-      '</div>';
       $content.= '<div class="spacer"></div>';
 
       /**
@@ -122,6 +114,16 @@ if(!empty($_GET['itemId'])) {
         $content.= '<div class="col-s-12 col-l-3" style="color: #'.$row['color'].';">'.$lang['logLevel'][$row['type']].'</div>';
       }
       $content.= '</div>';
+      $content.= '<div class="spacer"></div>';
+
+      /**
+       * DB Dump
+       */
+      $content.= '<h3>'.$lang['itemInfo']['dbDump'].'</h3>';
+      $content.= '<div class="row">'.
+        '<div class="col-s-12 col-l-12"><pre class="smaller">'.var_export($row, TRUE).'</pre></div>'.
+      '</div>';
+      $content.= '<div class="spacer"></div>';
     }
   } else {
     $content.= '<div class="warnBox">'.$lang['itemInfo']['invalid'].'</div>';

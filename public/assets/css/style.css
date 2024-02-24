@@ -162,8 +162,8 @@ hr {
   clear: both;
 }
 
-.bigger {
-  font-size: calc(var(--fontSize) * 1.6);
+.smaller {
+  font-size: calc(var(--fontSize) * 0.8);
 }
 
 .wb {
