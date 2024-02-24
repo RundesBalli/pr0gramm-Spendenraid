@@ -91,7 +91,7 @@ CREATE TABLE `log` (
   `userId` int(10) unsigned DEFAULT NULL COMMENT 'users.id',
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Timestamp of the log entry',
   `logLevel` int(10) unsigned NOT NULL COMMENT 'metaLogLevel.id',
-  `itemId` int(10) unsigned DEFAULT NULL COMMENT 'items.id',
+  `itemId` int(10) unsigned DEFAULT NULL COMMENT 'items.itemId',
   `text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Log text',
   PRIMARY KEY (`id`),
   KEY `timestamp` (`timestamp`),
@@ -100,7 +100,7 @@ CREATE TABLE `log` (
   KEY `itemId` (`itemId`),
   CONSTRAINT `log_ibfk_1` FOREIGN KEY (`logLevel`) REFERENCES `metaLogLevel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `log_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `log_ibfk_4` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `log_ibfk_5` FOREIGN KEY (`itemId`) REFERENCES `items` (`itemId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Log';
 
 TRUNCATE `log`;
