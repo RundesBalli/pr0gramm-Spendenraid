@@ -245,7 +245,7 @@ $lang = [
     'fastEvaluation' => 'Schnellbewertung',
     'submit' => 'Eintragen',
     'links' => 'Links',
-    'itemInfo' => 'Post-Info',
+    'itemInfo' => 'PostInfo',
     'info' => 'Informationen zur Auswertung',
     'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt 0,01 eintragen!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!<br><span class="warn">NEU IN 2024:</span> Gute Tat = g, G oder + eintragen!',
     'allDone' => 'Alles erledigt. Nächster Crawl alle 5 Minuten. (in %d Sekunden)',
@@ -277,7 +277,7 @@ $lang = [
     'fastEvaluation' => 'Schnellbewertung',
     'submit' => 'Eintragen',
     'links' => 'Links',
-    'itemInfo' => 'Post-Info',
+    'itemInfo' => 'PostInfo',
     'allDone' => 'Alles erledigt.',
     'evaluateItems' => 'Posts bewerten',
   ],
@@ -288,7 +288,7 @@ $lang = [
   'itemInfo' => [
     'title' => 'PostInfo',
     'form' => [
-      'placeholder' => 'Post ID / Link',
+      'placeholder' => 'Post-ID / Link',
       'submit' => 'Info',
     ],
     'notFound' => 'Der Post existiert nicht in der Datenbank. Wenn du ihn dort erwartet hast, dann prüfe auf pr0gramm, ob er richtig getaggt wurde und dass die Tags nicht rausgevoted wurden.',
@@ -370,6 +370,27 @@ $lang = [
     'mostFrequentAmounts' => 'Häufigste Spendenbeträge',
     'biggestAmounts' => 'Größte Spendenbeträge (ab 500€)',
     'from' => 'von',
+  ],
+
+  /**
+   * Reset
+   */
+  'reset' => [
+    'noId' => 'Es wurde keine Post-ID übergeben.',
+    'invalidId' => 'Ein Post mit der Post-ID existiert nicht in der Datenbank.',
+    'confirmationQuestion' => 'Soll %s zurückgesetzt werden?',
+    'item' => 'der Post',
+    'organization' => 'die Organisation',
+    'confirmation' => 'Ja, zurücksetzen.',
+    'invalidToken' => 'Ungültiges Token.',
+    'log' => [
+      'resetItem' => 'Post zurückgesetzt.',
+      'resetOrganization' => 'Organisation zurückgesetzt.',
+    ],
+    'success' => 'Post zurückgesetzt.',
+    'successOrga' => 'Organisation zurückgesetzt.',
+    'itemInfo' => 'PostInfo',
+    'evaluateItems' => 'Posts bewerten',
   ],
 ];
 ?>
