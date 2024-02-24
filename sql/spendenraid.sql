@@ -83,7 +83,6 @@ CREATE TABLE `items` (
   CONSTRAINT `items_ibfk_7` FOREIGN KEY (`confirmedOrgaId`) REFERENCES `metaOrganizations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Items';
 
-TRUNCATE `items`;
 
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
@@ -103,7 +102,6 @@ CREATE TABLE `log` (
   CONSTRAINT `log_ibfk_5` FOREIGN KEY (`itemId`) REFERENCES `items` (`itemId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Log';
 
-TRUNCATE `log`;
 
 DROP TABLE IF EXISTS `metaLogLevel`;
 CREATE TABLE `metaLogLevel` (
@@ -147,7 +145,7 @@ INSERT INTO `metaOrganizations` (`id`, `name`, `shortName`, `sortIndex`, `export
 (6,	'Schweizer Spendenorganisationen',	NULL,	60,	0,	60),
 (7,	'diverse andere',	NULL,	110,	0,	110),
 (8,	'nicht ersichtlich',	NULL,	120,	0,	120),
-(9,	'Gute Tat',	'GT',	130,	1,	130),
+(9,	'Gute Tat',	NULL,	130,	1,	130),
 (10,	'Sonstige Depressionshilfe',	NULL,	70,	0,	70),
 (11,	'Sonstige Tier-/Naturschutzorganisationen',	NULL,	80,	0,	80),
 (12,	'Ukraine Nothilfe',	NULL,	90,	0,	90),
@@ -180,7 +178,6 @@ CREATE TABLE `sessions` (
   CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Sessions';
 
-TRUNCATE `sessions`;
 
 DROP TABLE IF EXISTS `userPermissions`;
 CREATE TABLE `userPermissions` (
@@ -194,7 +191,6 @@ CREATE TABLE `userPermissions` (
   CONSTRAINT `userPermissions_ibfk_2` FOREIGN KEY (`permissionId`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User special permissions';
 
-TRUNCATE `userPermissions`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -208,6 +204,5 @@ CREATE TABLE `users` (
   KEY `bot` (`bot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-TRUNCATE `users`;
 
--- 2024-02-22 14:58:32
+-- 2024-02-24 20:25:00
