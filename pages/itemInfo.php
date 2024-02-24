@@ -69,6 +69,7 @@ if(!empty($_GET['itemId'])) {
         '<div class="col-s-12 col-l-4"><input type="submit" value="'.$lang['itemInfo']['commentForm']['submit'].'"></div>'.
       '</div>';
       $content.= '</form>';
+      $content.= '<div class="spacer"></div>';
 
       /**
        * Log
@@ -86,19 +87,19 @@ if(!empty($_GET['itemId'])) {
         '<div class="col-s-8 col-l-4">'.$lang['itemInfo']['log']['text'].'</div>'.
         '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.
       '</div>';
-      $result = mysqli_query($dbl, 'SELECT `log`.`id`, `users`.`name`, `users`.`bot`, `log`.`timestamp`, `logLevel`, `metaLogLevel`.`color`, `log`.`itemId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `metaLogLevel` ON `log`.`logLevel`=`metaLogLevel`.`id` WHERE `itemId`="'.$row['itemId'].'" ORDER BY `log`.`id` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 
       /**
        * Log entrys
        */
-      while($row = mysqli_fetch_assoc($result)) {
-        $colorRgb = hex2rgb($row['color']);
-        $content.= '<div class="row hover bordered" style="border-left: 6px solid #'.$row['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">'.
-          '<div class="col-s-4 col-l-1">'.$row['id'].'</div>'.
-          '<div class="col-s-4 col-l-2">'.($row['name'] === NULL ? '<span class="italic">'.$lang['itemInfo']['log']['system'].'</span>' : ($row['name'] == $username ? '<span class="highlight">'.output($row['name']).'</span>' : ($row['bot'] ? '<span class="italic">'.output($row['name']).'</span>' : output($row['name'])))).'</div>'.
-          '<div class="col-s-4 col-l-3">'.date('d.m.Y, H:i:s', strtotime($row['timestamp'])).'</div>'.
-          '<div class="col-s-4 col-l-2">'.($row['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$row['itemId'].'</a>'.($row['logLevel'] != 5 ? '<br><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a><br><a href="/resetOrga?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</div>'.
-          '<div class="col-s-8 col-l-4">'.clickableLinks(output($row['text'])).'</div>'.
+      $logResult = mysqli_query($dbl, 'SELECT `log`.`id`, `users`.`name`, `users`.`bot`, `log`.`timestamp`, `logLevel`, `metaLogLevel`.`color`, `log`.`itemId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `metaLogLevel` ON `log`.`logLevel`=`metaLogLevel`.`id` WHERE `itemId`="'.$row['itemId'].'" ORDER BY `log`.`id` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+      while($logRow = mysqli_fetch_assoc($logResult)) {
+        $colorRgb = hex2rgb($logRow['color']);
+        $content.= '<div class="row hover bordered" style="border-left: 6px solid #'.$logRow['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">'.
+          '<div class="col-s-4 col-l-1">'.$logRow['id'].'</div>'.
+          '<div class="col-s-4 col-l-2">'.($logRow['name'] === NULL ? '<span class="italic">'.$lang['itemInfo']['log']['system'].'</span>' : ($logRow['name'] == $username ? '<span class="highlight">'.output($logRow['name']).'</span>' : ($logRow['bot'] ? '<span class="italic">'.output($logRow['name']).'</span>' : output($logRow['name'])))).'</div>'.
+          '<div class="col-s-4 col-l-3">'.date('d.m.Y, H:i:s', strtotime($logRow['timestamp'])).'</div>'.
+          '<div class="col-s-4 col-l-2">'.($logRow['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$logRow['itemId'].'" target="_blank" rel="noopener">'.$logRow['itemId'].'</a>'.($logRow['logLevel'] != 5 ? '<br><a href="/resetItem?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a><br><a href="/resetOrga?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</div>'.
+          '<div class="col-s-8 col-l-4">'.clickableLinks(output($logRow['text'])).'</div>'.
           '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.
         '</div>';
       }
@@ -108,10 +109,10 @@ if(!empty($_GET['itemId'])) {
        * Loglevel
        */
       $content.= '<h3>'.$lang['itemInfo']['logLevel'].'</h3>';
-      $result = mysqli_query($dbl, 'SELECT * FROM `metaLogLevel` ORDER BY `id` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+      $logLevelResult = mysqli_query($dbl, 'SELECT * FROM `metaLogLevel` ORDER BY `id` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
       $content.= '<div class="row">';
-      while($row = mysqli_fetch_assoc($result)) {
-        $content.= '<div class="col-s-12 col-l-3" style="color: #'.$row['color'].';">'.$lang['logLevel'][$row['type']].'</div>';
+      while($logLevelRow = mysqli_fetch_assoc($logLevelResult)) {
+        $content.= '<div class="col-s-12 col-l-3" style="color: #'.$logLevelRow['color'].';">'.$lang['logLevel'][$logLevelRow['type']].'</div>';
       }
       $content.= '</div>';
       $content.= '<div class="spacer"></div>';
