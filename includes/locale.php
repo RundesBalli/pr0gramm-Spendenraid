@@ -321,5 +321,38 @@ $lang = [
     'logLevel' => 'Loglevel',
     'invalid' => 'Eingabe ungültig',
   ],
+
+  'log' => [
+    'title' => 'Log',
+    'itemInfo' => 'Info',
+    'reset' => 'Reset',
+    'resetItem' => 'Post',
+    'resetOrga' => 'Orga',
+    'log' => [
+      'title' => 'Log',
+      'id' => 'ID',
+      'username' => 'Username',
+      'timestamp' => 'Zeitpunkt',
+      'itemId' => 'Post-ID',
+      'text' => 'Text',
+      'system' => 'System',
+    ],
+    'older' => 'Älter',
+    'logLevel' => 'Loglevel',
+    'highscore' => [
+      'title' => 'Highscore (Logeinträge)',
+      'place' => 'Platz',
+      'name' => 'Username',
+      'delta' => 'Einträge',
+    ],
+    'highscoreSystem' => [
+      'title' => 'Highscore (System / KI)',
+      'symbol' => 'Symbol',
+      'name' => 'System / KI',
+      'entrys' => 'Einträge',
+      'system' => 'System',
+      'ai' => 'KI',
+    ],
+  ],
 ];
 ?>
