@@ -127,7 +127,7 @@ $lang = [
       'title' => 'Login gescheitert',
       'warnBox' => 'Die Zugangsdaten sind falsch.',
       'tryAgain' => 'Erneut versuchen',
-    ]
+    ],
   ],
 
   /**
@@ -142,7 +142,7 @@ $lang = [
     'logoutFailed' => [
       'invalidToken' => 'Ungültiges Token.',
       'back' => 'Zurück zur Übersicht',
-    ]
+    ],
   ],
 
   /**
@@ -218,7 +218,7 @@ $lang = [
       'confirmedValue' => 'bestätigte Spendensumme',
       'confirmedCount' => 'bestätigte Spendenposts',
       'average' => 'Ø pro Spende',
-    ]
+    ],
   ],
 
   /**
@@ -249,7 +249,7 @@ $lang = [
     'info' => 'Informationen zur Auswertung',
     'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt 0,01 eintragen!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!<br><span class="warn">NEU IN 2024:</span> Gute Tat = g, G oder + eintragen!',
     'allDone' => 'Alles erledigt. Nächster Crawl alle 5 Minuten. (in %d Sekunden)',
-    'evaluateOrganizations' => 'Organisationen bewerten'
+    'evaluateOrganizations' => 'Organisationen bewerten',
   ],
 
   /**
@@ -279,7 +279,7 @@ $lang = [
     'links' => 'Links',
     'itemInfo' => 'Post-Info',
     'allDone' => 'Alles erledigt.',
-    'evaluateItems' => 'Posts bewerten'
+    'evaluateItems' => 'Posts bewerten',
   ],
 
   /**
@@ -294,8 +294,10 @@ $lang = [
     'notFound' => 'Der Post existiert nicht in der Datenbank. Wenn du ihn dort erwartet hast, dann prüfe auf pr0gramm, ob er richtig getaggt wurde und dass die Tags nicht rausgevoted wurden.',
     'heading' => 'Info: itemId %d',
     'links' => 'Links',
-    'resetItem' => 'Post zurücksetzen',
-    'resetOrga' => 'Orga zurücksetzen',
+    'itemInfo' => 'Info',
+    'reset' => 'Reset',
+    'resetItem' => 'Post',
+    'resetOrga' => 'Orga',
     'unlockUser' => 'User erneut freischalten',
     'dbDump' => 'DB-Dump',
     'commentForm' => [
