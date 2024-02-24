@@ -322,6 +322,9 @@ $lang = [
     'invalid' => 'Eingabe ungültig',
   ],
 
+  /**
+   * Log
+   */
   'log' => [
     'title' => 'Log',
     'itemInfo' => 'Info',
@@ -353,6 +356,20 @@ $lang = [
       'system' => 'System',
       'ai' => 'KI',
     ],
+  ],
+
+  /**
+   * Statistics
+   */
+  'stats' => [
+    'title' => 'Statistiken',
+    '1000title' => 'Zeitpunkte der Tausender-Überschreitungen',
+    '10000title' => 'Zeitpunkte der Zehntausender-Überschreitungen',
+    '100000title' => 'Zeitpunkte der Hunderttausender-Überschreitungen',
+    'none' => 'keine',
+    'mostFrequentAmounts' => 'Häufigste Spendenbeträge',
+    'biggestAmounts' => 'Größte Spendenbeträge (ab 500€)',
+    'from' => 'von',
   ],
 ];
 ?>
