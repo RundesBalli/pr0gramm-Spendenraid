@@ -16,17 +16,14 @@ CREATE TABLE `fakes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `itemIdOriginal` int(10) unsigned NOT NULL COMMENT 'items.itemId',
   `itemIdFake` int(10) unsigned NOT NULL COMMENT 'items.itemId',
-  `userId` int(10) unsigned DEFAULT NULL COMMENT 'users.id',
   `certain` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = not sure; 1 = sure',
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Timestamp of the entry',
   PRIMARY KEY (`id`),
   UNIQUE KEY `itemIdOriginal_itemIdFake` (`itemIdOriginal`,`itemIdFake`),
-  KEY `userId` (`userId`),
   KEY `certain` (`certain`),
   KEY `timestamp` (`timestamp`),
   KEY `itemIdFake` (`itemIdFake`),
   KEY `itemIdOriginal` (`itemIdOriginal`),
-  CONSTRAINT `fakes_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fakes_ibfk_4` FOREIGN KEY (`itemIdOriginal`) REFERENCES `items` (`itemId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fakes_ibfk_5` FOREIGN KEY (`itemIdFake`) REFERENCES `items` (`itemId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Suspected fakes';
@@ -205,4 +202,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2024-02-24 20:25:00
+-- 2024-02-24 20:29:51
