@@ -61,14 +61,34 @@ if(!empty($_GET['itemId'])) {
        * Add note to log
        */
       $content.= '<h3>'.$lang['itemInfo']['commentForm']['title'].'</h3>';
-      $content.= '<form action="/addLogEntry" method="post">';
-        $content.= '<input type="hidden" name="itemId" value="'.$row['itemId'].'">';
+      $content.= '<form action="/itemInfo?itemId='.$row['itemId'].'" method="post">';
         $content.= '<input type="hidden" name="token" value="'.$sessionHash.'">';
       $content.= '<div class="row">'.
         '<div class="col-s-12 col-l-8"><input name="text" type="text" autocomplete="off" placeholder="'.$lang['itemInfo']['commentForm']['note'].'"></div>'.
         '<div class="col-s-12 col-l-4"><input type="submit" value="'.$lang['itemInfo']['commentForm']['submit'].'"></div>'.
       '</div>';
       $content.= '</form>';
+
+      /**
+       * Add note to database
+       */
+      if(!empty($_POST['text']) AND !empty(trim($_POST['text']))) {
+        /**
+         * CSRF check
+         */
+        if($_POST['token'] != $sessionHash) {
+          /**
+           * Token invalid
+           */
+          $content.= '<div class="warnBox">'.$lang['itemInfo']['addNote']['invalidToken'].'</div>';
+        } else {
+          /**
+           * Token is valid.
+           */
+          mysqli_query($dbl, "INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES (".$userId.", 8, ".$itemId.", '".defuse($_POST['text'])."')") OR DIE(MYSQLI_ERROR($dbl));$qc++;
+          $content.= '<div class="infoBox">'.$lang['itemInfo']['addNote']['success'].'</div>';
+        }
+      }
       $content.= '<div class="spacer"></div>';
 
       /**

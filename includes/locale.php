@@ -303,6 +303,10 @@ $lang = [
       'note' => 'Notiz',
       'submit' => 'Eintragen',
     ],
+    'addNote' => [
+      'invalidToken' => 'Ungültiges Token.',
+      'success' => 'Notiz eingetragen.',
+    ],
     'log' => [
       'title' => 'Log',
       'id' => 'ID',
