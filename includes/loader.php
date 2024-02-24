@@ -12,6 +12,8 @@ require_once(__DIR__.DIRECTORY_SEPARATOR.'config.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'constants.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'configCheck.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'output.php');
+require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'hex2rgb.php');
+require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'clickableLinks.php');
 
 /**
  * Database connection and functions
