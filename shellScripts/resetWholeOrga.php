@@ -32,7 +32,7 @@ if(isset($argv[1]) AND preg_match('/^[\d]{1,2}$/', defuse($argv[1]), $match) ===
 }
 
 /**
- * Abfrage ob man wirklich die Organisation zurücksetzen möchte.
+ * Ask whether the user really want to reset the organisation.
  */
 echo sprintf($lang['cli']['resetWholeOrga']['question'], $row['name']);
 if(fread(fopen("php://stdin","r"), 2) != 'ok'){
@@ -40,7 +40,7 @@ if(fread(fopen("php://stdin","r"), 2) != 'ok'){
 }
 
 /**
- * Bestätigung wurde erteilt.
+ * Confirmation was given.
  */
 $result = mysqli_query($dbl, "SELECT `id` FROM `items` WHERE `firstsightOrgaId`=".$orgaId) OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_assoc($result)) {

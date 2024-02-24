@@ -34,8 +34,8 @@ if(empty($loggedIn)) {
    */
   $nav.= '<a href="/overview"'.($route == 'overview' ? $a : NULL).'>'.$lang['nav']['overview'].'</a>';
   $nav.= '<a href="/evaluation"'.($route == 'evaluation' ? $a : NULL).'>'.$lang['nav']['evaluation'].(!empty($valCount) ? " (".$valCount.")" : NULL).'</a>';
-  $nav.= '<a href="/organization"'.($route == 'orga' ? $a : NULL).'>'.$lang['nav']['orga'].(!empty($orgaCount) ? " (".$orgaCount.")" : NULL).'</a>';
-  $nav.= '<a href="/postInfo"'.($route == 'postInfo' ? $a : NULL).'>'.$lang['nav']['postInfo'].'</a>';
+  $nav.= '<a href="/organization"'.($route == 'organization' ? $a : NULL).'>'.$lang['nav']['organization'].(!empty($orgaCount) ? " (".$orgaCount.")" : NULL).'</a>';
+  $nav.= '<a href="/itemInfo"'.($route == 'itemInfo' ? $a : NULL).'>'.$lang['nav']['itemInfo'].'</a>';
   $nav.= '<a href="/log"'.($route == 'log' ? $a : NULL).'>'.$lang['nav']['log'].'</a>';
   $nav.= '<a href="/stats"'.($route == 'stats' ? $a : NULL).'>'.$lang['nav']['stats'].'</a>';
   $nav.= '<a href="/logout"'.($route == 'logout' ? $a : NULL).'>'.$lang['nav']['logout'].'</a>';
