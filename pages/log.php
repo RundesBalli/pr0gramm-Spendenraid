@@ -50,7 +50,7 @@ while($row = mysqli_fetch_assoc($result)) {
     '<div class="col-s-4 col-l-1">'.$row['id'].'</div>'.
     '<div class="col-s-4 col-l-2">'.($row['name'] === NULL ? '<span class="italic">'.$lang['log']['log']['system'].'</span>' : ($row['name'] == $username ? '<span class="highlight">'.output($row['name']).'</span>' : ($row['bot'] ? '<span class="italic">'.output($row['name']).'</span>' : output($row['name'])))).'</div>'.
     '<div class="col-s-4 col-l-3">'.date('d.m.Y, H:i:s', strtotime($row['timestamp'])).'</div>'.
-    '<div class="col-s-4 col-l-2">'.($row['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$row['itemId'].'</a> (<a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['log']['itemInfo'].'</a>)'.($row['logLevel'] != 5 ? '<br>'.$lang['log']['reset'].': <a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['log']['resetItem'].'</a> - <a href="/resetOrga?itemId='.$row['itemId'].'">'.$lang['log']['resetOrga'].'</a>' : NULL)).'</div>'.
+    '<div class="col-s-4 col-l-2">'.($row['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$row['itemId'].'</a> (<a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['log']['itemInfo'].'</a>)'.($row['logLevel'] != 5 ? '<br>'.$lang['log']['reset'].': <a href="/reset?itemId='.$row['itemId'].'">'.$lang['log']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['log']['resetOrga'].'</a>' : NULL)).'</div>'.
     '<div class="col-s-8 col-l-4">'.clickableLinks(output($row['text'])).'</div>'.
     '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.
   '</div>';

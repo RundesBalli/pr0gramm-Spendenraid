@@ -117,7 +117,7 @@ if(isset($_POST['value']) AND !empty($_POST['itemId'])) {
             if(!empty($perk) AND $perk) {
               mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUES ("'.$row['username'].'", 1)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
             }
-            $content.= '<div class="successBox">'.$lang['evaluation']['success'].'<br><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['evaluation']['resetItem'].'</a></div>';
+            $content.= '<div class="successBox">'.$lang['evaluation']['success'].' - <a href="/reset?itemId='.$row['itemId'].'">'.$lang['evaluation']['resetItem'].'</a> - <a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['evaluation']['itemInfo'].'</a></div>';
           }
         }
       }

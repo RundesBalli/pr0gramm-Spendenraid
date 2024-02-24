@@ -68,7 +68,7 @@ $content.= '<h2>'.sprintf($lang['itemInfo']['heading'], $row['itemId']).'</h2>';
  */
 $content.= '<h3>'.$lang['itemInfo']['links'].'</h3>';
 $content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12"><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/resetOrga?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/unlockuser?user='.$row['username'].'">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</div>'.
+  '<div class="col-s-12 col-l-12">'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/unlockuser?user='.$row['username'].'">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</div>'.
 '</div>';
 $content.= '<div class="spacer"></div>';
 
@@ -133,7 +133,7 @@ while($logRow = mysqli_fetch_assoc($logResult)) {
     '<div class="col-s-4 col-l-1">'.$logRow['id'].'</div>'.
     '<div class="col-s-4 col-l-2">'.($logRow['name'] === NULL ? '<span class="italic">'.$lang['itemInfo']['log']['system'].'</span>' : ($logRow['name'] == $username ? '<span class="highlight">'.output($logRow['name']).'</span>' : ($logRow['bot'] ? '<span class="italic">'.output($logRow['name']).'</span>' : output($logRow['name'])))).'</div>'.
     '<div class="col-s-4 col-l-3">'.date('d.m.Y, H:i:s', strtotime($logRow['timestamp'])).'</div>'.
-    '<div class="col-s-4 col-l-2">'.($logRow['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$logRow['itemId'].'" target="_blank" rel="noopener">'.$logRow['itemId'].'</a> (<a href="/itemInfo?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['itemInfo'].'</a>)'.($logRow['logLevel'] != 5 ? '<br>'.$lang['itemInfo']['reset'].': <a href="/resetItem?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/resetOrga?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</div>'.
+    '<div class="col-s-4 col-l-2">'.($logRow['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$logRow['itemId'].'" target="_blank" rel="noopener">'.$logRow['itemId'].'</a> (<a href="/itemInfo?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['itemInfo'].'</a>)'.($logRow['logLevel'] != 5 ? '<br>'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</div>'.
     '<div class="col-s-8 col-l-4">'.clickableLinks(output($logRow['text'])).'</div>'.
     '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.
   '</div>';

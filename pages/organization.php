@@ -93,7 +93,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['itemId'])) {
           if(empty($error)) {
             mysqli_query($dbl, $fields['query']) OR DIE(MYSQLI_ERROR($dbl));$qc++;
             mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$userId.'", '.$fields['logLevel'].', "'.$itemId.'", "'.$fields['logText'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
-            $content.= '<div class="successBox">'.$lang['organization']['success'].'<br><a href="/resetItem?itemId='.$row['itemId'].'">'.$lang['organization']['resetItem'].'</a><br><a href="/resetOrga?itemId='.$row['itemId'].'">'.$lang['organization']['resetOrga'].'</a></div>';
+            $content.= '<div class="successBox">'.$lang['organization']['success'].'<br><a href="/reset?itemId='.$row['itemId'].'">'.$lang['organization']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['organization']['resetOrga'].'</a> - <a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['evaluation']['itemInfo'].'</a></div>';
           }
         }
       }
