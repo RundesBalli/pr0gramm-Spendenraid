@@ -281,5 +281,39 @@ $lang = [
     'allDone' => 'Alles erledigt.',
     'evaluateItems' => 'Posts bewerten'
   ],
+
+  /**
+   * itemInfo
+   */
+  'itemInfo' => [
+    'title' => 'PostInfo',
+    'form' => [
+      'placeholder' => 'Post ID / Link',
+      'submit' => 'Info',
+    ],
+    'notFound' => 'Der Post existiert nicht in der Datenbank. Wenn du ihn dort erwartet hast, dann prüfe auf pr0gramm, ob er richtig getaggt wurde und dass die Tags nicht rausgevoted wurden.',
+    'heading' => 'Info: itemId %d',
+    'links' => 'Links',
+    'resetItem' => 'Post zurücksetzen',
+    'resetOrga' => 'Orga zurücksetzen',
+    'unlockUser' => 'User erneut freischalten',
+    'dbDump' => 'DB-Dump',
+    'commentForm' => [
+      'title' => 'Logeintrag hinzufügen',
+      'note' => 'Notiz',
+      'submit' => 'Eintragen',
+    ],
+    'log' => [
+      'title' => 'Log',
+      'id' => 'ID',
+      'username' => 'Username',
+      'timestamp' => 'Zeitpunkt',
+      'itemId' => 'Post-ID',
+      'text' => 'Text',
+      'system' => 'System',
+    ],
+    'logLevel' => 'Loglevel',
+    'invalid' => 'Eingabe ungültig',
+  ],
 ];
 ?>

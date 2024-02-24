@@ -15,6 +15,7 @@ $routes = [
   'overview' => 'overview.php',
   'evaluation' => 'evaluation.php',
   'organization' => 'organization.php',
+  'itemInfo' => 'itemInfo.php',
 
   /**
    * Error pages
