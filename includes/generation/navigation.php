@@ -51,5 +51,10 @@ if(empty($loggedIn)) {
       $nav.= '<a href="/fastOrga?id='.output($row['id']).'"'.(((!empty($route) AND $route == 'fastOrga') AND !empty($_GET['id']) AND $_GET['id'] == $row['id']) ? $a : NULL).'>'.output($row['shortName']).'-'.$lang['nav']['fastOrga'].'</a>';
     }
   }
+  if(defined('perm-showQueue')) {
+    $result = mysqli_query($dbl, 'SELECT `id` FROM `queue` WHERE `error`=1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+    $queueCount = mysqli_num_rows($result);
+    $nav.= '<a href="/queue"'.((!empty($route) AND $route == 'queue') ? $a : NULL).'>'.$lang['nav']['queue'].($queueCount > 0 ? ' <span class="warn bold">('.$queueCount.')</span>' : NULL).'</a>';
+  }
 }
 ?>
