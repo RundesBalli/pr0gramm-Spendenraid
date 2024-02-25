@@ -191,27 +191,28 @@ $content.= '<h3>'.$lang['fakes']['fakes']['title'].'</h3>';
 $result = mysqli_query($dbl, 'SELECT `fakes`.* FROM `fakes` ORDER BY `id` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 if(mysqli_num_rows($result) == 0) {
   $content.= '<div class="infoBox">'.$lang['fakes']['fakes']['noEntrys'].'</div>';
-} else {
-  /**
-   * Table heading
-   */
-  $content.= '<div class="row highlight bold">'.
+  return;
+}
+
+/**
+ * Table heading
+ */
+$content.= '<div class="row highlight bold">'.
   '<div class="col-s-2 col-l-1">'.$lang['fakes']['fakes']['id'].'</div>'.
   '<div class="col-s-5 col-l-2">'.$lang['fakes']['fakes']['original'].'</div>'.
   '<div class="col-s-5 col-l-2">'.$lang['fakes']['fakes']['fake'].'</div>'.
   '<div class="col-s-12 col-l-3">'.$lang['fakes']['fakes']['timestamp'].'</div>'.
   '<div class="col-s-12 col-l-4">'.$lang['fakes']['fakes']['actions'].'</div>'.
-  '</div>';
-  while($row = mysqli_fetch_assoc($result)) {
-    $content.= '<div class="row hover bordered">'.
+'</div>';
+while($row = mysqli_fetch_assoc($result)) {
+  $content.= '<div class="row hover bordered">'.
     '<div class="col-s-2 col-l-1">'.$row['id'].'</div>'.
     '<div class="col-s-5 col-l-2"><a href="https://pr0gramm.com/new/'.$row['itemIdOriginal'].'" target="_blank" rel="noopener">'.$row['itemIdOriginal'].'</a></div>'.
     '<div class="col-s-5 col-l-2"><a href="https://pr0gramm.com/new/'.$row['itemIdFake'].'" target="_blank" rel="noopener">'.$row['itemIdFake'].'</a><br><span class="smaller">('.($row['certain'] == 1 ? $lang['fakes']['fakes']['certain'] : $lang['fakes']['fakes']['uncertain']).')</span></div>'.
     '<div class="col-s-12 col-l-3">'.$row['timestamp'].'</div>'.
     '<div class="col-s-6 col-l-2"><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="certain" value="'.$lang['fakes']['fakes']['certainButton'].'"></form></div>'.
     '<div class="col-s-6 col-l-2"><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="del" value="'.$lang['fakes']['fakes']['delButton'].'"></form></div>'.
-    '</div>';
-  }
+  '</div>';
 }
 $content.= '<div class="spacer"></div>';
 ?>
