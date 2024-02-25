@@ -32,7 +32,7 @@ if(isset($_POST['del']) AND !empty($_POST['itemId']) AND is_numeric($_POST['item
   /**
    * Check whether the item exists.
    */
-  $result = mysqli_query($dbl, 'SELECT `id` FROM `items` WHERE `itemId`='.$itemId.' AND `delFlag`=1 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+  $result = mysqli_query($dbl, 'SELECT `id`, `username`, `isDonation` FROM `items` WHERE `itemId`='.$itemId.' AND `delFlag`=1 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
   if(!mysqli_num_rows($result)) {
     /**
      * The item does not exist.
@@ -53,6 +53,9 @@ if(isset($_POST['del']) AND !empty($_POST['itemId']) AND is_numeric($_POST['item
        * Token is correct.
        */
       mysqli_query($dbl, 'DELETE FROM `items` WHERE `itemId`='.$itemId.' LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+      if($row['isDonation'] != 0) {
+        mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUES ("'.$row['username'].'", 0)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+      }
       mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ("'.$userId.'", 8, "'.sprintf($lang['delList']['log'], $itemId).'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
       $content.= '<div class="successBox">'.$lang['delList']['success'].'</div>';
     }
