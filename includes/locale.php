@@ -502,5 +502,26 @@ $lang = [
     'itemInfo' => 'PostInfo',
     'delete' => 'Löschen',
   ],
+
+  /**
+   * FastOrga
+   */
+  'fastOrga' => [
+    'title' => 'Organisations Schnellbewertung',
+    'noPermission' => 'Du hast keine Berechtigung auf diese Seite zuzugreifen.',
+    'noId' => 'Es wurde keine Organisations ID übergeben.',
+    'invalidId' => 'Es wurde keine gültige Organisations ID übergeben oder die Organisation ist nicht zur Schnellbewertung zugelassen.',
+    'invalidItemId' => 'Die übergebene Post-ID ist ungültig, wurde nicht als Spende bewertet, wurde schon zwei Mal bewertet oder darf kein zweites Mal von dir bewertet werden.',
+    'log' => [
+      'organization' => 'Orga (Schnellbewertung)',
+      'confirmingReset' => 'Erstsichtung',
+    ],
+    'success' => 'Organisation eingetragen.',
+    'successTab' => 'Dieser Tab kann geschlossen werden und wird nicht weiter benötigt.',
+    'noteTitle' => 'Wichtiger Hinweis',
+    'note1' => 'Beim Klick auf einen Thumbnail wird er direkt der jeweiligen Organisation zugeordnet (Erst- und Zweitsichtung wie über die normale Bewertung finden trotzdem statt!).',
+    'note2' => 'Mittelklick (Mausrad) öffnet einen neuen Tab.',
+    'allDone' => 'Alles erledigt.',
+  ],
 ];
 ?>
