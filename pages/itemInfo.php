@@ -68,9 +68,19 @@ $content.= '<h2>'.sprintf($lang['itemInfo']['heading'], $row['itemId']).'</h2>';
  */
 $content.= '<h3>'.$lang['itemInfo']['links'].'</h3>';
 $content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12">'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/unlockuser?user='.$row['username'].'">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</div>'.
+  '<div class="col-s-12 col-l-12">'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/itemInfo?itemId='.$row['itemId'].'&unlockUser">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</div>'.
 '</div>';
 $content.= '<div class="spacer"></div>';
+
+/**
+ * Unlock user again.
+ */
+if(isset($_GET['unlockUser'])) {
+  mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUE ("'.defuse($row['username']).'", 1)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+  mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('.$userId.', 6, "'.sprintf($lang['itemInfo']['unlock']['log'], defuse($row['username'])).'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+  $content.= '<div class="successBox">'.$lang['itemInfo']['unlock']['success'].'</div>';
+  $content.= '<div class="spacer"></div>';
+}
 
 /**
  * Add note to log

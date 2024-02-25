@@ -300,6 +300,10 @@ $lang = [
     'resetItem' => 'Post',
     'resetOrga' => 'Orga',
     'unlockUser' => 'User erneut freischalten',
+    'unlock' => [
+      'log' => 'User %s nochmals zur Freischaltung vorgemerkt.',
+      'success' => 'User erneut zur Freischaltung vorgemerkt.',
+    ],
     'dbDump' => 'DB-Dump',
     'commentForm' => [
       'title' => 'Logeintrag hinzufügen',
