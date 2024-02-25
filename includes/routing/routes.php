@@ -20,6 +20,7 @@ $routes = [
   'stats' => 'stats.php',
   'reset' => 'reset.php',
   'fakes' => 'fakes.php',
+  'queue' => 'queue.php',
 
   /**
    * Error pages
