@@ -171,7 +171,8 @@ CREATE TABLE `queue` (
   `action` tinyint(1) unsigned NOT NULL COMMENT '1 = unlock; 0 = lock',
   `error` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 = error',
   PRIMARY KEY (`id`),
-  KEY `error` (`error`)
+  KEY `error` (`error`),
+  KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Queue for the perks';
 
 
@@ -214,4 +215,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2024-02-25 15:42:16
+-- 2024-02-25 21:43:52
