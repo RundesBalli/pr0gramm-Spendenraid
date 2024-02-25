@@ -248,7 +248,7 @@ $lang = [
     'links' => 'Links',
     'itemInfo' => 'PostInfo',
     'info' => 'Informationen zur Auswertung',
-    'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt 0,01 eintragen!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!<br><span class="warn">NEU IN 2024:</span> Gute Tat = g, G oder + eintragen!',
+    'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br><span class="warn bold">NEU IN 2024:</span> Gute Tat = g, G oder + eintragen!<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt 0,01 eintragen!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!',
     'allDone' => 'Alles erledigt. Nächster Crawl alle 5 Minuten. (in %d Sekunden)',
     'evaluateOrganizations' => 'Organisationen bewerten',
   ],
