@@ -161,7 +161,19 @@ TRUNCATE `permissions`;
 INSERT INTO `permissions` (`id`, `name`, `description`) VALUES
 (1,	'delList',	'Allow access to the delList and delete items'),
 (2,	'fastOrgaEvaluation',	'Allow access to the fast organization evaluation'),
-(3,	'fakes',	'Allow access to the fakes list and the modification of entrys');
+(3,	'fakes',	'Allow access to the fakes list and the modification of entrys'),
+(4,	'showQueue',	'Permission to view the perk queue.');
+
+DROP TABLE IF EXISTS `queue`;
+CREATE TABLE `queue` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Username',
+  `action` tinyint(1) unsigned NOT NULL COMMENT '1 = unlock; 0 = lock',
+  `error` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 = error',
+  PRIMARY KEY (`id`),
+  KEY `error` (`error`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Queue for the perks';
+
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -202,4 +214,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2024-02-24 20:29:51
+-- 2024-02-25 15:42:16

@@ -105,6 +105,7 @@ $lang = [
     'delList' => 'Löschliste',
     'fakes' => 'Fälschungen',
     'fastOrga' => 'fastOrga',
+    'queue' => 'Queue',
   ],
 
   /**
@@ -457,6 +458,23 @@ $lang = [
       'certainButton' => 'sicher umschalten',
       'delButton' => 'löschen',
     ],
+  ],
+
+  /**
+   * Queue
+   */
+  'queue' => [
+    'title' => 'Queue',
+    'noPermission' => 'Du hast keine Berechtigung auf diese Seite zuzugreifen.',
+    'noElements' => 'Keine Elemente vorhanden',
+    'id' => 'ID',
+    'name' => 'Username',
+    'action' => 'Aktion',
+    'error' => 'Fehler',
+    'lock' => 'Sperren',
+    'unlock' => 'Entsperren',
+    'yes' => 'Ja',
+    'no' => 'Nein',
   ],
 ];
 ?>
