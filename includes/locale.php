@@ -394,5 +394,69 @@ $lang = [
     'itemInfo' => 'PostInfo',
     'evaluateItems' => 'Posts bewerten',
   ],
+
+  /**
+   * Fakes
+   */
+  'fakes' => [
+    'title' => 'Fälschungen',
+    'noPermission' => 'Du hast keine Berechtigung auf diese Seite zuzugreifen.',
+    'notFound' => 'Ein Fälschungseintrag mit der ID existiert nicht.',
+    'invalidToken' => 'Ungültiges Token.',
+    'del' => [
+      'log' => 'Fakevermutung gelöscht.',
+      'success' => 'Fakevermutung gelöscht.',
+    ],
+    'toggleCertain' => [
+      'log' => [
+        'certain' => 'Fake als sicher eingestuft.',
+        'uncertain' => 'Fake als unsicher eingestuft.',
+      ],
+      'success' => [
+        'certain' => 'Fake als sicher eingestuft.',
+        'uncertain' => 'Fake als unsicher eingestuft.',
+      ],
+    ],
+    'add' => [
+      'invalidIds' => 'Die eingegebenen Post-IDs sind nicht korrekt.',
+      'sameIds' => 'Du musst unterschiedliche Post-IDs eingeben.',
+      'idsNotFound' => 'Mindestens einer der eingegebenen Post-IDs existiert nicht.',
+      'fakeExists' => 'Dieser Fakeeintrag existiert bereits.',
+      'log' => [
+        'message' => 'Fake eingetragen (%s), Originalpost: %d',
+        'certain' => 'sicher',
+        'uncertain' => 'unsicher',
+      ],
+      'success' => 'Fake eingetragen.',
+    ],
+    'findFakes' => [
+      'title' => 'Fälschungen finden',
+      'queryTitles' => [
+      ],
+    ],
+    'addForm' => [
+      'title' => 'Eintrag hinzufügen',
+      'items' => 'Posts',
+      'original' => 'Originalpost',
+      'fake' => 'Fakepost',
+      'certain' => 'Sicher?',
+      'yes' => 'Ja',
+      'no' => 'Nein',
+      'submit' => 'Eintragen',
+    ],
+    'fakes' => [
+      'title' => 'Fälschungen',
+      'noEntrys' => 'Es sind keine Einträge vorhanden.',
+      'id' => 'ID',
+      'original' => 'Original',
+      'fake' => 'Fälschung',
+      'timestamp' => 'Zeitpunkt der Feststellung',
+      'certain' => 'sicher',
+      'uncertain' => 'unsicher',
+      'actions' => 'Aktionen',
+      'certainButton' => 'sicher umschalten',
+      'delButton' => 'löschen',
+    ],
+  ],
 ];
 ?>

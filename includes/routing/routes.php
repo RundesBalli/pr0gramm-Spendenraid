@@ -19,6 +19,7 @@ $routes = [
   'log' => 'log.php',
   'stats' => 'stats.php',
   'reset' => 'reset.php',
+  'fakes' => 'fakes.php',
 
   /**
    * Error pages

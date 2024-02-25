@@ -44,4 +44,10 @@ const COOKIE_NAME = 'spendenraid';
  * Regex to match the itemId.
  */
 const ITEM_REGEX = '/(?:(?:https?:\/\/pr0gramm\.com)?\/(?:top|new|user\/\w+\/(?:uploads|likes)|stalk)(?:(?:\/\w+)?)\/)?([1-9]\d*)(?:(?::comment(?:\d+))?)?/i';
+
+/**
+ * Fake finder querys
+ */
+const FAKE_QUERYS = [
+];
 ?>
