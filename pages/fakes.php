@@ -140,10 +140,10 @@ if(isset($_POST['add']) AND (!empty($_POST['original']) AND !empty($_POST['fake'
 /**
  * Find fakes.
  */
-$content.= '<h3>'.$lang['fakes']['findFakes']['title'].'</h3>';
+$content.= '<h3>'.$lang['fakes']['fakeFinder']['title'].'</h3>';
 $content.= '<div class="row">';
 foreach(FAKE_QUERYS as $key => $val) {
-  $content.= '<div class="col-s-12 col-l-4"><a href="/fakeItems?id='.$key.'">'.$lang['fakes']['findFakes']['queryTitles'][$key].'</a></div>';
+  $content.= '<div class="col-s-12 col-l-4"><a href="/fakeFinder?id='.$key.'">'.$lang['fakes']['fakeFinder']['queryTitles'][$key].'</a></div>';
 }
 $content.= '</div>';
 $content.= '<div class="spacer"></div>';

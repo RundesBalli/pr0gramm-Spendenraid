@@ -430,10 +430,17 @@ $lang = [
       ],
       'success' => 'Fake eingetragen.',
     ],
-    'findFakes' => [
+    'fakeFinder' => [
       'title' => 'Fälschungen finden',
       'queryTitles' => [
+        'alle ohne 1, 2 & 9',
+        'alle DKMS',
+        'alle dt. Krebshilfe',
+        'alle diversen Organisationen',
+        'alle guten Taten',
+        'alle sortiert nach gleichem Wert/Orga',
       ],
+      'invalidQueryId' => 'Ungültige Query ID.',
     ],
     'addForm' => [
       'title' => 'Eintrag hinzufügen',
