@@ -12,7 +12,7 @@ if(empty($loggedIn)) {
   /**
    * Navigation elements when not logged in.
    */
-  $nav.= '<a href="/"'.($route == 'login' ? $a : NULL).'>'.$lang['nav']['login'].'</a>';
+  $nav.= '<a href="/"'.((!empty($route) AND $route == 'login') ? $a : NULL).'>'.$lang['nav']['login'].'</a>';
   $nav.= '<a href="https://RundesBalli.com" target="_blank" rel="noopener">RundesBalli</a>';
   $nav.= '<a href="https://pr0gramm.com/inbox/messages/RundesBalli" target="_blank" rel="noopener">'.$lang['nav']['contact'].'</a>';
   $nav.= '<a href="https://github.com/RundesBalli/pr0gramm-Spendenraid" target="_blank" rel="noopener">'.$lang['nav']['github'].'</a>';
@@ -32,23 +32,23 @@ if(empty($loggedIn)) {
   /**
    * Navigation Elements when logged in.
    */
-  $nav.= '<a href="/overview"'.($route == 'overview' ? $a : NULL).'>'.$lang['nav']['overview'].'</a>';
-  $nav.= '<a href="/evaluation"'.($route == 'evaluation' ? $a : NULL).'>'.$lang['nav']['evaluation'].(!empty($valCount) ? " (".$valCount.")" : NULL).'</a>';
-  $nav.= '<a href="/organization"'.($route == 'organization' ? $a : NULL).'>'.$lang['nav']['organization'].(!empty($orgaCount) ? " (".$orgaCount.")" : NULL).'</a>';
-  $nav.= '<a href="/itemInfo"'.($route == 'itemInfo' ? $a : NULL).'>'.$lang['nav']['itemInfo'].'</a>';
-  $nav.= '<a href="/log"'.($route == 'log' ? $a : NULL).'>'.$lang['nav']['log'].'</a>';
-  $nav.= '<a href="/stats"'.($route == 'stats' ? $a : NULL).'>'.$lang['nav']['stats'].'</a>';
-  $nav.= '<a href="/logout"'.($route == 'logout' ? $a : NULL).'>'.$lang['nav']['logout'].'</a>';
+  $nav.= '<a href="/overview"'.((!empty($route) AND $route == 'overview') ? $a : NULL).'>'.$lang['nav']['overview'].'</a>';
+  $nav.= '<a href="/evaluation"'.((!empty($route) AND $route == 'evaluation') ? $a : NULL).'>'.$lang['nav']['evaluation'].(!empty($valCount) ? " (".$valCount.")" : NULL).'</a>';
+  $nav.= '<a href="/organization"'.((!empty($route) AND $route == 'organization') ? $a : NULL).'>'.$lang['nav']['organization'].(!empty($orgaCount) ? " (".$orgaCount.")" : NULL).'</a>';
+  $nav.= '<a href="/itemInfo"'.((!empty($route) AND $route == 'itemInfo') ? $a : NULL).'>'.$lang['nav']['itemInfo'].'</a>';
+  $nav.= '<a href="/log"'.((!empty($route) AND $route == 'log') ? $a : NULL).'>'.$lang['nav']['log'].'</a>';
+  $nav.= '<a href="/stats"'.((!empty($route) AND $route == 'stats') ? $a : NULL).'>'.$lang['nav']['stats'].'</a>';
+  $nav.= '<a href="/logout"'.((!empty($route) AND $route == 'logout') ? $a : NULL).'>'.$lang['nav']['logout'].'</a>';
   if(defined('perm-delList')) {
-    $nav.= '<a href="/delList"'.($route == 'delList' ? $a : NULL).'>'.$lang['nav']['delList'].'</a>';
+    $nav.= '<a href="/delList"'.((!empty($route) AND $route == 'delList') ? $a : NULL).'>'.$lang['nav']['delList'].'</a>';
   }
   if(defined('perm-fakes')) {
-    $nav.= '<a href="/fakes"'.($route == 'fakes' ? $a : NULL).'>'.$lang['nav']['fakes'].'</a>';
+    $nav.= '<a href="/fakes"'.((!empty($route) AND $route == 'fakes') ? $a : NULL).'>'.$lang['nav']['fakes'].'</a>';
   }
   if(defined('perm-fastOrgaEvaluation')) {
     $result = mysqli_query($dbl, 'SELECT `id`, `shortName` FROM `metaOrganizations` WHERE `shortName` IS NOT NULL ORDER BY `sortIndex` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
     while($row = mysqli_fetch_assoc($result)) {
-      $nav.= '<a href="/fastOrga?id='.output($row['id']).'"'.(($route == 'fastOrga' AND !empty($_GET['id']) AND $_GET['id'] == $row['id']) ? $a : NULL).'>'.output($row['shortName']).'-'.$lang['nav']['fastOrga'].'</a>';
+      $nav.= '<a href="/fastOrga?id='.output($row['id']).'"'.(((!empty($route) AND $route == 'fastOrga') AND !empty($_GET['id']) AND $_GET['id'] == $row['id']) ? $a : NULL).'>'.output($row['shortName']).'-'.$lang['nav']['fastOrga'].'</a>';
     }
   }
 }
