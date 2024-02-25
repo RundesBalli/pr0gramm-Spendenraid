@@ -22,6 +22,7 @@ $routes = [
   'fakes' => 'fakes.php',
   'fakeFinder' => 'fakeFinder.php',
   'queue' => 'queue.php',
+  'delList' => 'delList.php',
 
   /**
    * Error pages

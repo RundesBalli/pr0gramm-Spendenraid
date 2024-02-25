@@ -483,5 +483,24 @@ $lang = [
     'yes' => 'Ja',
     'no' => 'Nein',
   ],
+
+  /**
+   * delList
+   */
+  'delList' => [
+    'title' => 'Löschliste',
+    'noPermission' => 'Du hast keine Berechtigung auf diese Seite zuzugreifen.',
+    'notFound' => 'Es gibt keinen Post mit der übergebenen ID oder das Löschkennzeichen ist nicht vorhanden.',
+    'invalidToken' => 'Ungültiges Token.',
+    'log' => 'Post gelöscht (ID: %d)',
+    'success' => 'Post gelöscht.',
+    'noItems' => 'Es gibt keine Posts mit Löschkennzeichen.',
+    'itemId' => 'Post-ID',
+    'sums' => 'Spendensummen (Erst-/Zweitsicht)',
+    'organizations' => 'Organisationen (Erst-/Zweitsicht)',
+    'actions' => 'Aktionen',
+    'itemInfo' => 'PostInfo',
+    'delete' => 'Löschen',
+  ],
 ];
 ?>
