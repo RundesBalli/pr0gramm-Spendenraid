@@ -37,4 +37,11 @@ const COOKIE_DURATION = 86400*7;
  * The name of the cookie.
  */
 const COOKIE_NAME = 'spendenraid';
+
+/**
+ * Item regex
+ * 
+ * Regex to match the itemId.
+ */
+const ITEM_REGEX = '/(?:(?:https?:\/\/pr0gramm\.com)?\/(?:top|new|user\/\w+\/(?:uploads|likes)|stalk)(?:(?:\/\w+)?)\/)?([1-9]\d*)(?:(?::comment(?:\d+))?)?/i';
 ?>

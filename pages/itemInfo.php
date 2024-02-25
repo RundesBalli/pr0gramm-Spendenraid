@@ -42,7 +42,7 @@ if(empty($_GET['itemId'])) {
 /**
  * Check whether a correct itemId or link has been provided.
  */
-if(preg_match('/(?:(?:https?:\/\/pr0gramm\.com)?\/(?:top|new|user\/\w+\/(?:uploads|likes)|stalk)(?:(?:\/\w+)?)\/)?([1-9]\d*)(?:(?::comment(?:\d+))?)?/i', defuse($_GET['itemId']), $match) !== 1) {
+if(preg_match(ITEM_REGEX, defuse($_GET['itemId']), $match) !== 1) {
   $content.= '<div class="warnBox">'.$lang['itemInfo']['invalid'].'</div>';
   return;
 }
