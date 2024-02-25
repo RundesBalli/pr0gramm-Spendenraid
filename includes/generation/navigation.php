@@ -40,21 +40,21 @@ if(empty($loggedIn)) {
   $nav.= '<a href="/stats"'.((!empty($route) AND $route == 'stats') ? $a : NULL).'>'.$lang['nav']['stats'].'</a>';
   $nav.= '<a href="/logout"'.((!empty($route) AND $route == 'logout') ? $a : NULL).'>'.$lang['nav']['logout'].'</a>';
   if(defined('perm-delList')) {
-    $nav.= '<a href="/delList"'.((!empty($route) AND $route == 'delList') ? $a : NULL).'>'.$lang['nav']['delList'].'</a>';
+    $nav.= '<a href="/delList"'.((!empty($route) AND $route == 'delList') ? $a : NULL).' class="smaller">'.$lang['nav']['delList'].'</a>';
   }
   if(defined('perm-fakes')) {
-    $nav.= '<a href="/fakes"'.((!empty($route) AND $route == 'fakes') ? $a : NULL).'>'.$lang['nav']['fakes'].'</a>';
+    $nav.= '<a href="/fakes"'.((!empty($route) AND $route == 'fakes') ? $a : NULL).' class="smaller">'.$lang['nav']['fakes'].'</a>';
   }
   if(defined('perm-fastOrgaEvaluation')) {
     $result = mysqli_query($dbl, 'SELECT `id`, `shortName` FROM `metaOrganizations` WHERE `shortName` IS NOT NULL ORDER BY `sortIndex` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
     while($row = mysqli_fetch_assoc($result)) {
-      $nav.= '<a href="/fastOrga?id='.output($row['id']).'"'.(((!empty($route) AND $route == 'fastOrga') AND !empty($_GET['id']) AND $_GET['id'] == $row['id']) ? $a : NULL).'>'.output($row['shortName']).'-'.$lang['nav']['fastOrga'].'</a>';
+      $nav.= '<a href="/fastOrga?id='.output($row['id']).'"'.(((!empty($route) AND $route == 'fastOrga') AND !empty($_GET['id']) AND $_GET['id'] == $row['id']) ? $a : NULL).' class="smaller">'.output($row['shortName']).'-'.$lang['nav']['fastOrga'].'</a>';
     }
   }
   if(defined('perm-showQueue')) {
     $result = mysqli_query($dbl, 'SELECT `id` FROM `queue` WHERE `error`=1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
     $queueCount = mysqli_num_rows($result);
-    $nav.= '<a href="/queue"'.((!empty($route) AND $route == 'queue') ? $a : NULL).'>'.$lang['nav']['queue'].($queueCount > 0 ? ' <span class="warn bold">('.$queueCount.')</span>' : NULL).'</a>';
+    $nav.= '<a href="/queue"'.((!empty($route) AND $route == 'queue') ? $a : NULL).' class="smaller">'.$lang['nav']['queue'].($queueCount > 0 ? ' <span class="warn bold">('.$queueCount.')</span>' : NULL).'</a>';
   }
 }
 ?>
