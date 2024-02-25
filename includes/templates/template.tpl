@@ -9,7 +9,7 @@ https://RundesBalli.com
     <link href="/assets/css/themes/dark.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/fontawesome.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/png">
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png">
     <meta name="theme-color" content="#161618">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
