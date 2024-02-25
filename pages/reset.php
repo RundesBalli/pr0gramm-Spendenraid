@@ -27,6 +27,7 @@ if(!mysqli_num_rows($result)) {
   $content.= '<div class="warnBox">'.$lang['reset']['invalidId'].'</div>';
   return;
 }
+$row = mysqli_fetch_assoc($result);
 
 /**
  * Title and heading
@@ -81,7 +82,7 @@ mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) V
 /**
  * If the whole item has been resetted, the perk has to be checked and locked.
  */
-if(!isset($_GET['organization'])) {
+if(!isset($_GET['organization']) AND $row['isDonation'] !== NULL) {
   mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUES ("'.$row['username'].'", 0)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 }
 $content.= '<div class="successBox">'.(isset($_GET['organization']) ? $lang['reset']['successOrga'] : $lang['reset']['success']).'<br><a href="/itemInfo?itemId='.$itemId.'">'.$lang['reset']['itemInfo'].'</a> - <a href="/evaluation">'.$lang['reset']['evaluateItems'].'</a></div>';
