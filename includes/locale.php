@@ -63,6 +63,18 @@ $lang = [
       'transmitToAiSuccessful' => '[CRON, KI] Übergabe an die KI erfolgreich.',
       'transmitToAiFailed' => '[CRON, KI] Übergabe an die KI NICHT erfolgreich. Response: %s',
     ],
+    'queue' => [
+      'noPerkSecret' => 'Es wurde kein perkSecret konfiguriert.'."\n\n",
+      'justInCaseLock' => 'User %s sollte freigeschaltet werden, hat aber nichts vorzuweisen. Wird vorsichtshalber nochmal gesperrt.',
+      'unlock' => [
+        'success' => 'User %s freigeschaltet.',
+        'failure' => 'User %s konnte nicht freigeschaltet werden.',
+      ],
+      'lock' => [
+        'success' => 'User %s gesperrt.',
+        'failure' => 'User %s konnte nicht gesperrt werden.',
+      ],
+    ],
   ],
 
   /**
