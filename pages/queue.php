@@ -29,7 +29,7 @@ if(!defined('perm-showQueue')) {
  */
 $result = mysqli_query($dbl, 'SELECT * FROM `queue` ORDER BY `id` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 if(!mysqli_num_rows($result)) {
-  $content.= '<div class="warnBox">'.$lang['queue']['noElements'].'</div>';
+  $content.= '<div class="infoBox">'.$lang['queue']['noElements'].'</div>';
   return;
 }
 
