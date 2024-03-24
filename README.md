@@ -30,9 +30,11 @@ The following `crontab -e` entries are required for this:
 ```
 # Donation raid, annually from 27-31 March, full scan every 15 minutes, otherwise small scan every 5 minutes.
 # Last scan on 01.04. at 00:00:00 to complete March.
+# Queue every minute.
 */15 * 27-31 3 * /usr/bin/php /path/to/spendenraid/shellScripts/crawler.php full >/dev/null 2>&1
 5,10,20,25,35,40,50,55 * 27-31 3 * /usr/bin/php /path/to/spendenraid/shellScripts/crawler.php >/dev/null 2>&1
 0 0 1 4 * /usr/bin/php /path/to/spendenraid/shellScripts/crawler.php full >/dev/null 2>&1
+* * 27-31 3 * /usr/bin/php /path/to/spendenraid/shellScripts/queue.php >/dev/null 2>&1
 ```
 
 ## Acknowledgement
