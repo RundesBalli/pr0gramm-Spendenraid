@@ -54,7 +54,7 @@ if(!isset($_POST['submit'])) {
      * Deletion of the session and the cookie. Redirecting to the login page.
      */
     mysqli_query($dbl, 'DELETE FROM `sessions` WHERE `userId`='.$userId) OR DIE(MYSQLI_ERROR($dbl));$qc++;
-    mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('.$userId.', 1, "Logout: '.$username.'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+    mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('.$userId.', 1, "Logout")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
     setcookie(COOKIE_NAME, NULL, 0, NULL, NULL, TRUE, TRUE);
     header('Location: /');
     die();

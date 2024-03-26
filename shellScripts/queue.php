@@ -65,7 +65,7 @@ while($row = mysqli_fetch_assoc($result)) {
       /**
        * Unlock the user.
        */
-      $response = apiCall('https://pr0gramm.com/api/casino/unlockUser', ['secret' => $perkSecret, 'name' => $row['name'], 'confirmedValue' => floatval($row['confirmedValue']), 'goodActs' => intval($row['goodActs'])]);
+      $response = apiCall('https://pr0gramm.com/api/casino/unlockUser', ['secret' => $perkSecret, 'name' => $row['name'], 'confirmedValue' => floatval($innerRow['confirmedValue']), 'goodActs' => intval($innerRow['goodActs'])]);
       if($response['success'] == TRUE) {
         /**
          * All right. Remove the entry from the queue.
