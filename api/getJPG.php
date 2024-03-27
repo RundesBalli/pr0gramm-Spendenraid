@@ -50,11 +50,9 @@ if(empty($aiSettings['editPostToken']) OR empty($aiSettings['userId'])) {
 }
 
 /**
- * Read out the header and check whether the Auth header is set and correct.
+ * Read out if the apiAuth is set and correct.
  */
-$headers = getallheaders();
-
-if(empty($headers['apiAuth'])) {
+if(empty($_GET['apiAuth'])) {
   header("Content-Type: application/json; charset=utf-8");
   http_response_code(400);
   die(
@@ -67,7 +65,7 @@ if(empty($headers['apiAuth'])) {
   );
 }
 
-if($headers['apiAuth'] != $aiSettings['editPostToken']) {
+if($_GET['apiAuth'] != $aiSettings['editPostToken']) {
   header("Content-Type: application/json; charset=utf-8");
   http_response_code(401);
   die(
