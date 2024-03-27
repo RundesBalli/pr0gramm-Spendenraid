@@ -71,7 +71,7 @@ while($row = mysqli_fetch_assoc($result)) {
     /**
      * User should be unlocked, so it is necessary to check if the unlocking is really allowed.
      */
-    if($confirmedValue > 0 OR $goodAct > 0) {
+    if($confirmedValue > 0 OR $goodActs > 0) {
       /**
        * Unlock the user.
        */
