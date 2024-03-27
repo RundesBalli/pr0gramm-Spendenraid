@@ -25,6 +25,15 @@ if(!defined('perm-showQueue')) {
 }
 
 /**
+ * Reset
+ */
+if(isset($_GET['reset'])) {
+  mysqli_query($dbl, 'UPDATE `queue` SET `error`=0') OR DIE(MYSQLI_ERROR($dbl));
+  $content.= '<div class="successBox">'.$lang['queue']['resetSuccess'].'</div>';
+  mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ("'.$userId.'", 6, "'.$lang['queue']['resetLog'].'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+}
+
+/**
  * Check whether elements are available.
  */
 $result = mysqli_query($dbl, 'SELECT * FROM `queue` ORDER BY `id` ASC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
@@ -32,6 +41,14 @@ if(!mysqli_num_rows($result)) {
   $content.= '<div class="infoBox">'.$lang['queue']['noElements'].'</div>';
   return;
 }
+
+/**
+ * Reset link
+ */
+$content.= '<div class="row">'.
+  '<div class="col-s-12 col-l-12"><a href="/queue?reset">'.$lang['queue']['resetLink'].'</a></div>'.
+'</div>';
+$content.= '<div class="spacer"></div>';
 
 /**
  * Table heading.
