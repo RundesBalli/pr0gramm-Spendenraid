@@ -85,5 +85,5 @@ mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) V
 if(!isset($_GET['organization']) AND $row['isDonation'] !== NULL) {
   mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUES ("'.$row['username'].'", 0)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 }
-$content.= '<div class="successBox">'.(isset($_GET['organization']) ? $lang['reset']['successOrga'] : $lang['reset']['success']).'<br><a href="/itemInfo?itemId='.$itemId.'">'.$lang['reset']['itemInfo'].'</a> - <a href="/evaluation">'.$lang['reset']['evaluateItems'].'</a></div>';
+$content.= '<div class="successBox">'.(isset($_GET['organization']) ? $lang['reset']['successOrga'] : $lang['reset']['success']).'<br><a href="/itemInfo?itemId='.$itemId.'">'.$lang['reset']['itemInfo'].'</a> - <a href="/evaluation">'.$lang['reset']['evaluateItems'].'</a> - <a href="/organization">'.$lang['reset']['evaluateOrganizations'].'</a></div>';
 ?>

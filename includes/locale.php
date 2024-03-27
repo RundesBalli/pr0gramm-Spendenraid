@@ -411,6 +411,7 @@ $lang = [
     'successOrga' => 'Organisation zurückgesetzt.',
     'itemInfo' => 'PostInfo',
     'evaluateItems' => 'Posts bewerten',
+    'evaluateOrganizations' => 'Organisationen bewerten',
   ],
 
   /**
