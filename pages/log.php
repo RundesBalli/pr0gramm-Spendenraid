@@ -117,7 +117,7 @@ $content.= '<div class="row highlight bold">'.
   '<div class="col-s-6 col-l-4">'.$lang['log']['highscoreSystem']['name'].'</div>'.
   '<div class="col-s-4 col-l-6">'.$lang['log']['highscoreSystem']['entrys'].'</div>'.
 '</div>';
-$result = mysqli_query($dbl, 'SELECT count(`log`.`id`) AS `count`, `userId` FROM `log` WHERE `userId` IS NULL'.(!empty($kiUserId) ? ' OR `userId`='.$kiUserId : NULL).' GROUP BY `userId` ORDER BY `count` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+$result = mysqli_query($dbl, 'SELECT count(`log`.`id`) AS `count`, `userId` FROM `log` WHERE `userId` IS NULL'.(!empty($aiSettings['userId']) ? ' OR `userId`='.$aiSettings['userId'] : NULL).' GROUP BY `userId` ORDER BY `count` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 while($row = mysqli_fetch_assoc($result)) {
   $content.= '<div class="row hover">'.
     '<div class="col-s-2 col-l-2">&#x1F5A5;</div>'.
