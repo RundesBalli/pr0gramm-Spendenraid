@@ -51,7 +51,7 @@ while($row = mysqli_fetch_assoc($result)) {
   /**
    * Get sums and counts.
    */
-  $innerResult = mysqli_query($dbl, 'SELECT (SELECT IFNULL(sum(`confirmedValue`), 0) FROM `items` WHERE `username`="'.defuse($row['name']).'" AND `confirmedOrgaId`!=9) as `confirmedValue`, (SELECT count(`id`) FROM `items` WHERE `username`="'.defuse($row['name']).'" AND `confirmedOrgaId`=9) as `goodActs`') OR DIE(MYSQLI_ERROR($dbl));
+  $innerResult = mysqli_query($dbl, 'SELECT (SELECT IFNULL(sum(`confirmedValue`), 0) FROM `items` WHERE `username`="'.defuse($row['name']).'" AND `confirmedOrgaId`!=9 AND `isDonation`=1) as `confirmedValue`, (SELECT count(`id`) FROM `items` WHERE `username`="'.defuse($row['name']).'" AND `confirmedOrgaId`=9 AND `isDonation`=2) as `goodActs`') OR DIE(MYSQLI_ERROR($dbl));
   $innerRow = mysqli_fetch_assoc($innerResult);
 
   /**
