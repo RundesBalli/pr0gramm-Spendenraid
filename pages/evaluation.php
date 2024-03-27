@@ -227,6 +227,7 @@ if(mysqli_num_rows($result) == 1) {
    * Everything done.
    */
   $secondsToNextCrawl = (ceil(time()/300)*300)-time();
+  $title = $secondsToNextCrawl.'s - '.$lang['evaluation']['title'];
   $content.= '<div class="infoBox">'.sprintf($lang['evaluation']['allDone'], $secondsToNextCrawl).'<br><a href="/organization" autofocus>'.$lang['evaluation']['evaluateOrganizations'].'</a></div>';
   $content.= '<meta http-equiv="refresh" content="5">';
 }
