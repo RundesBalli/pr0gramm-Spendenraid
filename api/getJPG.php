@@ -117,7 +117,7 @@ $image = "https://img.pr0gramm.com/".$row['image'];
 /**
  * Creating a log entry that the AI has requested the image.
  */
-mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$kiUserId.'", 1, "'.$itemId.'", "'.$lang['api']['getJPG']['log'].'")') OR DIE(MYSQLI_ERROR($dbl));
+mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `itemId`, `text`) VALUES ("'.$aiSettings['userId'].'", 1, "'.$itemId.'", "'.$lang['api']['getJPG']['log'].'")') OR DIE(MYSQLI_ERROR($dbl));
 
 /**
  * Initialize cURL
