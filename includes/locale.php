@@ -65,7 +65,8 @@ $lang = [
     ],
     'queue' => [
       'noPerkSecret' => 'Es wurde kein perkSecret konfiguriert.'."\n\n",
-      'justInCaseLock' => 'User %s sollte freigeschaltet werden, hat aber nichts vorzuweisen. Wird vorsichtshalber nochmal gesperrt.',
+      'justInCaseLock' => 'User %s sollte freigeschaltet werden, hat aber nichts vorzuweisen. Wird vorsichtshalber nochmal gesperrt. cV: %s, gA: %s',
+      'unknownError' => 'Unbekannter Fehler beim freischalten. User: %s, cV: %s, gA: %s',
       'unlock' => [
         'success' => 'User %s freigeschaltet.',
         'failure' => 'User %s konnte nicht freigeschaltet werden.',

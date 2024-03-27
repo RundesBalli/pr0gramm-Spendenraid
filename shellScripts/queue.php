@@ -83,9 +83,10 @@ while($row = mysqli_fetch_assoc($result)) {
       /**
        * The user has no donations and no good acts. Lock the user again, just in case.
        */
-      mysqli_query($dbl, 'DELETE FROM `queue` WHERE `id`='.$row['id'].' LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));
-      mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUE ("'.defuse($row['name']).'", 0)') OR DIE(MYSQLI_ERROR($dbl));
-      mysqli_query($dbl, 'INSERT INTO `log` (`logLevel`, `text`) VALUES (6, "'.sprintf($lang['cli']['queue']['justInCaseLock'], defuse($row['name'])).'")') OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, 'UPDATE `queue` SET `error`=1 WHERE `id`='.$row['id'].' LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));
+      #mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUE ("'.defuse($row['name']).'", 0)') OR DIE(MYSQLI_ERROR($dbl));
+      #mysqli_query($dbl, 'INSERT INTO `log` (`logLevel`, `text`) VALUES (6, "'.sprintf($lang['cli']['queue']['justInCaseLock'], defuse($row['name']), $innerRow['confirmedValue'], $innerRow['goodActs']).'")') OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, 'INSERT INTO `log` (`logLevel`, `text`) VALUES (6, "'.sprintf($lang['cli']['queue']['unknownError'], defuse($row['name']), $innerRow['confirmedValue'], $innerRow['goodActs']).'")') OR DIE(MYSQLI_ERROR($dbl));
     }
   } else {
     /**
