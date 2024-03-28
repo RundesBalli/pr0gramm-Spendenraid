@@ -75,9 +75,10 @@ if(!mysqli_num_rows($result)) {
  * Table heading.
  */
 $content.= '<div class="row highlight bold">'.
-  '<div class="col-s-4 col-l-3">'.$lang['delList']['itemId'].'</div>'.
-  '<div class="col-s-4 col-l-3">'.$lang['delList']['sums'].'</div>'.
-  '<div class="col-s-4 col-l-3">'.$lang['delList']['organizations'].'</div>'.
+  '<div class="col-s-3 col-l-3">'.$lang['delList']['itemId'].'</div>'.
+  '<div class="col-s-3 col-l-2">'.$lang['delList']['isDonation'].'</div>'.
+  '<div class="col-s-3 col-l-2">'.$lang['delList']['sums'].'</div>'.
+  '<div class="col-s-3 col-l-2">'.$lang['delList']['organizations'].'</div>'.
   '<div class="col-s-12 col-l-3">'.$lang['delList']['actions'].'</div>'.
 '</div>';
 
@@ -86,9 +87,10 @@ $content.= '<div class="row highlight bold">'.
  */
 while($row = mysqli_fetch_assoc($result)) {
   $content.= '<div class="row hover bordered">'.
-    '<div class="col-s-4 col-l-3"><a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$row['itemId'].'</a><br>(<a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['delList']['itemInfo'].'</a>)</div>'.
-    '<div class="col-s-4 col-l-3">'.($row['firstsightValue'] !== NULL ? number_format($row['firstsightValue'], 2, '.', ',') : '<span class="italic">NULL</span>').' €<br>'.($row['confirmedValue'] !== NULL ? number_format($row['confirmedValue'], 2, '.', ',') : '<span class="italic">NULL</span>').' €</div>'.
-    '<div class="col-s-4 col-l-3">'.($row['firstsightOrgaId'] !== NULL ? $row['firstsightOrgaId'] : '<span class="italic">NULL</span>').'<br>'.($row['confirmedOrgaId'] !== NULL ? $row['confirmedOrgaId'] : '<span class="italic">NULL</span>').'</div>'.
+    '<div class="col-s-3 col-l-3"><a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$row['itemId'].'</a><br>(<a href="/itemInfo?itemId='.$row['itemId'].'">'.$lang['delList']['itemInfo'].'</a>)</div>'.
+    '<div class="col-s-3 col-l-2">'.$lang['delList']['isDonation'.$row['isDonation']].'</div>'.
+    '<div class="col-s-3 col-l-2">'.($row['firstsightValue'] !== NULL ? number_format($row['firstsightValue'], 2, '.', ',') : '<span class="italic">NULL</span>').' €<br>'.($row['confirmedValue'] !== NULL ? number_format($row['confirmedValue'], 2, '.', ',') : '<span class="italic">NULL</span>').' €</div>'.
+    '<div class="col-s-3 col-l-2">'.($row['firstsightOrgaId'] !== NULL ? $row['firstsightOrgaId'] : '<span class="italic">NULL</span>').'<br>'.($row['confirmedOrgaId'] !== NULL ? $row['confirmedOrgaId'] : '<span class="italic">NULL</span>').'</div>'.
     '<div class="col-s-12 col-l-3"><form action="/delList" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="itemId" value="'.$row['itemId'].'"><input type="submit" name="del" value="'.$lang['delList']['delete'].'"></form></div>'.
   '</div>';
 }
