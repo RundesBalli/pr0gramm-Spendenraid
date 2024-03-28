@@ -90,19 +90,36 @@ if(isset($_POST['value']) AND !empty($_POST['itemId'])) {
                   'logLevel' => 4,
                   'logText' => $lang['evaluation']['log']['noDonation'],
                 ];
+              } elseif($value == 0 AND $goodAct) { 
+                /**
+                 * Check if the firstSight was a goodAct too.
+                 */
+                if($row['firstsightOrgaId'] != 9) {
+                  $fields = [
+                    'query' => 'UPDATE `items` SET `firstsightValue`="'.$value.'", `firstsightUserId`="'.$userId.'", `isDonation`="0", `firstsightOrgaId`="9", `firstsightOrgaUserId`="'.$userId.'"  WHERE `itemId`="'.$itemId.'" LIMIT 1',
+                    'logLevel' => 3,
+                    'logText' => number_format($value, 2, ',', '.').' €',
+                    'logText2' => $lang['evaluation']['log']['goodAct'],
+                  ];
+                } else {
+                  $perk = TRUE;
+                  $fields = [
+                    'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="2", `confirmedOrgaId`=9, `confirmedOrgaUserId`="'.$userId.'" WHERE `itemId`="'.$itemId.'" LIMIT 1',
+                    'logLevel' => 4,
+                    'logText' => number_format($value, 2, ',', '.').' €',
+                    'logText2' => $lang['evaluation']['log']['goodAct'],
+                  ];
+                }
               } else {
                 /**
-                 * It is a donation, check if it is a good act or a money donation.
+                 * It is a donation.
                  */
                 $perk = TRUE;
                 $fields = [
-                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="'.($goodAct ? 2 : 1).'", '.($goodAct ? '`confirmedOrgaId`=9, `confirmedOrgaUserId`="'.$userId.'"' : '`confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL').' WHERE `itemId`="'.$itemId.'" LIMIT 1',
+                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="1", `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `itemId`="'.$itemId.'" LIMIT 1',
                   'logLevel' => 4,
                   'logText' => number_format($value, 2, ',', '.').' €',
                 ];
-                if($goodAct) {
-                  $fields['logText2'] = $lang['evaluation']['log']['goodAct'];
-                }
               }
             }
             unset($error);
