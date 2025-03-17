@@ -5,8 +5,8 @@
  * A website to evaluate posts that are found using a specific search pattern.
  * 
  * @author    RundesBalli <GitHub@RundesBalli.com>
- * @copyright 2024 RundesBalli
- * @version   2.0
+ * @copyright 2025 RundesBalli
+ * @version   2.1
  * @see       https://github.com/RundesBalli/pr0gramm-Spendenraid
  */
 
