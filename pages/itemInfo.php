@@ -139,10 +139,12 @@ $content.= '<div class="row highlight bold bordered" style="border-left: 6px sol
 $logResult = mysqli_query($dbl, 'SELECT `log`.`id`, `users`.`name`, `users`.`bot`, `log`.`timestamp`, `log`.`logLevel`, `metaLogLevel`.`color`, `log`.`itemId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `metaLogLevel` ON `log`.`logLevel`=`metaLogLevel`.`id` WHERE `itemId`="'.$row['itemId'].'" ORDER BY `log`.`id` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 while($logRow = mysqli_fetch_assoc($logResult)) {
   $colorRgb = hex2rgb($logRow['color']);
+  $ts = new DateTime($row['timestamp'], new DateTimeZone('UTC'));
+  $ts->setTimezone(new DateTimeZone('Europe/Berlin'));
   $content.= '<div class="row hover bordered" style="border-left: 6px solid #'.$logRow['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">'.
     '<div class="col-s-4 col-l-1">'.$logRow['id'].'</div>'.
     '<div class="col-s-4 col-l-2">'.($logRow['name'] === NULL ? '<span class="italic">'.$lang['itemInfo']['log']['system'].'</span>' : ($logRow['name'] == $username ? '<span class="highlight">'.output($logRow['name']).'</span>' : ($logRow['bot'] ? '<span class="italic">'.output($logRow['name']).'</span>' : output($logRow['name'])))).'</div>'.
-    '<div class="col-s-4 col-l-3">'.date('d.m.Y, H:i:s', strtotime($logRow['timestamp'])).'</div>'.
+    '<div class="col-s-4 col-l-3">'.$ts->format('Y-m-d H:i:s').'</div>'.
     '<div class="col-s-4 col-l-2">'.($logRow['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$logRow['itemId'].'" target="_blank" rel="noopener">'.$logRow['itemId'].'</a> (<a href="/itemInfo?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['itemInfo'].'</a>)'.($logRow['logLevel'] != 5 ? '<br>'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</div>'.
     '<div class="col-s-8 col-l-4">'.clickableLinks(output($logRow['text'])).'</div>'.
     '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.

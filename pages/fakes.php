@@ -205,11 +205,13 @@ $content.= '<div class="row highlight bold">'.
   '<div class="col-s-12 col-l-4">'.$lang['fakes']['fakes']['actions'].'</div>'.
 '</div>';
 while($row = mysqli_fetch_assoc($result)) {
+  $ts = new DateTime($row['timestamp'], new DateTimeZone('UTC'));
+  $ts->setTimezone(new DateTimeZone('Europe/Berlin'));
   $content.= '<div class="row hover bordered">'.
     '<div class="col-s-2 col-l-1">'.$row['id'].'</div>'.
     '<div class="col-s-5 col-l-2"><a href="https://pr0gramm.com/new/'.$row['itemIdOriginal'].'" target="_blank" rel="noopener">'.$row['itemIdOriginal'].'</a></div>'.
     '<div class="col-s-5 col-l-2"><a href="https://pr0gramm.com/new/'.$row['itemIdFake'].'" target="_blank" rel="noopener">'.$row['itemIdFake'].'</a><br><span class="smaller">('.($row['certain'] == 1 ? $lang['fakes']['fakes']['certain'] : $lang['fakes']['fakes']['uncertain']).')</span></div>'.
-    '<div class="col-s-12 col-l-3">'.$row['timestamp'].'</div>'.
+    '<div class="col-s-12 col-l-3">'.$ts->format('Y-m-d H:i:s').'</div>'.
     '<div class="col-s-6 col-l-2"><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="certain" value="'.$lang['fakes']['fakes']['certainButton'].'"></form></div>'.
     '<div class="col-s-6 col-l-2"><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="del" value="'.$lang['fakes']['fakes']['delButton'].'"></form></div>'.
   '</div>';
