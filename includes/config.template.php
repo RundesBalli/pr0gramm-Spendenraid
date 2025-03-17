@@ -20,7 +20,7 @@ $mysqlCredentials = [
   'user' => '',
   'pass' => '',
   'db' => '',
-  'charset' => 'utf8'
+  'charset' => 'utf8mb4'
 ];
 
 /**
@@ -34,6 +34,13 @@ $crawler = [
   'newer' => 0,
   'tags' => '',
 ];
+
+/**
+ * Minimum donation value
+ * 
+ * @var float $minDonationValue Minimum amount of money that has to be donated, to count as a valid donation.
+ */
+$minDonationValue = 5.00;
 
 /**
  * Destination of the apiCall

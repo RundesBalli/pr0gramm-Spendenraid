@@ -48,11 +48,10 @@ $output['sums']['total'] = (double)$row['confirmed'];
 /**
  * Count items.
  */
-$result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `items`) AS `total`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1') AS `isDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='2') AS `goodAct`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='0') AS `isNotDonation`") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `items`) AS `total`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='1') AS `isDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`='0') AS `isNotDonation`") OR DIE(MYSQLI_ERROR($dbl));
 $row = mysqli_fetch_assoc($result);
 $output['items']['total'] = (int)$row['total'];
 $output['items']['isDonation'] = (int)$row['isDonation'];
-$output['items']['goodAct'] = (int)$row['goodAct'];
 $output['items']['isNotDonation'] = (int)$row['isNotDonation'];
 
 /**
@@ -63,7 +62,7 @@ $output['tags'] = $crawler['tags'];
 /**
  * Add the sums per organization to the above outputs.
  */
-$result = mysqli_query($dbl, "SELECT * FROM `metaOrganizations` WHERE `exportCountOnly`=0 ORDER BY `exportSortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT * FROM `metaOrganizations` ORDER BY `exportSortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
 $output['sums']['organizations'] = [];
 while($row = mysqli_fetch_assoc($result)) {
   $innerResult = mysqli_query($dbl, "SELECT IFNULL(sum(`confirmedValue`), 0) as `confirmedValue`, count(`id`) as `count` FROM `items` WHERE `isDonation`='1' AND `confirmedOrgaId`='".$row['id']."'") OR DIE(MYSQLI_ERROR($dbl));
@@ -72,20 +71,6 @@ while($row = mysqli_fetch_assoc($result)) {
     'name' => $row['name'],
     'confirmedValue' => doubleval($innerRow['confirmedValue']),
     'count' => intval($innerRow['count']),
-  ];
-}
-
-/**
- * Organizations that have the exportCountOnly flag are displayed separately and excluded from the total.
- */
-$result = mysqli_query($dbl, "SELECT * FROM `metaOrganizations` WHERE `exportCountOnly`='1' ORDER BY `exportSortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
-$output['sums']['organizationsCountOnly'] = [];
-while($row = mysqli_fetch_assoc($result)) {
-  $innerResult = mysqli_query($dbl, "SELECT count(`id`) as `count` FROM `items` WHERE `isDonation`!='0' AND `confirmedOrgaId`='".$row['id']."'") OR DIE(MYSQLI_ERROR($dbl));
-  $innerRow = mysqli_fetch_assoc($innerResult);
-  $output['sums']['organizationsCountOnly'][] = [
-    'name' => $row['name'],
-    'count' => $row['count'],
   ];
 }
 

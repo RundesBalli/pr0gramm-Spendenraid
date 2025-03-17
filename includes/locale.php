@@ -65,8 +65,7 @@ $lang = [
     ],
     'queue' => [
       'noPerkSecret' => 'Es wurde kein perkSecret konfiguriert.'."\n\n",
-      'justInCaseLock' => 'User %s sollte freigeschaltet werden, hat aber nichts vorzuweisen. Wird vorsichtshalber nochmal gesperrt. cV: %s, gA: %s',
-      'unknownError' => 'Unbekannter Fehler beim freischalten. User: %s, cV: %s, gA: %s',
+      'unknownError' => 'Unbekannter Fehler beim freischalten. User: %s, cV: %s',
       'unlock' => [
         'success' => 'User %s freigeschaltet.',
         'failure' => 'User %s konnte nicht freigeschaltet werden.',
@@ -168,7 +167,7 @@ $lang = [
     'dkmsInfo' => [
       'Siehe <a href="https://pr0gramm.com/top/dkms%20sms/2465205" target="_blank" rel="noopener">hier</a>:',
       'Alle <span class="highlight">DKMS5, DKMS10, DKMSxx</span> SMS sind <span class="highlight">FÜNF</span> Euro wert.',
-      'Alle <span class="highlight">LEBEN</span> SMS sind <span class="highlight">EINEN</span> Euro wert.',
+      'Alle <span class="highlight">LEBEN</span> SMS sind <span class="highlight">EINEN</span> Euro wert und sind daher ungültig.',
       '<span class="warn bold">WICHTIG! Wenn keine Antwort von der DKMS kommt, dann zählt die Spende nicht (Drittanbietersperre)!</span>',
     ],
     'search' => [
@@ -186,10 +185,6 @@ $lang = [
         'isDonation' => [
           'title' => 'Spendenposts',
           'description' => 'Anzahl der bestätigten Spendenposts',
-        ],
-        'isGoodAct' => [
-          'title' => 'Gute Taten',
-          'description' => 'Anzahl der bestätigten guten Taten',
         ],
         'isNoDonation' => [
           'title' => 'Nicht-Spendenposts',
@@ -244,14 +239,12 @@ $lang = [
     'itemNotFound' => 'Der Post existiert nicht (mehr).',
     'log' => [
       'confirmingReset' => 'Erstsichtung',
-      'goodAct' => 'Orga: 9',
       'noDonation' => 'Kein Spendenpost',
     ],
     'success' => 'Spendenwert eingetragen.',
     'resetItem' => 'Post zurücksetzen',
     'aiPrefix' => 'KI-',
     'firstsight' => 'Erstsichtung',
-    'firstsightGoodAct' => 'Erstsichtung: Gute Tat',
     'clickImage' => 'Zur Post-Ansicht einfach auf das Bild klicken',
     'video' => 'Video auf pr0gramm ansehen',
     'value' => 'Geldbetrag',
@@ -261,8 +254,8 @@ $lang = [
     'links' => 'Links',
     'itemInfo' => 'PostInfo',
     'info' => 'Informationen zur Auswertung',
-    'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br><span class="warn bold">NEU IN 2024:</span> Gute Tat = g, G oder + eintragen!<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt 0,01 eintragen!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!',
-    'allDone' => 'Alles erledigt. Nächster Crawl alle 5 Minuten. (in %d Sekunden)',
+    'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br><span class="warn bold">NEU IN 2025:</span> Nur Geldspenden mit mindestens %s zählen. Das Datum muss zu sehen sein! Blutspende & Co. zählt nicht mehr!<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt, dann ist es keine Spende (bitte User unter dem Post in den Kommentaren informieren)!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!',
+    'allDone' => 'Alles erledigt. Nächster Crawl jede Minute. (in %d Sekunden)',
     'evaluateOrganizations' => 'Organisationen bewerten',
   ],
 
@@ -451,11 +444,10 @@ $lang = [
     'fakeFinder' => [
       'title' => 'Fälschungen finden',
       'queryTitles' => [
-        'alle ohne 1, 2 & 9',
+        'alle ohne 1 & 2',
         'alle DKMS',
         'alle dt. Krebshilfe',
         'alle diversen Organisationen',
-        'alle guten Taten',
         'alle sortiert nach gleichem Wert/Orga',
       ],
       'invalidQueryId' => 'Ungültige Query ID.',
@@ -522,7 +514,6 @@ $lang = [
     'organizations' => 'Organisationen (Erst-/Zweitsicht)',
     'actions' => 'Aktionen',
     'isDonation1' => 'Geldspende',
-    'isDonation2' => 'Gute Tat',
     'isDonation0' => 'Keine Spende',
     'itemInfo' => 'PostInfo',
     'delete' => 'Löschen',

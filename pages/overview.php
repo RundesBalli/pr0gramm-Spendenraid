@@ -53,7 +53,7 @@ $content.= '<div class="spacer"></div>';
  * Total counts
  */
 $content.= '<h2>'.$lang['overview']['total']['title'].'</h2>';
-$result = mysqli_query($dbl, 'SELECT (SELECT count(`id`) FROM `items`) AS `total`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="1") AS `isDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="2") AS `isGoodAct`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="0") AS `isNoDonation`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NULL) AS `pendingFirst`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NOT NULL AND `confirmedValue` IS NULL) AS `pendingSecond`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="1" AND `firstsightOrgaId` IS NULL) AS `pendingOrgaFirst`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="1" AND `confirmedOrgaId` IS NULL) AS `pendingOrgaSecond`') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+$result = mysqli_query($dbl, 'SELECT (SELECT count(`id`) FROM `items`) AS `total`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="1") AS `isDonation`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="0") AS `isNoDonation`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NULL) AS `pendingFirst`, (SELECT count(`id`) FROM `items` WHERE `firstsightValue` IS NOT NULL AND `confirmedValue` IS NULL) AS `pendingSecond`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="1" AND `firstsightOrgaId` IS NULL) AS `pendingOrgaFirst`, (SELECT count(`id`) FROM `items` WHERE `isDonation`="1" AND `confirmedOrgaId` IS NULL) AS `pendingOrgaSecond`') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 $row = mysqli_fetch_assoc($result);
 foreach($lang['overview']['total']['items'] as $key => $value) {
   $content.= '<div class="row hover bordered">'.

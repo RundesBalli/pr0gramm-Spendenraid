@@ -50,7 +50,7 @@ const ITEM_REGEX = '/(?:(?:https?:\/\/pr0gramm\.com)?\/(?:top|new|user\/\w+\/(?:
  */
 const FAKE_QUERYS = [
   [
-    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="1" AND ((`extension` != "gif" AND `extension` != "mp4") AND (`confirmedOrgaId` IS NOT NULL AND ((`confirmedOrgaId`!="1" AND `confirmedOrgaId`!="2") AND `confirmedOrgaId`!="9"))) GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC',
+    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="1" AND ((`extension` != "gif" AND `extension` != "mp4") AND (`confirmedOrgaId` IS NOT NULL AND (`confirmedOrgaId`!="1" AND `confirmedOrgaId`!="2"))) GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC',
     'widthHeightSubquery' => TRUE,
   ],
   [
@@ -66,11 +66,7 @@ const FAKE_QUERYS = [
     'widthHeightSubquery' => TRUE,
   ],
   [
-    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="2" AND ((`extension` != "gif" AND `extension` != "mp4") AND `confirmedOrgaId`="9") GROUP BY `height`, `width`, `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 ORDER BY `k` DESC',
-    'widthHeightSubquery' => TRUE,
-  ],
-  [
-    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="1" AND ((`extension` != "gif" AND `extension` != "mp4") AND (`confirmedOrgaId` IS NOT NULL AND `confirmedOrgaId`!="9")) GROUP BY `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 AND `k`<=7 ORDER BY `k` DESC',
+    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="1" AND ((`extension` != "gif" AND `extension` != "mp4") AND `confirmedOrgaId` IS NOT NULL GROUP BY `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 AND `k`<=7 ORDER BY `k` DESC',
     'widthHeightSubquery' => FALSE,
   ],
 ];

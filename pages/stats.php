@@ -60,7 +60,7 @@ foreach($milestones as $key => $value) {
  * Most frequent donation amounts
  */
 $content.= '<h2>'.$lang['stats']['mostFrequentAmounts'].'</h2>';
-$result = mysqli_query($dbl, 'SELECT `confirmedValue`, count(`confirmedValue`) AS `count` FROM `items` WHERE `isDonation`=1 AND `confirmedValue`!=0.01 GROUP BY `confirmedValue` HAVING `count`>=5 ORDER BY `count` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
+$result = mysqli_query($dbl, 'SELECT `confirmedValue`, count(`confirmedValue`) AS `count` FROM `items` WHERE `isDonation`=1 GROUP BY `confirmedValue` HAVING `count`>=5 ORDER BY `count` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 $amounts = [];
 while($row = mysqli_fetch_assoc($result)) {
   $amounts[] = $row['count'].'x '.number_format($row['confirmedValue'], 2, ',', '.').' €';
