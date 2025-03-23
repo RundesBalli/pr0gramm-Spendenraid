@@ -97,6 +97,7 @@ do {
           if($ext != "mp4" AND $ext != "gif") {
             $aiIds[] = [
               'id' => $item['id'],
+              'url' => 'https://img.pr0gramm.com/'.$row['image'],
             ];
           }
         }
