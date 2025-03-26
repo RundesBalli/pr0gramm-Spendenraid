@@ -107,6 +107,7 @@ $lang = [
     'login' => 'Login',
     'contact' => 'Kontakt per PN',
     'github' => 'GitHub',
+    'checkPost' => 'Post Info',
     'overview' => 'Übersicht',
     'evaluation' => 'Bewertung',
     'organization' => 'Organisationen',
@@ -538,6 +539,22 @@ $lang = [
     'note1' => 'Beim Klick auf einen Thumbnail wird er direkt der jeweiligen Organisation zugeordnet (Erst- und Zweitsichtung wie über die normale Bewertung finden trotzdem statt!).',
     'note2' => 'Mittelklick (Mausrad) öffnet einen neuen Tab.',
     'allDone' => 'Alles erledigt.',
+  ],
+
+  /**
+   * checkPost
+   */
+  'checkPost' => [
+    'title' => 'Post Info',
+    'form' => [
+      'placeholder' => 'Post-ID / Link',
+      'submit' => 'Info',
+    ],
+    'invalid' => 'Eingabe ungültig',
+    'notFound' => 'Der Post existiert nicht in der Datenbank. Wenn du ihn dort erwartet hast, dann prüfe auf pr0gramm, ob er richtig getaggt wurde und dass die Tags nicht rausgevoted wurden.',
+    'notCheckedRightNow' => 'Der Post existiert in der Datenbank, wurde aber noch nicht bewertet. Bitte gedulde dich noch ein wenig.',
+    'isDonation' => 'Der Post wurde als Spende klassifiziert. Solltest du noch keine Freischaltung für das Casino-Spiel haben, kontaktiere <a href="https://pr0gramm.com/inbox/messages/RundesBalli" target="_blank" rel="noopener">RundesBalli</a>.',
+    'isNoDonation' => 'Der Post wurde nicht als Spende anerkannt. Solltest du dies für einen Fehler halten, kontaktiere <a href="https://pr0gramm.com/inbox/messages/RundesBalli" target="_blank" rel="noopener">RundesBalli</a>.',
   ],
 ];
 ?>

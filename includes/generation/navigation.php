@@ -16,6 +16,7 @@ if(empty($loggedIn)) {
   $nav.= '<a href="https://RundesBalli.com" target="_blank" rel="noopener">RundesBalli</a>';
   $nav.= '<a href="https://pr0gramm.com/inbox/messages/RundesBalli" target="_blank" rel="noopener">'.$lang['nav']['contact'].'</a>';
   $nav.= '<a href="https://github.com/RundesBalli/pr0gramm-Spendenraid" target="_blank" rel="noopener">'.$lang['nav']['github'].'</a>';
+  $nav.= '<a href="/checkPost">'.$lang['nav']['checkPost'].'</a>';
 } else {
   /**
    * Display of the item count which can be evaluated by the user.

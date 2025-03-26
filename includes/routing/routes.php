@@ -24,6 +24,7 @@ $routes = [
   'queue' => 'queue.php',
   'delList' => 'delList.php',
   'fastOrga' => 'fastOrga.php',
+  'checkPost' => 'checkPost.php',
 
   /**
    * Error pages
