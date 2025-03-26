@@ -52,7 +52,7 @@ if(empty($aiSettings['editPostToken']) OR empty($aiSettings['userId'])) {
  */
 $headers = getallheaders();
 
-if(empty($headers['apiAuth'])) {
+if(empty($headers['apiauth'])) { // all lowercase instead of apiAuth, because the "bun" runtime used by the ai-tool provides all headers in lowercase. wtf
   http_response_code(400);
   die(
     json_encode(
@@ -64,7 +64,7 @@ if(empty($headers['apiAuth'])) {
   );
 }
 
-if($headers['apiAuth'] != $aiSettings['editPostToken']) {
+if($headers['apiauth'] != $aiSettings['editPostToken']) {
   http_response_code(401);
   die(
     json_encode(
