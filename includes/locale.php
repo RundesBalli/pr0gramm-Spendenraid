@@ -551,7 +551,7 @@ $lang = [
       'submit' => 'Info',
     ],
     'invalid' => 'Eingabe ungültig',
-    'notFound' => 'Der Post existiert nicht in der Datenbank. Wenn du ihn dort erwartet hast, dann prüfe auf pr0gramm, ob er richtig getaggt wurde und dass die Tags nicht rausgevoted wurden.',
+    'notFound' => 'Der Post existiert nicht in der Datenbank. Wenn du ihn dort erwartet hast, dann prüfe auf pr0gramm, ob er richtig getaggt wurde und dass die Tags nicht rausgevoted wurden. 1x pro Minute gibt es eine Aktualisierung.',
     'notCheckedRightNow' => 'Der Post existiert in der Datenbank, wurde aber noch nicht bewertet. Bitte gedulde dich noch ein wenig.',
     'isDonation' => 'Der Post wurde als Spende klassifiziert. Solltest du noch keine Freischaltung für das Casino-Spiel haben, kontaktiere <a href="https://pr0gramm.com/inbox/messages/RundesBalli" target="_blank" rel="noopener">RundesBalli</a>.',
     'isNoDonation' => 'Der Post wurde nicht als Spende anerkannt. Solltest du dies für einen Fehler halten, kontaktiere <a href="https://pr0gramm.com/inbox/messages/RundesBalli" target="_blank" rel="noopener">RundesBalli</a>.',
