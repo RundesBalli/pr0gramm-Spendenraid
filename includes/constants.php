@@ -66,7 +66,7 @@ const FAKE_QUERYS = [
     'widthHeightSubquery' => TRUE,
   ],
   [
-    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="1" AND ((`extension` != "gif" AND `extension` != "mp4") AND `confirmedOrgaId` IS NOT NULL GROUP BY `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 AND `k`<=7 ORDER BY `k` DESC',
+    'query' => 'SELECT COUNT(`id`) AS `k`, `height`, `width`, `confirmedValue`, `confirmedOrgaId` FROM `items` WHERE `isDonation`="1" AND ((`extension` != "gif" AND `extension` != "mp4") AND `confirmedOrgaId` IS NOT NULL) GROUP BY `confirmedValue`, `confirmedOrgaId` HAVING `k`>1 AND `k`<=7 ORDER BY `k` DESC',
     'widthHeightSubquery' => FALSE,
   ],
 ];
