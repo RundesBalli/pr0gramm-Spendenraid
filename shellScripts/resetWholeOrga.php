@@ -42,7 +42,7 @@ if(fread(fopen("php://stdin","r"), 2) != 'ok'){
 /**
  * Confirmation was given.
  */
-$result = mysqli_query($dbl, "SELECT `itemId` FROM `items` WHERE `firstsightOrgaId`=".$orgaId) OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT `id`, `itemId` FROM `items` WHERE `firstsightOrgaId`=".$orgaId) OR DIE(MYSQLI_ERROR($dbl));
 while($row = mysqli_fetch_assoc($result)) {
   mysqli_query($dbl, "UPDATE `items` SET `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   mysqli_query($dbl, "INSERT INTO `log` (`logLevel`, `itemId`, `text`) VALUE (5, ".$row['itemId'].", '".$lang['cli']['resetWholeOrga']['log']."')") OR DIE(MYSQLI_ERROR($dbl));
