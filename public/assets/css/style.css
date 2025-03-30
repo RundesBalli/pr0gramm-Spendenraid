@@ -233,6 +233,10 @@ hr {
   height: calc(var(--basicSpacingSize) * 3);
 }
 
+.warnBox, .successBox, .infoBox {
+  text-shadow: 1px 1px 1px var(--shadowColor);
+}
+
 .warnBox {
   background-color: rgba(197, 43, 47, 0.5); /* c52b2f, 50% opacity */
   border-left: 5px solid #c52b2f;
