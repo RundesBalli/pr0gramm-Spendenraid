@@ -53,14 +53,12 @@ while($row = mysqli_fetch_assoc($result)) {
    */
   $subquery = 'SELECT * FROM `items` WHERE '.(FAKE_QUERYS[$query]['widthHeightSubquery'] ? '`height`="'.$row['height'].'" AND `width`="'.$row['width'].'" AND ' : NULL).'`confirmedValue`="'.$row['confirmedValue'].'" AND `confirmedOrgaId`="'.$row['confirmedOrgaId'].'" ORDER BY `itemId` ASC';
   $content.= '<h3 style="font-family: monospace;" class="highlight">'.$subquery.'</h3>';
-  $innerres = mysqli_query($dbl, $subquery) OR DIE(MYSQLI_ERROR($dbl));$qc++;
-  $content.= '<div class="row">';
-    $content.= '<div class="col-s-12 col-l-12">';
-    while($innerrow = mysqli_fetch_assoc($innerres)) {
-      $content.= '<a href="https://pr0gramm.com/new/'.$innerrow['itemId'].'" target="_blank" rel="noopener"><img src="https://img.pr0gramm.com/'.$innerrow['image'].'" alt="Bild" class="imgMaxHeight" style="margin: 5px;"></a>';
-    }
-    $content.= '</div>';
-  $content.= '</div>';
+  $innerRes = mysqli_query($dbl, $subquery) OR DIE(MYSQLI_ERROR($dbl));$qc++;
+  $content.= '<p>';
+  while($innerRow = mysqli_fetch_assoc($innerRes)) {
+    $content.= '<a href="https://pr0gramm.com/new/'.output($innerRow['itemId']).'" target="_blank" rel="noopener"><img src="https://img.pr0gramm.com/'.output($innerRow['image']).'" alt="Bild" class="imgMaxHeight" style="margin: 5px; border: 2px solid #ff00ff;"></a>';
+  }
+  $content.= '</p>';
   $content.= '<div class="spacer"></div>';
   $content.= '<hr>';
 }
