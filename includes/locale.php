@@ -173,11 +173,20 @@ $lang = [
     ],
     'search' => [
       'title' => 'Suchparameter',
+      'table' => [
+        'param' => 'Parameter',
+        'value' => 'Wert',
+      ],
       'newer' => 'Crawlen neuer als Post-ID',
       'tags'=> 'Suchquery',
     ],
     'total' => [
       'title' => 'Posts / Bewertungen',
+      'table' => [
+        'title' => 'Wert',
+        'count' => 'Anzahl',
+        'description' => 'Beschreibung',
+      ],
       'items' => [
         'total' => [
           'title' => 'Gesamt',
@@ -211,6 +220,11 @@ $lang = [
     ],
     'sums' => [
       'title' => 'Summen',
+      'table' => [
+        'title' => 'Wert',
+        'count' => 'Anzahl',
+        'description' => 'Beschreibung',
+      ],
       'items' => [
         'unconfirmedTotalsum' => [
           'title' => 'Gesamtsumme nach Erstsichtung',
@@ -224,10 +238,12 @@ $lang = [
     ],
     'organizations' => [
       'title' => 'Organisationen',
-      'name' => 'Name der Organisation',
-      'confirmedValue' => 'bestätigte Spendensumme',
-      'confirmedCount' => 'bestätigte Spendenposts',
-      'average' => 'Ø pro Spende',
+      'table' => [
+        'name' => 'Name der Organisation',
+        'confirmedValue' => 'bestätigte Spendensumme',
+        'confirmedCount' => 'bestätigte Spendenposts',
+        'average' => 'Ø pro Spende',
+      ],
     ],
   ],
 
