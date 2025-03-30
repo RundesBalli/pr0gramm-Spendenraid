@@ -41,7 +41,7 @@ if(!empty($_POST['organization']) AND !empty($_POST['itemId'])) {
       } else {
         /**
          * Token is valid. Check whether the item exists.
-          */
+         */
         $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE `itemId`='.$itemId.' AND `isDonation`!=0 LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));$qc++;
         if(mysqli_num_rows($result) == 0) {
           /**
@@ -114,7 +114,7 @@ $result = mysqli_query($dbl, "SELECT * FROM `items` WHERE `isDonation`='1' AND (
 if(mysqli_num_rows($result) == 1) {
   $row = mysqli_fetch_assoc($result);
   if($row['firstsightOrgaId'] !== NULL) {
-    $content.= '<h3 class="highlight">'.((!empty($aiSettings['userId']) AND $row['firstsightUserId'] == $aiSettings['userId']) ? $lang['organization']['aiPrefix'] : NULL).$lang['organization']['firstsight'].': '.$row['firstsightOrgaId'].'</h3>';
+    $content.= '<h3 class="highlight">'.((!empty($aiSettings['userId']) AND $row['firstsightOrgaUserId'] == $aiSettings['userId']) ? $lang['organization']['aiPrefix'] : NULL).$lang['organization']['firstsight'].': '.$row['firstsightOrgaId'].'</h3>';
   }
 
   /**
