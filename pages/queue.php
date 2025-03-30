@@ -45,31 +45,29 @@ if(!mysqli_num_rows($result)) {
 /**
  * Reset link
  */
-$content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12"><a href="/queue?reset">'.$lang['queue']['resetLink'].'</a></div>'.
-'</div>';
-$content.= '<div class="spacer"></div>';
+$content.= '<p><a href="/queue?reset">'.$lang['queue']['resetLink'].'</a></p>';
 
 /**
  * Table heading.
  */
-$content.= '<div class="row highlight bold">'.
-  '<div class="col-s-0 col-l-2">'.$lang['queue']['id'].'</div>'.
-  '<div class="col-s-12 col-l-6">'.$lang['queue']['name'].'</div>'.
-  '<div class="col-s-6 col-l-3">'.$lang['queue']['action'].'</div>'.
-  '<div class="col-s-6 col-l-1">'.$lang['queue']['error'].'</div>'.
-'</div>';
+$content.= '<div class="overflowXAuto"><table>';
+$content.= '<tr>
+  <th>'.$lang['queue']['id'].'</th>
+  <th>'.$lang['queue']['name'].'</th>
+  <th>'.$lang['queue']['action'].'</th>
+  <th>'.$lang['queue']['error'].'</th>
+</tr>';
 
 /**
  * Iterate through elements.
  */
 while($row = mysqli_fetch_assoc($result)) {
-  $content.= '<div class="row hover bordered">'.
-    '<div class="col-s-0 col-l-2">'.$row['id'].'</div>'.
-    '<div class="col-s-12 col-l-6">'.$row['name'].'</div>'.
-    '<div class="col-s-6 col-l-3">'.($row['action'] ? $lang['queue']['unlock'] : $lang['queue']['lock']).'</div>'.
-    '<div class="col-s-6 col-l-1">'.($row['error'] ? $lang['queue']['yes'] : $lang['queue']['no']).'</div>'.
-  '</div>';
+  $content.= '<tr>
+    <td>'.$row['id'].'</td>
+    <td>'.$row['name'].'</td>
+    <td>'.($row['action'] ? $lang['queue']['unlock'] : $lang['queue']['lock']).'</td>
+    <td>'.($row['error'] ? $lang['queue']['yes'] : $lang['queue']['no']).'</td>
+  </tr>';
 }
-$content.= '<div class="spacer"></div>';
+$content.= '</table></div>';
 ?>

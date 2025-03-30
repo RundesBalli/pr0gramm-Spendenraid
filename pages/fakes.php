@@ -197,24 +197,32 @@ if(mysqli_num_rows($result) == 0) {
 /**
  * Table heading
  */
-$content.= '<div class="row highlight bold">'.
-  '<div class="col-s-2 col-l-1">'.$lang['fakes']['fakes']['id'].'</div>'.
-  '<div class="col-s-5 col-l-2">'.$lang['fakes']['fakes']['original'].'</div>'.
-  '<div class="col-s-5 col-l-2">'.$lang['fakes']['fakes']['fake'].'</div>'.
-  '<div class="col-s-12 col-l-3">'.$lang['fakes']['fakes']['timestamp'].'</div>'.
-  '<div class="col-s-12 col-l-4">'.$lang['fakes']['fakes']['actions'].'</div>'.
-'</div>';
+$content.= '<div class="overflowXAuto"><table>';
+$content.= '<tr>
+  <th>'.$lang['fakes']['fakes']['id'].'</th>
+  <th>'.$lang['fakes']['fakes']['original'].'</th>
+  <th>'.$lang['fakes']['fakes']['fake'].'</th>
+  <th>'.$lang['fakes']['fakes']['timestamp'].'</th>
+  <th colspan="2">'.$lang['fakes']['fakes']['actions'].'</th>
+</tr>';
 while($row = mysqli_fetch_assoc($result)) {
+  /**
+   * Timezone shit
+   */
   $ts = new DateTime($row['timestamp'], new DateTimeZone('UTC'));
   $ts->setTimezone(new DateTimeZone('Europe/Berlin'));
-  $content.= '<div class="row hover bordered">'.
-    '<div class="col-s-2 col-l-1">'.$row['id'].'</div>'.
-    '<div class="col-s-5 col-l-2"><a href="https://pr0gramm.com/new/'.$row['itemIdOriginal'].'" target="_blank" rel="noopener">'.$row['itemIdOriginal'].'</a></div>'.
-    '<div class="col-s-5 col-l-2"><a href="https://pr0gramm.com/new/'.$row['itemIdFake'].'" target="_blank" rel="noopener">'.$row['itemIdFake'].'</a><br><span class="smaller">('.($row['certain'] == 1 ? $lang['fakes']['fakes']['certain'] : $lang['fakes']['fakes']['uncertain']).')</span></div>'.
-    '<div class="col-s-12 col-l-3">'.$ts->format('Y-m-d H:i:s').'</div>'.
-    '<div class="col-s-6 col-l-2"><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="certain" value="'.$lang['fakes']['fakes']['certainButton'].'"></form></div>'.
-    '<div class="col-s-6 col-l-2"><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="del" value="'.$lang['fakes']['fakes']['delButton'].'"></form></div>'.
-  '</div>';
+
+  /**
+   * Table row
+   */
+  $content.= '<tr>
+    <td>'.$row['id'].'</td>
+    <td><a href="https://pr0gramm.com/new/'.$row['itemIdOriginal'].'" target="_blank" rel="noopener">'.$row['itemIdOriginal'].'</a></td>
+    <td><a href="https://pr0gramm.com/new/'.$row['itemIdFake'].'" target="_blank" rel="noopener">'.$row['itemIdFake'].'</a><br><span class="smaller">('.($row['certain'] == 1 ? $lang['fakes']['fakes']['certain'] : $lang['fakes']['fakes']['uncertain']).')</span></td>
+    <td>'.$ts->format('Y-m-d H:i:s').'</td>
+    <td><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="certain" value="'.$lang['fakes']['fakes']['certainButton'].'"></form></td>
+    <td><form action="/fakes" method="post"><input type="hidden" name="token" value="'.$sessionHash.'"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="del" value="'.$lang['fakes']['fakes']['delButton'].'"></form></td>
+  </tr>';
 }
-$content.= '<div class="spacer"></div>';
+$content.= '</table></div>';
 ?>
