@@ -391,13 +391,19 @@ $lang = [
    */
   'stats' => [
     'title' => 'Statistiken',
+    'table' => [
+      'value' => 'Wert',
+      'timestamp' => 'Zeitpunkt',
+      'count' => 'Anzahl',
+      'item' => 'Post',
+      'author' => 'Uploader',
+    ],
     '1000title' => 'Zeitpunkte der Tausender-Überschreitungen',
     '10000title' => 'Zeitpunkte der Zehntausender-Überschreitungen',
     '100000title' => 'Zeitpunkte der Hunderttausender-Überschreitungen',
     'none' => 'keine',
     'mostFrequentAmounts' => 'Häufigste Spendenbeträge',
     'biggestAmounts' => 'Größte Spendenbeträge (ab 500€)',
-    'from' => 'von',
   ],
 
   /**
