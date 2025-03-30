@@ -104,8 +104,8 @@ if(!mysqli_num_rows($result)) {
   while($row = mysqli_fetch_assoc($result)) {
     $content.= '<tr>
       <td>'.number_format($row['confirmedValue'], 2, ',', '.').' €</td>
-      <td><a href="https://pr0gramm.com/new/'.$row['itemId'].'" target="_blank" rel="noopener">'.$row['itemId'].'</a></td>
-      <td><a href="https://pr0gramm.com/user/'.$row['username'].'" target="_blank" rel="noopener">'.$row['username'].'</a></td>
+      <td><a href="https://pr0gramm.com/new/'.output($row['itemId']).'" target="_blank" rel="noopener">'.output($row['itemId']).'</a></td>
+      <td><a href="https://pr0gramm.com/user/'.output($row['username']).'" target="_blank" rel="noopener">'.output($row['username']).'</a></td>
     </tr>';
   }
 }
