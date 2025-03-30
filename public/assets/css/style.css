@@ -560,7 +560,7 @@ th {
 }
 
 tr:not(th):hover {
-  background-color: var(--tableHoverColor);
+  background-color: var(--tableHoverColor) !important;
 }
 
 .overflowXAuto {
