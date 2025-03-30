@@ -31,10 +31,8 @@ if(!isset($_POST['submit'])) {
   /**
    * Choice.
    */
-  $content.= '<div class="row">'.
-    '<div class="col-s-12 col-l-12">'.$lang['logout']['form']['question'].'</div>'.
-    '<div class="col-s-12 col-l-12"><input type="submit" name="submit" value="'.$lang['logout']['form']['submit'].'"></div>'.
-  '</div>';
+  $content.= '<p>'.$lang['logout']['form']['question'].'</p>';
+  $content.= '<p><input type="submit" name="submit" value="'.$lang['logout']['form']['submit'].'"></p>';
   $content.= '</form>';
 } else {
   /**
@@ -46,9 +44,7 @@ if(!isset($_POST['submit'])) {
   if($_POST['token'] != $sessionHash) {
     http_response_code(403);
     $content.= '<div class="warnBox">'.$lang['logout']['logoutFailed']['invalidToken'].'</div>';
-    $content.= '<div class="row">'.
-      '<div class="col-s-12 col-l-12"><a href="/overview">'.$lang['logout']['logoutFailed']['submit'].'</a></div>'.
-    '</div>';
+    $content.= '<p><a href="/overview">'.$lang['logout']['logoutFailed']['submit'].'</a></p>';
   } else {
     /**
      * Deletion of the session and the cookie. Redirecting to the login page.

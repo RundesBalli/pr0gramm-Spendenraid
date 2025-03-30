@@ -17,7 +17,5 @@ if(!empty($error) AND array_key_exists($error, $lang['error']['500'])) {
 } else {
   $errorMessage = $lang['error']['500']['unknownError'];
 }
-$content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12">'.$errorMessage.'</div>'.
-'</div>';
+$content.= '<p>'.$errorMessage.'</p>';
 ?>

@@ -52,12 +52,8 @@ if(!isset($_POST['submit'])) {
   /**
    * Confirmation
    */
-  $content.= '<div class="row">'.
-    '<div class="col-s-12 col-l-12">'.sprintf($lang['reset']['confirmationQuestion'], (isset($_GET['organization']) ? $lang['reset']['organization'] : $lang['reset']['item'])).'</div>'.
-  '</div>';
-  $content.= '<div class="row">'.
-    '<div class="col-s-12 col-l-12"><input type="submit" name="submit" value="'.$lang['reset']['confirmation'].'"></div>'.
-  '</div>';
+  $content.= '<p>'.sprintf($lang['reset']['confirmationQuestion'], (isset($_GET['organization']) ? $lang['reset']['organization'] : $lang['reset']['item'])).'</p>';
+  $content.= '<p><input type="submit" name="submit" value="'.$lang['reset']['confirmation'].'"></p>';
   $content.= '</form>';
 
   return;

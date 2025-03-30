@@ -63,9 +63,7 @@ if((!isset($_COOKIE[COOKIE_NAME]) OR empty($_COOKIE[COOKIE_NAME])) AND !isset($_
       http_response_code(403);
       $content.= '<h1>'.$lang['login']['loginFailed']['title'].'</h1>';
       $content.= '<div class="warnBox">'.$lang['login']['loginFailed']['warnBox'].'</div>';
-      $content.= '<div class="row">'.
-        '<div class="col-s-12 col-l-12"><a href="/">'.$lang['login']['loginFailed']['tryAgain'].'</a></div>'.
-      '</div>';
+      $content.= '<p><a href="/">'.$lang['login']['loginFailed']['tryAgain'].'</a></p>';
     }
   } else {
     /**
@@ -74,9 +72,7 @@ if((!isset($_COOKIE[COOKIE_NAME]) OR empty($_COOKIE[COOKIE_NAME])) AND !isset($_
     http_response_code(403);
     $content.= '<h1>'.$lang['login']['loginFailed']['title'].'</h1>';
     $content.= '<div class="warnBox">'.$lang['login']['loginFailed']['warnBox'].'</div>';
-    $content.= '<div class="row">'.
-      '<div class="col-s-12 col-l-12"><a href="/">'.$lang['login']['loginFailed']['tryAgain'].'</a></div>'.
-    '</div>';
+    $content.= '<p><a href="/">'.$lang['login']['loginFailed']['tryAgain'].'</a></p>';
   }
 } else {
   /**
