@@ -4,7 +4,7 @@
  * 
  * Loads the template file.
  */
-$templateFile = __DIR__.DIRECTORY_SEPARATOR.'template.tpl';
+$templateFile = __DIR__.DIRECTORY_SEPARATOR.'template.html';
 if(file_exists($templateFile)) {
   $fp = fopen($templateFile, 'r');
   $template = fread($fp, filesize($templateFile));
