@@ -47,7 +47,6 @@ $row = mysqli_fetch_assoc($result);
  * Show which organization will be evaluated in this view.
  */
 $content.= '<h2 class="highlight">'.$orgaId.' - '.output($row['name']).'</h2>';
-$content.= '<div class="spacer"></div>';
 
 /**
  * Fast evaluation.
@@ -93,28 +92,23 @@ if(!empty($_GET['itemId']) AND is_numeric($_GET['itemId'])) {
  * Note
  */
 $content.= '<h3 class="warn">'.$lang['fastOrga']['noteTitle'].'</h3>';
-$content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12 warn bold">'.$lang['fastOrga']['note1'].'</div>'.
-  '<div class="col-s-12 col-l-12">'.$lang['fastOrga']['note2'].'</div>'.
-'</div>';
-$content.= '<div class="spacer"></div>';
+$content.= '<p class="warn bold">'.$lang['fastOrga']['note1'].'</p>';
+$content.= '<p>'.$lang['fastOrga']['note2'].'</p>';
 
 /**
  * Selection of items that have not yet been rated at all or have not yet been rated by the user.
  */
 $result = mysqli_query($dbl, 'SELECT * FROM `items` WHERE (`isDonation`=1 AND (`firstsightOrgaId` IS NULL OR (`confirmedOrgaId` IS NULL AND `firstsightOrgaUserId`!='.$userId.'))) AND (`extension`!="mp4" AND `extension`!="gif") ORDER BY RAND()') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 if(mysqli_num_rows($result) != 0) {
-  $content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12">';
+  $content.= '<p>';
   while($row = mysqli_fetch_assoc($result)) {
     $content.= '<a href="/fastOrga?id='.$orgaId.'&itemId='.$row['itemId'].'"><img src="https://thumb.pr0gramm.com/'.$row['thumb'].'" alt="Thumb" style="margin: 5px;"></a>';
   }
-  $content.= '</div>';
+  $content.= '</p>';
 } else {
   /**
    * All done.
    */
   $content.= '<div class="infoBox">'.$lang['fastOrga']['allDone'].'</div>';
-  $content.= '<div class="spacer"></div>';
 }
 ?>
