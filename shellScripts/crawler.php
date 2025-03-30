@@ -86,7 +86,7 @@ do {
          */
         $stats['new']++;
         // Convert Europe/Berlin to UTC.
-        $ts = new DateTime($item['timestamp'], new DateTimeZone('Europe/Berlin'));
+        $ts = new DateTime(date('c', $item['created']), new DateTimeZone('Europe/Berlin'));
         $ts->setTimezone(new DateTimeZone('UTC'));
         mysqli_query($dbl, "INSERT INTO `items` (`itemId`, `promoted`, `up`, `down`, `benis`, `created`, `image`, `thumb`, `fullsize`, `width`, `height`, `audio`, `extension`, `flags`, `username`, `mark`) VALUES ('".defuse($item['id'])."', '".($item['promoted'] ? 1 : 0)."', '".defuse($item['up'])."', '".defuse($item['down'])."', '".(defuse($item['up'])-defuse($item['down']))."', '".$ts->format('Y-m-d H:i:s')."', '".defuse($item['image'])."', '".defuse($item['thumb'])."', '".defuse($item['fullsize'])."', '".defuse($item['width'])."', '".defuse($item['height'])."', '".($item['audio'] === TRUE ? 1 : 0)."', '".defuse(pathinfo($item['image'])['extension'])."', '".defuse($item['flags'])."', '".defuse($item['user'])."', '".defuse($item['mark'])."')") OR DIE(MYSQLI_ERROR($dbl));
         if((intval($item['up'])-intval($item['down'])) >= 0) {
@@ -105,8 +105,11 @@ do {
         /**
          * Item does exist. Important values will be updated.
          */
+        // Convert Europe/Berlin to UTC.
+        $ts = new DateTime(date('c', $item['created']), new DateTimeZone('Europe/Berlin'));
+        $ts->setTimezone(new DateTimeZone('UTC'));
         $stats['updated']++;
-        mysqli_query($dbl, "UPDATE `items` SET `delFlag`='0', `promoted`='".($item['promoted'] ? 1 : 0)."', `up`='".defuse($item['up'])."', `down`='".defuse($item['down'])."', `benis`='".(defuse($item['up'])-defuse($item['down']))."', `flags`='".defuse($item['flags'])."', `username`='".defuse($item['user'])."', `mark`='".defuse($item['mark'])."' WHERE `itemId`='".defuse($item['id'])."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+        mysqli_query($dbl, "UPDATE `items` SET `delFlag`='0', `created`='".$ts->format('Y-m-d H:i:s')."', `promoted`='".($item['promoted'] ? 1 : 0)."', `up`='".defuse($item['up'])."', `down`='".defuse($item['down'])."', `benis`='".(defuse($item['up'])-defuse($item['down']))."', `flags`='".defuse($item['flags'])."', `username`='".defuse($item['user'])."', `mark`='".defuse($item['mark'])."' WHERE `itemId`='".defuse($item['id'])."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       }
       if($newer < $item['id']) {
         $newer = (int)$item['id'];
