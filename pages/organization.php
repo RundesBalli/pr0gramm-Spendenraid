@@ -179,7 +179,7 @@ if(mysqli_num_rows($result) == 1) {
    */
   $content.= '<div class="row mobile-only">'.
     '<div class="col-s-12 col-l-3">'.$lang['organization']['fastEvaluation'].'</div>'.
-    '<div class="col-s-12 col-l-9"><a href="#" class="msb-btn">1</a><a href="#" class="msb-btn">2</a><a href="#" class="msb-btn">3</a><a href="#" class="msb-btn">4</a><a href="#" class="msb-btn">5</a><a href="#" class="msb-btn">6</a><a href="#" class="msb-btn">7</a><a href="#" class="msb-btn">8</a><a href="#" class="msb-btn">9</a><a href="#" class="msb-btn">10</a><a href="#" class="msb-btn">11</a><a href="#" class="msb-btn">12</a><a href="#" class="msb-btn">13</a><a href="#" class="msb-btn">14</a></div>'.
+    '<div class="col-s-12 col-l-9"><a href="#" class="msb-btn">1</a><a href="#" class="msb-btn">2</a><a href="#" class="msb-btn">3</a><a href="#" class="msb-btn">4</a><a href="#" class="msb-btn">5</a><a href="#" class="msb-btn">6</a><a href="#" class="msb-btn">7</a><a href="#" class="msb-btn">8</a><a href="#" class="msb-btn">10</a><a href="#" class="msb-btn">11</a><a href="#" class="msb-btn">12</a><a href="#" class="msb-btn">13</a></div>'.
   '</div>';
 
   /**
