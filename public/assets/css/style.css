@@ -138,17 +138,17 @@ h1, h2, h3 {
 
 h1 {
   font-size: calc(var(--fontSize) * 2);
-  margin: calc(var(--basicSpacingSize) * 1.5) 0 calc(var(--basicSpacingSize) * 0.7);
+  margin: calc(var(--basicSpacingSize) * 2.5) 0 calc(var(--basicSpacingSize) * 1.35);
 }
 
 h2 {
   font-size: calc(var(--fontSize) * 1.5);
-  margin: calc(var(--basicSpacingSize) * 1.2) 0 calc(var(--basicSpacingSize) * 0.5);
+  margin: calc(var(--basicSpacingSize) * 2.3) 0 calc(var(--basicSpacingSize) * 1.2);
 }
 
 h3 {
   font-size: calc(var(--fontSize) * 1.2);
-  margin: calc(var(--basicSpacingSize) * 0.85) 0 calc(var(--basicSpacingSize) * 0.35);
+  margin: calc(var(--basicSpacingSize) * 1.85) 0 calc(var(--basicSpacingSize) * 1.15);
 }
 
 @media only screen and (max-width: 1000px) {
