@@ -97,7 +97,7 @@ if(isset($_POST['value']) AND !empty($_POST['itemId'])) {
                  */
                 $perk = TRUE;
                 $fields = [
-                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="1", `firstsightOrgaId`=NULL, `firstsightOrgaUserId`=NULL, `confirmedOrgaId`=NULL, `confirmedOrgaUserId`=NULL WHERE `itemId`="'.$itemId.'" LIMIT 1',
+                  'query' => 'UPDATE `items` SET `confirmedValue`="'.$value.'", `confirmedUserId`="'.$userId.'", `isDonation`="1" WHERE `itemId`="'.$itemId.'" LIMIT 1',
                   'logLevel' => 4,
                   'logText' => number_format($value, 2, ',', '.').' €',
                 ];
