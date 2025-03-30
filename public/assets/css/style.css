@@ -296,10 +296,8 @@ pre {
 }
 
 #navbar a[target="_blank"]::after {
-  content: "\f08e";
+  content: '\29C9';
   margin-left: calc(var(--basicSpacingSize) * 0.3);
-  font-size: calc(var(--fontSize) * 0.7);
-  font-family: 'fontawesome-s';
 }
 
 #navbar a.title {
