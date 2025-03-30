@@ -117,7 +117,7 @@ INSERT INTO `metaLogLevel` (`id`, `type`, `color`) VALUES
 (5,	'reset',	'c52b2f'),
 (6,	'perk',	'337fd2'),
 (7,	'fake',	'10366f'),
-(8,	'note',	'addc8d');
+(8,	'note',	'41fc08');
 
 DROP TABLE IF EXISTS `metaOrganizations`;
 CREATE TABLE `metaOrganizations` (
@@ -213,4 +213,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2025-03-17 19:26:40
+-- 2025-03-30 17:20:10
