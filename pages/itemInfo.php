@@ -67,10 +67,7 @@ $content.= '<h2>'.sprintf($lang['itemInfo']['heading'], $row['itemId']).'</h2>';
  * Links
  */
 $content.= '<h3>'.$lang['itemInfo']['links'].'</h3>';
-$content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12">'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/itemInfo?itemId='.$row['itemId'].'&unlockUser">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</div>'.
-'</div>';
-$content.= '<div class="spacer"></div>';
+$content.= '<p>'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$row['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>'.(($row['isDonation'] > 0 AND !empty($perkSecret)) ? ' - <a href="/itemInfo?itemId='.$row['itemId'].'&unlockUser">'.$lang['itemInfo']['unlockUser'].'</a>' : NULL).'</p>';
 
 /**
  * Unlock user again.
@@ -79,7 +76,6 @@ if(isset($_GET['unlockUser'])) {
   mysqli_query($dbl, 'INSERT INTO `queue` (`name`, `action`) VALUE ("'.defuse($row['username']).'", 1)') OR DIE(MYSQLI_ERROR($dbl));$qc++;
   mysqli_query($dbl, 'INSERT INTO `log` (`userId`, `logLevel`, `text`) VALUES ('.$userId.', 6, "'.sprintf($lang['itemInfo']['unlock']['log'], defuse($row['username'])).'")') OR DIE(MYSQLI_ERROR($dbl));$qc++;
   $content.= '<div class="successBox">'.$lang['itemInfo']['unlock']['success'].'</div>';
-  $content.= '<div class="spacer"></div>';
 }
 
 /**
@@ -114,7 +110,6 @@ if(!empty($_POST['text']) AND !empty(trim($_POST['text']))) {
     $content.= '<div class="infoBox">'.$lang['itemInfo']['addNote']['success'].'</div>';
   }
 }
-$content.= '<div class="spacer"></div>';
 
 /**
  * Log
@@ -124,33 +119,43 @@ $content.= '<h3>'.$lang['itemInfo']['log']['title'].'</h3>';
 /**
  * Log table heading
  */
-$content.= '<div class="row highlight bold bordered" style="border-left: 6px solid #888888;">'.
-  '<div class="col-s-4 col-l-1">'.$lang['itemInfo']['log']['id'].'</div>'.
-  '<div class="col-s-4 col-l-2">'.$lang['itemInfo']['log']['username'].'</div>'.
-  '<div class="col-s-4 col-l-3">'.$lang['itemInfo']['log']['timestamp'].'</div>'.
-  '<div class="col-s-4 col-l-2">'.$lang['itemInfo']['log']['itemId'].'</div>'.
-  '<div class="col-s-8 col-l-4">'.$lang['itemInfo']['log']['text'].'</div>'.
-  '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.
-'</div>';
+$content.= '<div class="overflowXAuto"><table>';
+$content.= '<tr style="border-left: 6px solid #888888;">
+  <th>'.$lang['itemInfo']['log']['id'].'</td>
+  <th>'.$lang['itemInfo']['log']['username'].'</td>
+  <th>'.$lang['itemInfo']['log']['timestamp'].'</td>
+  <th>'.$lang['itemInfo']['log']['itemId'].'</td>
+  <th>'.$lang['itemInfo']['log']['text'].'</td>
+</tr>';
 
 /**
  * Log entrys
  */
 $logResult = mysqli_query($dbl, 'SELECT `log`.`id`, `users`.`name`, `users`.`bot`, `log`.`timestamp`, `log`.`logLevel`, `metaLogLevel`.`color`, `log`.`itemId`, `log`.`text` FROM `log` LEFT OUTER JOIN `users` ON `users`.`id`=`log`.`userId` JOIN `metaLogLevel` ON `log`.`logLevel`=`metaLogLevel`.`id` WHERE `itemId`="'.$row['itemId'].'" ORDER BY `log`.`id` DESC') OR DIE(MYSQLI_ERROR($dbl));$qc++;
 while($logRow = mysqli_fetch_assoc($logResult)) {
+  /**
+   * Calculate color.
+   */
   $colorRgb = hex2rgb($logRow['color']);
+
+  /**
+   * Timezone shit.
+   */
   $ts = new DateTime($logRow['timestamp'], new DateTimeZone('UTC'));
   $ts->setTimezone(new DateTimeZone('Europe/Berlin'));
-  $content.= '<div class="row hover bordered" style="border-left: 6px solid #'.$logRow['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">'.
-    '<div class="col-s-4 col-l-1">'.$logRow['id'].'</div>'.
-    '<div class="col-s-4 col-l-2">'.($logRow['name'] === NULL ? '<span class="italic">'.$lang['itemInfo']['log']['system'].'</span>' : ($logRow['name'] == $username ? '<span class="highlight">'.output($logRow['name']).'</span>' : ($logRow['bot'] ? '<span class="italic">'.output($logRow['name']).'</span>' : output($logRow['name'])))).'</div>'.
-    '<div class="col-s-4 col-l-3">'.$ts->format('Y-m-d H:i:s').'</div>'.
-    '<div class="col-s-4 col-l-2">'.($logRow['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$logRow['itemId'].'" target="_blank" rel="noopener">'.$logRow['itemId'].'</a> (<a href="/itemInfo?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['itemInfo'].'</a>)'.($logRow['logLevel'] != 5 ? '<br>'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</div>'.
-    '<div class="col-s-8 col-l-4">'.clickableLinks(output($logRow['text'])).'</div>'.
-    '<div class="col-s-12 col-l-0"><div class="spacer"></div></div>'.
-  '</div>';
+
+  /**
+   * Table row
+   */
+  $content.= '<tr style="border-left: 6px solid #'.$logRow['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">
+    <td>'.$logRow['id'].'</td>
+    <td>'.($logRow['name'] === NULL ? '<span class="italic">'.$lang['itemInfo']['log']['system'].'</span>' : ($logRow['name'] == $username ? '<span class="highlight">'.output($logRow['name']).'</span>' : ($logRow['bot'] ? '<span class="italic">'.output($logRow['name']).'</span>' : output($logRow['name'])))).'</td>
+    <td class="noBreak">'.$ts->format('Y-m-d H:i:s').'</td>
+    <td class="noBreak">'.($logRow['itemId'] === NULL ? '<span class="italic">NULL</span>' : '<a href="https://pr0gramm.com/new/'.$logRow['itemId'].'" target="_blank" rel="noopener">'.$logRow['itemId'].'</a> (<a href="/itemInfo?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['itemInfo'].'</a>)'.($logRow['logLevel'] != 5 ? '<br>'.$lang['itemInfo']['reset'].': <a href="/reset?itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetItem'].'</a> - <a href="/reset?organization&itemId='.$logRow['itemId'].'">'.$lang['itemInfo']['resetOrga'].'</a>' : NULL)).'</td>
+    <td>'.clickableLinks(output($logRow['text'])).'</td>
+  </tr>';
 }
-$content.= '<div class="spacer"></div>';
+$content.= '</table></div>';
 
 /**
  * Loglevel
@@ -162,14 +167,10 @@ while($logLevelRow = mysqli_fetch_assoc($logLevelResult)) {
   $content.= '<div class="col-s-12 col-l-3" style="color: #'.$logLevelRow['color'].';">'.$lang['logLevel'][$logLevelRow['type']].'</div>';
 }
 $content.= '</div>';
-$content.= '<div class="spacer"></div>';
 
 /**
  * DB Dump
  */
 $content.= '<h3>'.$lang['itemInfo']['dbDump'].'</h3>';
-$content.= '<div class="row">'.
-  '<div class="col-s-12 col-l-12"><pre class="smaller">'.var_export($row, TRUE).'</pre></div>'.
-'</div>';
-$content.= '<div class="spacer"></div>';
+$content.= '<p><pre class="smaller">'.var_export($row, TRUE).'</pre></p>';
 ?>
