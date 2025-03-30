@@ -26,7 +26,8 @@
   --codeColor: #ee4d2e;
   --warnColor: #c52b2f;
   --highlightColor: #ee4d2e;
- 
+  --tableHoverColor: rgba(0, 0, 0, 0.2);
+
   /**
    * Links
    */
@@ -529,4 +530,36 @@ a.msb-btn {
   justify-content: center;
   margin: calc(var(--basicSpacingSize) * 0.5) calc(var(--basicSpacingSize) * 0.8);
   color: var(--fontColor);
+}
+
+/**
+ * Tables
+ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  transition: all var(--transitionTime);
+  margin: 0 auto;
+}
+
+th, td {
+  border: 1px solid var(--fontColorDimmed);
+  padding: calc(var(--basicSpacingSize) * 0.3) calc(var(--basicSpacingSize) * 0.6);
+}
+
+th {
+  color: var(--highlightColor);
+  font-weight: bold;
+}
+
+tr:not(th):hover {
+  background-color: var(--tableHoverColor);
+}
+
+.overflowXAuto {
+  overflow-x: auto;
+}
+
+.noBreak {
+  white-space: nowrap;
 }
