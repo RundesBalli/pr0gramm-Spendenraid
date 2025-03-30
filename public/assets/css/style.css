@@ -101,6 +101,7 @@ body {
   font-size: var(--fontSize);
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 img {
