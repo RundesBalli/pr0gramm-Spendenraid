@@ -6,7 +6,6 @@ https://RundesBalli.com
   <head>
     <title>{TITLE}pr0gramm-Spendenraid</title>
     <meta charset="utf-8">
-    <link href="/assets/css/themes/dark.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/fontawesome.css" rel="stylesheet">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png">
