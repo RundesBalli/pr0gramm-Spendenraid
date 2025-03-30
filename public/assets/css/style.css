@@ -543,10 +543,14 @@ a.msb-btn {
  * Tables
  */
 table {
-  width: 100%;
+  min-width: 40%;
   border-collapse: collapse;
   transition: all var(--transitionTime);
   margin: 0 auto;
+}
+
+table:not(.notFullWidth) {
+  width: 100%;
 }
 
 th, td {
