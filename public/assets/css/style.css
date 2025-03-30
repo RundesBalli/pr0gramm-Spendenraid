@@ -126,6 +126,11 @@ a:active, a:hover, a:focus {
   text-decoration: underline;
 }
 
+p {
+  margin: var(--basicSpacingSize) auto;
+  width: 100%;
+}
+
 h1, h2, h3 {
   word-break: break-word;
   text-align: center;
