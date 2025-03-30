@@ -367,16 +367,14 @@ pre {
  * Background color and font color switched.
  */
 #footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   text-align: center;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  color: var(--navbarFontColor);
-  background-color: var(--navbarBackgroundColor);
+  background-color: var(--backgroundColor);
   padding: calc(var(--basicSpacingSize) * 0.3) 0px;
-  font-size: calc(var(--fontSize) * 0.8);
-  box-shadow: 0px -1px 6px var(--shadowColor);
+  font-size: calc(var(--fontSize) * 0.85);
 }
 
 #footer > div {
