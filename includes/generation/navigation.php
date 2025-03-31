@@ -41,7 +41,9 @@ if(empty($loggedIn)) {
   $nav.= '<a href="/stats"'.((!empty($route) AND $route == 'stats') ? $a : NULL).'>'.$lang['nav']['stats'].'</a>';
   $nav.= '<a href="/logout"'.((!empty($route) AND $route == 'logout') ? $a : NULL).'>'.$lang['nav']['logout'].'</a>';
   if(defined('perm-delList')) {
-    $nav.= '<a href="/delList"'.((!empty($route) AND $route == 'delList') ? $a : NULL).' class="smaller">'.$lang['nav']['delList'].'</a>';
+    $result = mysqli_query($dbl, 'SELECT COUNT(`id`) AS `c` FROM `items` WHERE `delFlag`=1') OR DIE(MYSQLI_ERROR($dbl));
+    $row = mysqli_fetch_assoc($result);
+    $nav.= '<a href="/delList"'.((!empty($route) AND $route == 'delList') ? $a : NULL).' class="smaller">'.$lang['nav']['delList'].(!empty($row['c']) ? " (".$row['c'].")" : NULL).'</a>';
   }
   if(defined('perm-fakes')) {
     $nav.= '<a href="/fakes"'.((!empty($route) AND $route == 'fakes') ? $a : NULL).' class="smaller">'.$lang['nav']['fakes'].'</a>';
