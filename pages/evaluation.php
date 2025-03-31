@@ -220,6 +220,42 @@ if(mysqli_num_rows($result) == 1) {
   $secondsToNextCrawl = (ceil(time()/60)*60)-time();
   $title = $secondsToNextCrawl.'s - '.$lang['evaluation']['title'];
   $content.= '<div class="infoBox">'.sprintf($lang['evaluation']['allDone'], $secondsToNextCrawl).'<br><a href="/organization" autofocus>'.$lang['evaluation']['evaluateOrganizations'].'</a></div>';
-  $content.= '<meta http-equiv="refresh" content="5">';
+
+  $result = mysqli_query($dbl, 'SELECT * FROM `log` WHERE `userId` IS NULL AND `text` LIKE "%CRON, Crawl%" AND `timestamp`>=DATE_SUB(NOW(), INTERVAL 10 SECOND) ORDER BY `timestamp` DESC LIMIT 5') OR DIE(MYSQLI_ERROR($dbl));
+  $count = mysqli_num_rows($result);
+  if($count) {
+    $content.= '<h3>'.$lang['evaluation']['lastCronLog'].'</h3>';
+    $content.= '<div class="overflowXAuto"><table>';
+    $content.= '<tr style="border-left: 6px solid #888888;">
+      <th>'.$lang['log']['log']['id'].'</td>
+      <th>'.$lang['log']['log']['timestamp'].'</td>
+      <th>'.$lang['log']['log']['text'].'</td>
+    </tr>';
+
+    while($row = mysqli_fetch_assoc($result)) {
+      /**
+       * Calculate color.
+       */
+      $colorRgb = hex2rgb($row['color']);
+    
+      /**
+       * Timezone shit.
+       */
+      $ts = new DateTime($row['timestamp'], new DateTimeZone('UTC'));
+      $ts->setTimezone(new DateTimeZone('Europe/Berlin'));
+    
+      /**
+       * Table row
+       */
+      $content.= '<tr style="border-left: 6px solid #'.$row['color'].'; background-color: rgba('.$colorRgb['r'].', '.$colorRgb['g'].', '.$colorRgb['b'].', 0.04);">
+        <td>'.$row['id'].'</td>
+        <td class="noBreak">'.$ts->format('Y-m-d H:i:s').'</td>
+        <td>'.clickableLinks(output($row['text'])).'</td>
+      </tr>';
+    }
+
+    $content.= '</table></div>';
+  }
+  $content.= '<meta http-equiv="refresh" content="'.(($secondsToNextCrawl <= 5 OR ($secondsToNextCrawl >= 50 AND $count != 2)) ? '1' : '5').'">';
 }
 ?>

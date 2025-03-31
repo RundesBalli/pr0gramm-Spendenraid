@@ -274,6 +274,7 @@ $lang = [
     'infoText' => 'Spendenpost: Geldwert eintragen (Komma oder Punkt als Dezimaltrennung ist egal),<br><span class="warn bold">NEU IN 2025:</span> Nur Geldspenden mit mindestens %s zählen. Das Datum muss zu sehen sein! Blutspende & Co. zählt nicht mehr!<br>kein Spendenpost: die Zahl 0 eintragen,<br>unsicher: leer lassen und Formular absenden, dann kommt ein neues Bild.<br>Wenn der Post eine Spende ist, man aber den Wert nicht erkennt, dann ist es keine Spende (bitte User unter dem Post in den Kommentaren informieren)!<br>CHF und USD einfach 1:1 eintragen.<br>DKMS siehe Info <a href="/overview">hier</a>!',
     'allDone' => 'Alles erledigt. Nächster Crawl jede Minute. (in %d Sekunden)',
     'evaluateOrganizations' => 'Organisationen bewerten',
+    'lastCronLog' => 'Cron Log-Einträge der letzten 10 Sekunden',
   ],
 
   /**
