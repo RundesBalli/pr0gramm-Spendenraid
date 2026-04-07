@@ -7,9 +7,9 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-DROP DATABASE IF EXISTS `spendenraid_2025`;
-CREATE DATABASE `spendenraid_2025` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `spendenraid_2025`;
+DROP DATABASE IF EXISTS `spendenraid_2026`;
+CREATE DATABASE `spendenraid_2026` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+USE `spendenraid_2026`;
 
 DROP TABLE IF EXISTS `fakes`;
 CREATE TABLE `fakes` (
